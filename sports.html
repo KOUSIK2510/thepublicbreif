@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sports News | The Public Brief</title>
+<meta name="description" content="Sports coverage from The Public Brief – Live scores, match analysis, Olympics, football."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"separator":"#E5E7EB","background":"#f9f9f9","breaking-red":"#B00020","meta-text":"#6B7280","on-primary":"#ffffff","surface-container":"#eeeeee","surface-container-high":"#e8e8e8","surface-gray":"#F9FAFB","on-surface":"#1a1c1c","primary":"#000000","secondary":"#b90c25","secondary-container":"#dd2e3a","surface":"#f9f9f9","on-primary-container":"#858383","surface-tint":"#5f5e5e","accent-amber":"#D97706","on-surface-variant":"#444748","surface-container-low":"#f3f3f4","outline-variant":"#c4c7c7"},spacing:{"container-max":"1280px","section-gap":"64px","margin-desktop":"48px","gutter":"24px","margin-mobile":"16px"},fontFamily:{"label-lg":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"display-lg":["Playfair Display"],"headline-lg":["Playfair Display"],"headline-xl":["Playfair Display"],"headline-md":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"body-md":["Inter"]},fontSize:{"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"30px","fontWeight":"400"}],"label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"display-lg-mobile":["32px",{"lineHeight":"40px","fontWeight":"700"}],"body-md":["16px",{"lineHeight":"26px","fontWeight":"400"}]}}}}
+</script>
+<style>
+  .ticker-wrap{overflow:hidden;white-space:nowrap}
+  .ticker{display:inline-block;padding-left:100%;animation:ticker 25s linear infinite}
+  .ticker-item{display:inline-block;padding:0 2rem}
+  @keyframes ticker{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-100%,0,0)}}
+</style>
+<link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="bg-surface flex flex-col w-full sticky top-0 z-50 border-b border-separator">
+  <div class="flex items-center justify-between py-5 px-4 md:px-12 max-w-container-max mx-auto w-full">
+    <div class="w-1/3 hidden md:flex items-center text-meta-text font-label-sm text-label-sm uppercase tracking-wider">
+      <script>document.write(new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));</script>
+    </div>
+    <div class="w-1/3 flex justify-center">
+      <a href="index.html" class="text-headline-xl font-headline-xl text-primary uppercase tracking-tighter">The Public Brief</a>
+    </div>
+    <div class="w-1/3 flex justify-end items-center gap-4">
+      <a href="login.html" class="hidden md:block text-primary hover:text-breaking-red transition-colors font-label-sm text-label-sm uppercase tracking-wider">Login</a>
+      <a href="login.html" class="bg-breaking-red text-white px-6 py-2 font-label-lg text-label-lg uppercase tracking-wider hover:bg-secondary-container transition-colors">Subscribe</a>
+    </div>
+  </div>
+  <nav class="flex justify-center w-full max-w-container-max mx-auto px-4 md:px-12">
+    <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap">
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="index.html">Home</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="national.html">National</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="world.html">World</a></li>
+      <li><a class="text-secondary border-b-2 border-secondary pb-4 block font-label-lg text-label-lg uppercase tracking-wider" href="sports.html">Sports</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="entertainment.html">Entertainment</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="opinion.html">Opinion</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Live Scores Ticker -->
+<div class="bg-primary text-white py-2 px-4 flex items-center gap-4 overflow-hidden">
+  <span class="bg-breaking-red text-white px-3 py-0.5 text-xs font-bold uppercase tracking-wider whitespace-nowrap rounded-sm">Live Scores</span>
+  <div class="ticker-wrap w-full flex items-center">
+    <div class="ticker">
+      <span class="ticker-item font-semibold">⚽ ManCity 2–1 Arsenal</span>
+      <span class="ticker-item text-gray-400">•</span>
+      <span class="ticker-item font-semibold">🏀 Lakers 98–105 Celtics (Q4)</span>
+      <span class="ticker-item text-gray-400">•</span>
+      <span class="ticker-item font-semibold">🎾 Djokovic d. Alcaraz 6–4, 7–6</span>
+      <span class="ticker-item text-gray-400">•</span>
+      <span class="ticker-item font-semibold">🏈 Chiefs 17–14 Eagles (3rd)</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-4 md:px-12 py-16 grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+  <!-- Main Area -->
+  <div class="lg:col-span-8 flex flex-col gap-12">
+    <!-- Hero Story -->
+    <article class="group cursor-pointer flex flex-col gap-6">
+      <div class="relative w-full aspect-video overflow-hidden border border-separator">
+        <img alt="Championship Victory" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLOkWz-LVcikMzBmDewscN0zIcxRT3lU5Pt5uhUEMOAlG5o7qlu_lbIL_KtKGvidmaQt0r9lN-OOylSbZKTe_vPcdE5jIG9zee_p6UeHHv2MMorIqCzh3idTUeUB3sZru-j1zRD6Yfd7VHATbMY301I8I4EBZX4RTBWziq9dN3Q2mFAPILrJSOQ6UpT3oyCFM-z8LOsYiXBpKmM9-6vYga14stcFrgbFI2o4Z5ejKWrY9WWulus6o3"/>
+      </div>
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+          <span class="text-breaking-red font-label-sm text-label-sm uppercase tracking-wider font-bold">Championship</span>
+          <span class="text-meta-text text-sm">2 hours ago</span>
+        </div>
+        <h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-primary leading-tight">Underdogs Triumph: Valley FC Clinch Championship Title in Stunning Final-Minute Victory</h1>
+        <p class="text-body-lg font-body-lg text-on-surface-variant">In what analysts are calling the most dramatic final in a decade, Valley FC overturned a two-goal deficit in the dying minutes to claim their first ever national championship. Captain Leon Graves scored the decisive header in the 94th minute, sending thousands of fans into euphoria.</p>
+        <div class="flex items-center gap-3 mt-2">
+          <p class="font-label-lg text-label-lg text-primary">By Michael Torres</p>
+          <span class="text-meta-text">•</span>
+          <span class="flex items-center gap-1 text-meta-text text-sm"><span class="material-symbols-outlined text-sm">schedule</span> 6 min read</span>
+        </div>
+      </div>
+    </article>
+
+    <hr class="border-separator border-t-2"/>
+
+    <!-- Sports Grid -->
+    <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="lg:col-span-4 flex flex-col gap-8">
+    <!-- Scoreboard Widget -->
+    <div class="bg-primary text-white p-6">
+      <h3 class="text-headline-md font-headline-md mb-4 border-b border-surface-tint pb-3">Today's Results</h3>
+      <div class="space-y-4">
+        <div class="flex justify-between items-center py-2 border-b border-surface-tint">
+          <span class="text-sm font-semibold">ManCity</span>
+          <span class="text-breaking-red font-bold text-lg">2 – 1</span>
+          <span class="text-sm font-semibold">Arsenal</span>
+        </div>
+        <div class="flex justify-between items-center py-2 border-b border-surface-tint">
+          <span class="text-sm font-semibold">Lakers</span>
+          <span class="text-accent-amber font-bold text-lg">98 – 105</span>
+          <span class="text-sm font-semibold">Celtics</span>
+        </div>
+        <div class="flex justify-between items-center py-2 border-b border-surface-tint">
+          <span class="text-sm font-semibold">Chiefs</span>
+          <span class="text-breaking-red font-bold text-lg">17 – 14</span>
+          <span class="text-sm font-semibold">Eagles</span>
+        </div>
+        <div class="flex justify-between items-center py-2">
+          <span class="text-sm font-semibold">Djokovic</span>
+          <span class="text-accent-amber font-bold text-sm">6–4 7–6</span>
+          <span class="text-sm font-semibold">Alcaraz</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trending Sports -->
+    <div class="bg-surface-gray p-6 border border-separator">
+      <div class="flex items-center gap-2 mb-4 border-b border-separator pb-2">
+        <span class="material-symbols-outlined text-breaking-red">trending_up</span>
+        <h3 class="text-headline-md font-headline-md text-primary">Trending in Sports</h3>
+      </div>
+      <ol class="list-decimal list-inside space-y-4 marker:text-breaking-red marker:font-bold marker:text-base">
+        <li class="pl-2 border-b border-separator pb-3"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary" href="#">Transfer Window Bombshell as Star Striker Moves for Record Fee</a></li>
+        <li class="pl-2 border-b border-separator pb-3"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary" href="#">Marathon Runner Shatters World Record in Berlin</a></li>
+        <li class="pl-2 border-b border-separator pb-3"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary" href="#">Tennis Federation Announces New Ranking Rules</a></li>
+        <li class="pl-2"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary" href="#">Young Golfer Wins Major on Championship Debut</a></li>
+      </ol>
+    </div>
+  </aside>
+</main>
+
+<!-- Footer -->
+<footer class="bg-primary text-on-primary mt-auto w-full py-16 px-4 md:px-12">
+  <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between gap-8">
+    <div><h2 class="text-headline-lg font-headline-lg text-white uppercase tracking-tighter mb-2">The Public Brief</h2><p class="text-on-primary-container text-sm max-w-xs">Independent, authoritative sports journalism.</p></div>
+    <div class="flex gap-12">
+      <div class="flex flex-col gap-3">
+        <h4 class="text-white font-label-lg text-label-lg uppercase tracking-wider mb-2">Sections</h4>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="index.html">Home</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="national.html">National</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="world.html">World</a>
+        <a class="text-white font-bold text-label-sm font-label-sm" href="sports.html">Sports</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="entertainment.html">Entertainment</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="opinion.html">Opinion</a>
+      </div>
+      <div class="flex flex-col gap-3">
+        <h4 class="text-white font-label-lg text-label-lg uppercase tracking-wider mb-2">Legal</h4>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="#">Privacy Policy</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="#">Terms of Service</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-container-max mx-auto mt-12 pt-6 border-t border-surface-tint text-on-primary-container text-label-sm font-label-sm">© 2024 The Public Brief. All rights reserved.</div>
+</footer>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard - The Public Brief</title>
+<meta name="description" content="Editorial Admin Dashboard – Pending Reviews, Published Articles, Authors, Settings."/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="css/styles.css" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary":"#ffffff","surface":"#f9f9f9","separator":"#E5E7EB","surface-tint":"#5f5e5e","surface-gray":"#F9FAFB","on-secondary":"#ffffff","breaking-red":"#B00020","on-primary":"#ffffff","secondary":"#b90c25","inverse-primary":"#c8c6c5","accent-amber":"#D97706","inverse-surface":"#2f3131","on-primary-container":"#858383","error-container":"#ffdad6","secondary-container":"#dd2e3a","inverse-on-surface":"#f0f1f1","surface-container":"#eeeeee","on-primary-fixed":"#1c1b1b","surface-container-high":"#e8e8e8","primary":"#000000","tertiary":"#000000","surface-container-low":"#f3f3f4","on-surface-variant":"#444748","on-error":"#ffffff","outline-variant":"#c4c7c7","outline":"#747878","surface-dim":"#dadada","background":"#f9f9f9","primary-container":"#1c1b1b","surface-container-lowest":"#ffffff","error":"#ba1a1a","on-surface":"#1a1c1c","meta-text":"#6B7280","surface-variant":"#e2e2e2"},spacing:{"container-max":"1280px","margin-mobile":"16px","gutter":"24px","margin-desktop":"48px","section-gap":"64px"},fontFamily:{"headline-md":["Playfair Display"],"body-lg":["Inter"],"label-sm":["Inter"],"headline-xl":["Playfair Display"],"display-lg":["Playfair Display"],"label-lg":["Inter"],"headline-lg":["Playfair Display"],"body-md":["Inter"]},fontSize:{"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"30px","fontWeight":"400"}],"label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"700"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}],"body-md":["16px",{"lineHeight":"26px","fontWeight":"400"}]}}}}
+</script>
+<style>
+  .admin-view { display: none; }
+  .admin-view.active { display: block; }
+  .nav-item { transition: background 0.15s, color 0.15s; }
+  .nav-item.active-nav { background: #b90c25; color: #fff !important; }
+  .nav-item.active-nav span { color: #fff !important; }
+  .article-card { transition: opacity 0.4s ease, transform 0.4s ease; }
+  .article-card.removing { opacity: 0; transform: translateX(40px); }
+  .rating-star { color: #D97706; }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md flex min-h-screen">
+
+<!-- Sidebar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col p-6 border-r border-separator bg-surface-gray w-64 hidden md:flex z-30">
+  <div class="mb-8">
+    <a href="index.html" class="text-headline-md font-headline-md text-primary hover:text-secondary transition-colors">The Public Brief</a>
+    <p class="font-label-sm text-label-sm text-meta-text mt-1" id="sidebar-user-name">Managing Editor</p>
+  </div>
+  <button id="new-article-btn" class="w-full bg-breaking-red text-white py-2 px-4 rounded font-label-lg text-label-lg mb-6 hover:bg-secondary-container transition-colors flex items-center justify-center gap-2">
+    <span class="material-symbols-outlined text-[18px]">add</span> New Article
+  </button>
+  <ul class="space-y-1 flex-grow">
+    <li>
+      <button data-view="pending" class="nav-item active-nav w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-left">
+        <span class="material-symbols-outlined">rate_review</span><span>Pending Reviews</span>
+        <span class="ml-auto bg-breaking-red text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center" id="pending-badge">3</span>
+      </button>
+    </li>
+    <li>
+      <button data-view="published" class="nav-item w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high text-left">
+        <span class="material-symbols-outlined">article</span><span>Published</span>
+      </button>
+    </li>
+    <li>
+      <button data-view="authors" class="nav-item w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high text-left">
+        <span class="material-symbols-outlined">group</span><span>Authors</span>
+      </button>
+    </li>
+    <li>
+      <button data-view="settings" class="nav-item w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high text-left">
+        <span class="material-symbols-outlined">manage_accounts</span><span>Settings / Profile</span>
+      </button>
+    </li>
+    <li class="pt-4 border-t border-separator mt-4">
+      <a href="index.html" class="nav-item w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high">
+        <span class="material-symbols-outlined">home</span><span>Back to Site</span>
+      </a>
+    </li>
+  </ul>
+  <div class="border-t border-separator pt-4 mt-4">
+    <button id="logout-btn" class="flex items-center space-x-2 text-meta-text hover:text-primary transition-colors font-label-sm text-label-sm">
+      <span class="material-symbols-outlined text-sm">logout</span><span>Logout</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Main -->
+<div class="flex-1 md:ml-64 flex flex-col min-h-screen bg-background">
+
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-50 flex justify-between items-center px-6 md:px-12 h-16 w-full bg-surface-container-lowest border-b border-separator">
+    <h2 class="font-headline-md text-headline-md text-primary" id="page-title">Pending Reviews</h2>
+    <div class="flex items-center space-x-4">
+      <button class="text-on-surface-variant hover:text-secondary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+      <div class="h-9 w-9 rounded-full bg-surface-dim overflow-hidden border-2 border-separator">
+        <img alt="Admin" class="object-cover w-full h-full" id="top-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgekMISlL5_K2oonWnSZD91t9Ai0JxMK2xsUvMYnij22SracHAdWndR9qoaYTl5Il0UFf4NzaEdiOlkBCUgWrHTbGQc8MdJQLdLXKsNw3azHBuoZWZXtQqwvVQvd5NDhbSOvG5HoabGVfQDlBkUT5egUZDPMewoBYKQSGs4mzKMZ5m9Ed-TEgRKklFECeULXgylhnMotfSOEkzMKkoumV0s2FR1u4GIFRcFm5MywXETUQwhgaMJix5"/>
+      </div>
+      <button id="logout-btn-top" class="font-label-sm text-label-sm text-meta-text hover:text-secondary transition-colors">Logout</button>
+    </div>
+  </header>
+
+  <main class="flex-1 px-4 md:px-10 py-8 max-w-container-max mx-auto w-full">
+
+    <!-- ═══════════════ PENDING REVIEWS VIEW ═══════════════ -->
+    <div class="admin-view active" id="view-pending">
+      <div class="flex justify-between items-end mb-6 border-b border-separator pb-4">
+        <div>
+          <p class="text-meta-text text-sm" id="count-label">3 articles awaiting editorial approval.</p>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="flex flex-col md:flex-row justify-between items-center bg-white p-4 border border-separator mb-6 gap-4">
+        <div class="flex items-center w-full md:w-auto space-x-3">
+          <div class="relative w-full md:w-64">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-meta-text text-[18px]">search</span>
+            <input id="search-input" class="w-full pl-10 pr-4 py-2 border border-separator bg-surface focus:outline-none focus:border-primary font-body-md text-sm" placeholder="Search articles…" type="text"/>
+          </div>
+          <select id="category-filter" class="border border-separator px-3 py-2 bg-surface text-sm focus:outline-none focus:border-primary hidden sm:block">
+            <option>All Categories</option>
+            <option>National</option>
+            <option>World</option>
+            <option>Politics</option>
+            <option>Culture</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Queue -->
+      <div class="space-y-4" id="article-queue">
+        <!-- Fetched from backend -->
+      </div>
+    </div>
+
+    <!-- ═══════════════ PUBLISHED ARTICLES VIEW ═══════════════ -->
+    <div class="admin-view" id="view-published">
+      <p class="text-meta-text text-sm mb-6">All live articles currently published on The Public Brief.</p>
+
+      <div class="bg-white border border-separator overflow-hidden">
+        <!-- Table Header -->
+        <div class="grid grid-cols-12 gap-3 px-5 py-3 bg-surface-gray border-b border-separator text-label-sm font-label-sm text-meta-text uppercase tracking-widest">
+          <div class="col-span-5">Title</div>
+          <div class="col-span-2">Author</div>
+          <div class="col-span-2">Section</div>
+          <div class="col-span-2">Published</div>
+          <div class="col-span-1">Actions</div>
+        </div>
+
+        <!-- Published Article Rows -->
+        <div id="published-list">
+          <!-- Fetched from backend -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ AUTHORS VIEW ═══════════════ -->
+    <div class="admin-view" id="view-authors">
+      <p class="text-meta-text text-sm mb-6">All contributing authors on The Public Brief editorial team.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+        <div class="bg-white border border-separator p-6 flex flex-col gap-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-4">
+            <img class="w-16 h-16 rounded-full object-cover border-2 border-separator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzwsCn7YmMaI55GqBcbpKmKOaXFOhp8vYPrCnVk9sUZOh4Jk6mfSctD3bfsAk4xxED9ku5u_NYXzzDjW4f1l4k7S84F9edzKbmNL5scJiGutsj3i9pnH-wr4bxxdftXZ-awosE-RzZ6SvJfk9q1oowIDh3pBlzgVarhmF5GzQTowIhNhbw9HgK8VGaN_4nrlMK4XMEwMpxkxJrDfkm8UeXksdJPUf2lHglccWdYr8zzU6DBWM7O2yP" alt="Sarah Jenkins"/>
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary text-base">Sarah Jenkins</h3>
+              <p class="text-meta-text text-sm">Chief Political Correspondent</p>
+              <span class="text-breaking-red text-xs font-bold uppercase tracking-wider">National</span>
+            </div>
+          </div>
+          <div class="flex gap-6 text-center border-t border-separator pt-4">
+            <div><p class="text-xl font-bold text-primary">47</p><p class="text-xs text-meta-text uppercase tracking-wider">Articles</p></div>
+            <div><p class="text-xl font-bold text-primary">2.3M</p><p class="text-xs text-meta-text uppercase tracking-wider">Reads</p></div>
+            <div><p class="text-xl font-bold text-primary">4.8<span class="text-accent-amber">★</span></p><p class="text-xs text-meta-text uppercase tracking-wider">Rating</p></div>
+          </div>
+          <div class="flex gap-2 pt-2">
+            <button class="flex-1 border border-primary text-primary text-xs font-bold py-2 hover:bg-surface-gray transition-colors">View Articles</button>
+            <button class="flex-1 border border-separator text-meta-text text-xs font-bold py-2 hover:bg-surface-gray transition-colors">Edit Profile</button>
+          </div>
+        </div>
+
+        <div class="bg-white border border-separator p-6 flex flex-col gap-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-4">
+            <img class="w-16 h-16 rounded-full object-cover border-2 border-separator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSDzNxgXIw8fRvHqi57TobEZraNtodOwgSWgTFqZpF8ewFguSNfU7Y1Qb9idR-GhIVPBCidFLNg3hNHBrei-Bb7YElUxeS2xmx9Ab200xsYfzR59jv50klpv2RH9ft-xYYabY9b0ZZXzON2bzadWOCF6iADKlpfvfGix3IiZUGAohn0M4pDRXAyS8bNsJc3Em0ccE0AmFXzCoYFpBIpf1htMk0XIeizT2vJzGlDN6BSzGzExNuAMKu" alt="Marcus Webb"/>
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary text-base">Marcus Webb</h3>
+              <p class="text-meta-text text-sm">Economics & Trade Editor</p>
+              <span class="text-breaking-red text-xs font-bold uppercase tracking-wider">Opinion</span>
+            </div>
+          </div>
+          <div class="flex gap-6 text-center border-t border-separator pt-4">
+            <div><p class="text-xl font-bold text-primary">31</p><p class="text-xs text-meta-text uppercase tracking-wider">Articles</p></div>
+            <div><p class="text-xl font-bold text-primary">1.1M</p><p class="text-xs text-meta-text uppercase tracking-wider">Reads</p></div>
+            <div><p class="text-xl font-bold text-primary">4.6<span class="text-accent-amber">★</span></p><p class="text-xs text-meta-text uppercase tracking-wider">Rating</p></div>
+          </div>
+          <div class="flex gap-2 pt-2">
+            <button class="flex-1 border border-primary text-primary text-xs font-bold py-2 hover:bg-surface-gray transition-colors">View Articles</button>
+            <button class="flex-1 border border-separator text-meta-text text-xs font-bold py-2 hover:bg-surface-gray transition-colors">Edit Profile</button>
+          </div>
+        </div>
+
+        <div class="bg-white border border-separator p-6 flex flex-col gap-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-4">
+            <img class="w-16 h-16 rounded-full object-cover border-2 border-separator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgekMISlL5_K2oonWnSZD91t9Ai0JxMK2xsUvMYnij22SracHAdWndR9qoaYTl5Il0UFf4NzaEdiOlkBCUgWrHTbGQc8MdJQLdLXKsNw3azHBuoZWZXtQqwvVQvd5NDhbSOvG5HoabGVfQDlBkUT5egUZDPMewoBYKQSGs4mzKMZ5m9Ed-TEgRKklFECeULXgylhnMotfSOEkzMKkoumV0s2FR1u4GIFRcFm5MywXETUQwhgaMJix5" alt="Priya Rajan"/>
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary text-base">Priya Rajan</h3>
+              <p class="text-meta-text text-sm">Technology & Society Correspondent</p>
+              <span class="text-breaking-red text-xs font-bold uppercase tracking-wider">World / Tech</span>
+            </div>
+          </div>
+          <div class="flex gap-6 text-center border-t border-separator pt-4">
+            <div><p class="text-xl font-bold text-primary">29</p><p class="text-xs text-meta-text uppercase tracking-wider">Articles</p></div>
+            <div><p class="text-xl font-bold text-primary">890K</p><p class="text-xs text-meta-text uppercase tracking-wider">Reads</p></div>
+            <div><p class="text-xl font-bold text-primary">4.7<span class="text-accent-amber">★</span></p><p class="text-xs text-meta-text uppercase tracking-wider">Rating</p></div>
+          </div>
+          <div class="flex gap-2 pt-2">
+            <button class="flex-1 border border-primary text-primary text-xs font-bold py-2 hover:bg-surface-gray transition-colors">View Articles</button>
+            <button class="flex-1 border border-separator text-meta-text text-xs font-bold py-2 hover:bg-surface-gray transition-colors">Edit Profile</button>
+          </div>
+        </div>
+
+        <div class="bg-white border border-separator p-6 flex flex-col gap-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-4">
+            <img class="w-16 h-16 rounded-full object-cover border-2 border-separator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcNdkm2uY8ddzGSz1CdncecH_Q70AqUtqxSbm8C0TfhIWH2AH2j3cvw51v2o5x-luUk28UchLYM3eW5G-nbeN-9qiuct0It36BVl4go1RMVF18ReHlRx-DRl26TzmARb6lm_4jBL-thtiQd95SPHr87atoxOLtEoOHxaF9LxevT-MKS2Y5OODTxsnxWrrHH6BXvyJYfEeqzSmin_bBrasVDKS86mA2FbHvkHT5COMP1cnb80mgdAmb" alt="Elena Rodriguez"/>
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary text-base">Elena Rodriguez</h3>
+              <p class="text-meta-text text-sm">Arts & Culture Critic</p>
+              <span class="text-breaking-red text-xs font-bold uppercase tracking-wider">Entertainment</span>
+            </div>
+          </div>
+          <div class="flex gap-6 text-center border-t border-separator pt-4">
+            <div><p class="text-xl font-bold text-primary">55</p><p class="text-xs text-meta-text uppercase tracking-wider">Articles</p></div>
+            <div><p class="text-xl font-bold text-primary">3.1M</p><p class="text-xs text-meta-text uppercase tracking-wider">Reads</p></div>
+            <div><p class="text-xl font-bold text-primary">4.9<span class="text-accent-amber">★</span></p><p class="text-xs text-meta-text uppercase tracking-wider">Rating</p></div>
+          </div>
+          <div class="flex gap-2 pt-2">
+            <button class="flex-1 border border-primary text-primary text-xs font-bold py-2 hover:bg-surface-gray transition-colors">View Articles</button>
+            <button class="flex-1 border border-separator text-meta-text text-xs font-bold py-2 hover:bg-surface-gray transition-colors">Edit Profile</button>
+          </div>
+        </div>
+
+        <div class="bg-white border border-separator p-6 flex flex-col gap-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-4">
+            <img class="w-16 h-16 rounded-full object-cover border-2 border-separator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzQTGx1uGjKmvkaVDApRiY1zmfrEZ8SmYjCtHo2tY9oRcoDJ7SWRPwOVSYx8rZf8Ms5xt9h9wdk68LzVWPvTQoPgKRUl6MM8l2hBr_9DAVN0k_aCfbogOkMAQj9EakgPkhMrgPQz0rNP_2iZyMeOXcERIcj-KEbw3kXEPCm84mFly4ycipjkQ2WXq3xmPgekMt5j9756rPNffOlQ5ubHrf5z3f4UQOvNDfsiyr1FlRIWEWyIE29JAs" alt="Michael Torres"/>
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary text-base">Michael Torres</h3>
+              <p class="text-meta-text text-sm">Sports Correspondent</p>
+              <span class="text-breaking-red text-xs font-bold uppercase tracking-wider">Sports</span>
+            </div>
+          </div>
+          <div class="flex gap-6 text-center border-t border-separator pt-4">
+            <div><p class="text-xl font-bold text-primary">38</p><p class="text-xs text-meta-text uppercase tracking-wider">Articles</p></div>
+            <div><p class="text-xl font-bold text-primary">1.7M</p><p class="text-xs text-meta-text uppercase tracking-wider">Reads</p></div>
+            <div><p class="text-xl font-bold text-primary">4.5<span class="text-accent-amber">★</span></p><p class="text-xs text-meta-text uppercase tracking-wider">Rating</p></div>
+          </div>
+          <div class="flex gap-2 pt-2">
+            <button class="flex-1 border border-primary text-primary text-xs font-bold py-2 hover:bg-surface-gray transition-colors">View Articles</button>
+            <button class="flex-1 border border-separator text-meta-text text-xs font-bold py-2 hover:bg-surface-gray transition-colors">Edit Profile</button>
+          </div>
+        </div>
+
+        <!-- Add New Author Card -->
+        <button class="bg-surface-gray border-2 border-dashed border-outline-variant p-6 flex flex-col items-center justify-center gap-3 hover:border-primary hover:bg-surface-container transition-colors min-h-[220px]" id="add-author-btn">
+          <span class="material-symbols-outlined text-4xl text-meta-text">person_add</span>
+          <span class="text-label-lg font-label-lg text-meta-text uppercase tracking-wider">Invite New Author</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════ SETTINGS / PROFILE VIEW ═══════════════ -->
+    <div class="admin-view" id="view-settings">
+      <div class="max-w-2xl mx-auto flex flex-col gap-8">
+
+        <!-- Profile Card -->
+        <div class="bg-white border border-separator p-8">
+          <h2 class="font-headline-md text-headline-md text-primary mb-6 border-b border-separator pb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-breaking-red">account_circle</span> User Profile
+          </h2>
+          <div class="flex items-center gap-6 mb-8">
+            <div class="relative">
+              <img class="w-24 h-24 rounded-full object-cover border-4 border-separator" id="profile-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgekMISlL5_K2oonWnSZD91t9Ai0JxMK2xsUvMYnij22SracHAdWndR9qoaYTl5Il0UFf4NzaEdiOlkBCUgWrHTbGQc8MdJQLdLXKsNw3azHBuoZWZXtQqwvVQvd5NDhbSOvG5HoabGVfQDlBkUT5egUZDPMewoBYKQSGs4mzKMZ5m9Ed-TEgRKklFECeULXgylhnMotfSOEkzMKkoumV0s2FR1u4GIFRcFm5MywXETUQwhgaMJix5" alt="Profile"/>
+              <button class="absolute bottom-0 right-0 bg-primary text-white rounded-full w-7 h-7 flex items-center justify-center hover:bg-secondary transition-colors">
+                <span class="material-symbols-outlined text-[14px]">edit</span>
+              </button>
+            </div>
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary text-lg" id="profile-name">Editorial Admin</h3>
+              <p class="text-meta-text text-sm" id="profile-email">admin@thepublicbrief.com</p>
+              <span class="bg-breaking-red text-white text-xs font-bold uppercase tracking-widest px-2 py-0.5 mt-1 inline-block" id="profile-role">Admin</span>
+            </div>
+          </div>
+          <form class="space-y-5" id="profile-form">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-label-lg font-label-lg text-primary mb-2">Full Name</label>
+                <input id="pf-name" type="text" class="w-full border border-outline-variant bg-surface focus:border-primary focus:ring-0 py-3 px-4 text-sm rounded-none" value="Editorial Admin"/>
+              </div>
+              <div>
+                <label class="block text-label-lg font-label-lg text-primary mb-2">Username</label>
+                <input id="pf-username" type="text" class="w-full border border-outline-variant bg-surface focus:border-primary focus:ring-0 py-3 px-4 text-sm rounded-none" value="admin"/>
+              </div>
+            </div>
+            <div>
+              <label class="block text-label-lg font-label-lg text-primary mb-2">Email Address</label>
+              <input id="pf-email" type="email" class="w-full border border-outline-variant bg-surface focus:border-primary focus:ring-0 py-3 px-4 text-sm rounded-none" value="admin@thepublicbrief.com"/>
+            </div>
+            <div>
+              <label class="block text-label-lg font-label-lg text-primary mb-2">Bio / About</label>
+              <textarea id="pf-bio" rows="3" class="w-full border border-outline-variant bg-surface focus:border-primary focus:ring-0 py-3 px-4 text-sm rounded-none resize-none" placeholder="A brief description about yourself…"></textarea>
+            </div>
+            <button type="submit" class="bg-primary text-white font-label-lg text-label-lg py-3 px-8 hover:bg-inverse-surface transition-colors">Save Profile Changes</button>
+          </form>
+        </div>
+
+        <!-- Change Password -->
+        <div class="bg-white border border-separator p-8">
+          <h2 class="font-headline-md text-headline-md text-primary mb-6 border-b border-separator pb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-breaking-red">lock</span> Change Password
+          </h2>
+          <form class="space-y-5" id="password-form">
+            <div>
+              <label class="block text-label-lg font-label-lg text-primary mb-2">Current Password</label>
+              <input type="password" class="w-full border border-outline-variant bg-surface focus:border-primary focus:ring-0 py-3 px-4 text-sm rounded-none" placeholder="Enter current password"/>
+            </div>
+            <div>
+              <label class="block text-label-lg font-label-lg text-primary mb-2">New Password</label>
+              <input type="password" id="new-pw" class="w-full border border-outline-variant bg-surface focus:border-primary focus:ring-0 py-3 px-4 text-sm rounded-none" placeholder="At least 8 characters"/>
+            </div>
+            <div>
+              <label class="block text-label-lg font-label-lg text-primary mb-2">Confirm New Password</label>
+              <input type="password" id="confirm-new-pw" class="w-full border border-outline-variant bg-surface focus:border-primary focus:ring-0 py-3 px-4 text-sm rounded-none" placeholder="Re-enter new password"/>
+            </div>
+            <p class="text-breaking-red text-sm hidden" id="pw-mismatch">Passwords do not match.</p>
+            <button type="submit" class="bg-breaking-red text-white font-label-lg text-label-lg py-3 px-8 hover:bg-secondary-container transition-colors">Update Password</button>
+          </form>
+        </div>
+
+        <!-- Notification Preferences -->
+        <div class="bg-white border border-separator p-8">
+          <h2 class="font-headline-md text-headline-md text-primary mb-6 border-b border-separator pb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-breaking-red">notifications</span> Notification Preferences
+          </h2>
+          <div class="space-y-4">
+            <label class="flex items-center justify-between cursor-pointer">
+              <span class="text-body-md font-body-md text-primary">Breaking News Alerts</span>
+              <input type="checkbox" checked class="w-5 h-5 rounded text-breaking-red border-outline-variant focus:ring-0"/>
+            </label>
+            <hr class="border-separator"/>
+            <label class="flex items-center justify-between cursor-pointer">
+              <span class="text-body-md font-body-md text-primary">New Article Submission Notifications</span>
+              <input type="checkbox" checked class="w-5 h-5 rounded text-breaking-red border-outline-variant focus:ring-0"/>
+            </label>
+            <hr class="border-separator"/>
+            <label class="flex items-center justify-between cursor-pointer">
+              <span class="text-body-md font-body-md text-primary">Weekly Newsletter Digest</span>
+              <input type="checkbox" class="w-5 h-5 rounded text-breaking-red border-outline-variant focus:ring-0"/>
+            </label>
+            <hr class="border-separator"/>
+            <label class="flex items-center justify-between cursor-pointer">
+              <span class="text-body-md font-body-md text-primary">Author Activity Updates</span>
+              <input type="checkbox" checked class="w-5 h-5 rounded text-breaking-red border-outline-variant focus:ring-0"/>
+            </label>
+          </div>
+          <button class="mt-6 bg-primary text-white font-label-lg text-label-lg py-3 px-8 hover:bg-inverse-surface transition-colors">Save Preferences</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Preview Modal -->
+<div id="preview-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50">
+  <div class="bg-white max-w-lg w-full mx-4 p-8 relative">
+    <button id="close-preview" class="absolute top-4 right-4 text-meta-text hover:text-primary"><span class="material-symbols-outlined">close</span></button>
+    <p class="text-breaking-red text-xs font-bold uppercase tracking-widest mb-3">Draft Preview</p>
+    <h2 class="font-headline-lg text-headline-lg text-primary mb-4" id="preview-title"></h2>
+    <p class="text-body-md font-body-md text-on-surface-variant">Full article content appears here for editorial review before publication.</p>
+    <div class="flex gap-3 mt-6">
+      <button class="flex-1 bg-breaking-red text-white font-label-lg py-3 hover:bg-secondary-container transition-colors approve-from-preview">Approve & Publish</button>
+      <button class="flex-1 border border-primary text-primary font-label-lg py-3 hover:bg-surface-gray transition-colors" id="close-preview-2">Request Edits</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="pb-toast" class="fixed bottom-6 right-6 z-50"></div>
+
+<script src="js/app.js"></script>
+<script>
+(function() {
+  var currentCard = null;
+  var views = { pending: 'view-pending', published: 'view-published', authors: 'view-authors', settings: 'view-settings' };
+  var titles = { pending: 'Pending Reviews', published: 'Published Articles', authors: 'Authors', settings: 'Settings / Profile' };
+
+  // Nav switching
+  document.querySelectorAll('[data-view]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var view = this.dataset.view;
+      document.querySelectorAll('.admin-view').forEach(function(v){ v.classList.remove('active'); });
+      document.getElementById(views[view]).classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active-nav'); n.style.color=''; });
+      this.classList.add('active-nav');
+      document.getElementById('page-title').textContent = titles[view];
+    });
+  });
+
+  // 🚀 Dynamic Admin Data Fetching 🚀
+  function fetchAdminData() {
+    var token = localStorage.getItem('pb_token');
+    var headers = { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
+
+    // Fetch Pending
+    fetch('http://localhost:3001/api/articles/pending', { headers: headers })
+      .then(function(res) { return res.json(); })
+      .then(function(articles) {
+        var queue = document.getElementById('article-queue');
+        queue.innerHTML = '';
+        document.getElementById('count-label').textContent = articles.length + ' article' + (articles.length!==1?'s':'') + ' awaiting editorial approval.';
+        document.getElementById('pending-badge').textContent = articles.length;
+
+        articles.forEach(function(art) {
+          var html = `
+            <div class="article-card flex flex-col md:flex-row bg-white border border-separator p-4 hover:bg-surface-gray transition-colors group" data-category="${art.category}" data-title="${art.title}">
+              <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-5">
+                <img alt="" class="w-full md:w-28 h-20 object-cover" src="${art.imageUrl || ''}"/>
+              </div>
+              <div class="flex-1 flex flex-col justify-between gap-2">
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="bg-surface-variant text-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">${art.category}</span>
+                  </div>
+                  <h3 class="font-headline-md text-headline-md text-primary leading-tight">${art.title}</h3>
+                  <p class="text-meta-text text-sm mt-1">By <strong>${art.byline}</strong></p>
+                </div>
+              </div>
+              <div class="mt-4 md:mt-0 flex items-center gap-2 border-t md:border-t-0 md:border-l border-separator pt-4 md:pt-0 md:pl-5">
+                <button onclick="approveArticle('${art._id}')" class="approve-btn px-3 py-2 bg-breaking-red text-white text-xs font-bold rounded hover:bg-secondary-container transition-colors">Approve</button>
+              </div>
+            </div>
+          `;
+          queue.insertAdjacentHTML('beforeend', html);
+        });
+      });
+
+    // Fetch Published
+    fetch('http://localhost:3001/api/articles', { headers: headers })
+      .then(function(res) { return res.json(); })
+      .then(function(articles) {
+        var list = document.getElementById('published-list');
+        list.innerHTML = '';
+        articles.forEach(function(art) {
+          var d = new Date(art.createdAt || Date.now()).toLocaleDateString();
+          var html = `
+            <div class="grid grid-cols-12 gap-3 items-center px-5 py-4 border-b border-separator hover:bg-surface-gray transition-colors group">
+              <div class="col-span-5 flex items-center gap-3">
+                <img src="${art.imageUrl || ''}" alt="" class="w-14 h-10 object-cover shrink-0"/>
+                <span class="font-body-md font-semibold text-primary text-sm leading-tight group-hover:text-secondary transition-colors">${art.title}</span>
+              </div>
+              <div class="col-span-2 text-sm text-on-surface-variant">${art.byline}</div>
+              <div class="col-span-2"><span class="bg-black text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5">${art.category}</span></div>
+              <div class="col-span-2 text-xs text-meta-text">${d}</div>
+              <div class="col-span-1 flex gap-1">
+                <button class="p-1 text-meta-text hover:text-breaking-red"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+              </div>
+            </div>
+          `;
+          list.insertAdjacentHTML('beforeend', html);
+        });
+      });
+  }
+
+  // Expose global approve
+  window.approveArticle = function(id) {
+    var token = localStorage.getItem('pb_token');
+    fetch('http://localhost:3001/api/articles/' + id + '/approve', {
+      method: 'PUT',
+      headers: { 'Authorization': 'Bearer ' + token }
+    }).then(function(res) {
+      if(res.ok) {
+        window.showPBToast('Article approved & published!');
+        fetchAdminData();
+      }
+    });
+  };
+
+  fetchAdminData(); // Initial load
+
+  // New article creation
+  document.getElementById('new-article-btn').addEventListener('click', function() {
+    var title = prompt('Enter article title:');
+    if (!title) return;
+    var token = localStorage.getItem('pb_token');
+    fetch('http://localhost:3001/api/articles', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: title, category: 'Draft', byline: 'Editorial Admin', status: 'pending' })
+    }).then(function(res){
+      if(res.ok) { window.showPBToast('New draft added to queue!'); fetchAdminData(); }
+    });
+  });
+
+  // Add author
+  document.getElementById('add-author-btn').addEventListener('click', function() {
+    var name = prompt('Enter author name:');
+    if(name) window.showPBToast('Invitation sent to ' + name + '!');
+  });
+
+  // Profile form
+  document.getElementById('profile-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name = document.getElementById('pf-name').value;
+    var user = JSON.parse(localStorage.getItem('pb_user')||'{}');
+    user.name = name;
+    localStorage.setItem('pb_user', JSON.stringify(user));
+    document.getElementById('profile-name').textContent = name;
+    window.showPBToast('Profile updated successfully!');
+  });
+
+  // Password form
+  document.getElementById('password-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var np = document.getElementById('new-pw').value;
+    var cp = document.getElementById('confirm-new-pw').value;
+    var mismatch = document.getElementById('pw-mismatch');
+    if (np !== cp) { mismatch.classList.remove('hidden'); return; }
+    mismatch.classList.add('hidden');
+    window.showPBToast('Password updated successfully!');
+    this.reset();
+  });
+
+  // Load user info
+  try {
+    var user = JSON.parse(localStorage.getItem('pb_user')||'{}');
+    if(user.name) {
+      document.getElementById('sidebar-user-name').textContent = user.name;
+      document.getElementById('profile-name').textContent = user.name;
+      if(user.email) { document.getElementById('profile-email').textContent = user.email; document.getElementById('pf-email').value = user.email; }
+      if(user.username) { document.getElementById('pf-username').value = user.username; }
+      if(user.role) { document.getElementById('profile-role').textContent = user.role.charAt(0).toUpperCase()+user.role.slice(1); }
+      if(user.name) document.getElementById('pf-name').value = user.name;
+    }
+  } catch(e) {}
+
+  // Logout
+  [document.getElementById('logout-btn'), document.getElementById('logout-btn-top')].forEach(function(btn) {
+    if(btn) btn.addEventListener('click', function() { localStorage.removeItem('pb_user'); window.location.href='login.html'; });
+  });
+
+})();
+</script>
+</body>
+</html>

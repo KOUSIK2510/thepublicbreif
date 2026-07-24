@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - The Public Brief</title>
+<meta name="description" content="Login to The Public Brief – Access your personalized editorial feed."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface":"#f9f9f9","outline-variant":"#c4c7c7","secondary":"#b90c25","background":"#f9f9f9","on-primary":"#ffffff","outline":"#747878","separator":"#E5E7EB","surface-container-low":"#f3f3f4","breaking-red":"#B00020","on-surface-variant":"#444748","primary-fixed":"#e5e2e1","inverse-surface":"#2f3131","on-primary-fixed":"#1c1b1b","primary-container":"#1c1b1b","on-primary-container":"#858383","primary":"#000000","meta-text":"#6B7280","surface-gray":"#F9FAFB","on-background":"#1a1c1c","surface-container-high":"#e8e8e8","on-surface":"#1a1c1c","surface-dim":"#dadada","surface-container":"#eeeeee","secondary-container":"#dd2e3a","surface-container-lowest":"#ffffff"},spacing:{"container-max":"1280px","section-gap":"64px","margin-desktop":"48px","gutter":"24px","margin-mobile":"16px"},fontFamily:{"label-lg":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"display-lg":["Playfair Display"],"headline-lg":["Playfair Display"],"headline-xl":["Playfair Display"],"headline-md":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"body-md":["Inter"]},fontSize:{"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"30px","fontWeight":"400"}],"label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"display-lg-mobile":["32px",{"lineHeight":"40px","fontWeight":"700"}],"body-md":["16px",{"lineHeight":"26px","fontWeight":"400"}]}}}}
+</script>
+<link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body class="bg-background text-on-background flex flex-col min-h-screen antialiased">
+
+<!-- Simplified Header -->
+<header class="bg-surface border-b border-separator py-6 w-full">
+  <div class="max-w-container-max mx-auto px-4 md:px-12 flex justify-between items-center">
+    <a href="index.html" class="text-headline-xl font-headline-xl text-primary uppercase tracking-tighter">The Public Brief</a>
+    <nav class="hidden md:flex items-center gap-6 text-label-sm font-label-sm">
+      <a href="index.html" class="text-meta-text hover:text-primary transition-colors uppercase tracking-wider">Home</a>
+      <a href="national.html" class="text-meta-text hover:text-primary transition-colors uppercase tracking-wider">National</a>
+      <a href="world.html" class="text-meta-text hover:text-primary transition-colors uppercase tracking-wider">World</a>
+      <a href="sports.html" class="text-meta-text hover:text-primary transition-colors uppercase tracking-wider">Sports</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow flex items-center justify-center py-16 px-4 md:px-12">
+  <div class="bg-surface-container-lowest w-full max-w-md p-8 md:p-12 shadow-sm border border-separator rounded-sm">
+    <div class="text-center mb-8">
+      <h1 class="text-headline-lg font-headline-lg text-primary mb-2">Login to The Public Brief</h1>
+      <p class="text-body-md font-body-md text-on-surface-variant">Access your personalized editorial feed.</p>
+    </div>
+
+    <!-- Login Form -->
+    <form class="space-y-6" id="login-form">
+      <div>
+        <label class="block text-label-lg font-label-lg text-primary mb-2" for="username">Username or Email</label>
+        <input class="w-full bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-0 rounded-none text-body-md font-body-md py-3 px-4 transition-colors" id="username" name="username" placeholder="Enter your username" type="text"/>
+      </div>
+      <div>
+        <div class="flex justify-between items-baseline mb-2">
+          <label class="block text-label-lg font-label-lg text-primary" for="password">Password</label>
+          <a class="text-label-sm font-label-sm text-meta-text hover:text-secondary transition-colors" href="#">Forgot?</a>
+        </div>
+        <input class="w-full bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-0 rounded-none text-body-md font-body-md py-3 px-4 transition-colors" id="password" name="password" placeholder="Enter your password" type="password"/>
+      </div>
+      <div class="pt-2">
+        <button class="w-full bg-primary text-on-primary text-label-lg font-label-lg py-4 rounded-none hover:bg-inverse-surface transition-colors flex justify-center items-center gap-2" type="submit">
+          Log In
+          <span class="material-symbols-outlined text-[20px]">login</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Links -->
+    <div class="mt-8 text-center space-y-4 border-t border-separator pt-6">
+      <p class="text-body-md font-body-md text-on-surface-variant">
+        Don't have an account? <a class="text-secondary hover:underline font-semibold" href="signup.html">Sign Up</a>
+      </p>
+      <a class="inline-flex text-label-sm font-label-sm text-meta-text hover:text-primary transition-colors uppercase tracking-widest items-center justify-center gap-1" href="index.html">
+        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+        Back to Site
+      </a>
+    </div>
+
+    <!-- Quick Demo Login -->
+    <div class="mt-8 bg-surface-gray p-6 border border-separator">
+      <p class="text-label-sm font-label-sm text-meta-text uppercase tracking-widest mb-4 text-center">Quick Demo Access</p>
+      <div class="flex flex-col gap-3">
+        <button id="demo-reader" class="w-full border border-primary text-primary bg-transparent text-label-lg font-label-lg py-3 rounded-none hover:bg-surface-dim transition-colors">
+          Login as Subscriber Reader
+        </button>
+        <button id="demo-admin" class="w-full border border-breaking-red text-breaking-red bg-transparent text-label-lg font-label-lg py-3 rounded-none hover:bg-surface-dim transition-colors">
+          Login as Editorial Admin
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-primary text-on-primary w-full py-16 px-4 md:px-12 mt-auto">
+  <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="col-span-1 md:col-span-2 flex flex-col gap-4">
+      <div class="text-headline-lg font-headline-lg text-white">The Public Brief</div>
+      <p class="text-body-md font-body-md text-on-primary-container mt-auto">© 2024 The Public Brief. All rights reserved.</p>
+    </div>
+    <div class="col-span-1">
+      <h3 class="text-label-sm font-label-sm text-on-primary-container uppercase tracking-widest mb-6">Organization</h3>
+      <ul class="flex flex-col gap-4">
+        <li><a class="text-on-primary-container font-label-sm text-label-sm hover:text-white transition-colors" href="#">About Us</a></li>
+        <li><a class="text-on-primary-container font-label-sm text-label-sm hover:text-white transition-colors" href="#">Contact</a></li>
+        <li><a class="text-on-primary-container font-label-sm text-label-sm hover:text-white transition-colors" href="#">Advertising</a></li>
+      </ul>
+    </div>
+    <div class="col-span-1">
+      <h3 class="text-label-sm font-label-sm text-on-primary-container uppercase tracking-widest mb-6">Legal &amp; Resources</h3>
+      <ul class="flex flex-col gap-4">
+        <li><a class="text-on-primary-container font-label-sm text-label-sm hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+        <li><a class="text-on-primary-container font-label-sm text-label-sm hover:text-white transition-colors" href="#">Terms of Service</a></li>
+        <li><a class="text-on-primary-container font-label-sm text-label-sm hover:text-white transition-colors" href="#">Archive</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Demo quick login buttons (these will mock an admin/reader using dummy tokens if desired, or we can just skip them for now since we have a real backend)
+  document.getElementById('demo-reader').addEventListener('click', function() {
+    localStorage.setItem('pb_user', JSON.stringify({name:'Demo Reader',role:'subscriber'}));
+    alert('Logged in as Demo Subscriber Reader! Redirecting to homepage...');
+    window.location.href = 'index.html';
+  });
+  document.getElementById('demo-admin').addEventListener('click', function() {
+    localStorage.setItem('pb_user', JSON.stringify({name:'Editorial Admin',role:'admin'}));
+    window.location.href = 'admin.html';
+  });
+
+  document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const u = document.getElementById('username').value;
+    const p = document.getElementById('password').value;
+    
+    if(u && p) {
+      const btn = e.target.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Signing in...';
+      btn.disabled = true;
+
+      fetch('http://localhost:3001/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, password: p })
+      })
+      .then(res => {
+        if (!res.ok) return res.json().then(data => { throw new Error(data.error || 'Login failed') });
+        return res.json();
+      })
+      .then(data => {
+        localStorage.setItem('pb_token', data.token);
+        localStorage.setItem('pb_user', JSON.stringify({ name: data.user.fullname, username: data.user.username, email: data.user.email, role: data.user.role }));
+        
+        if (data.user.role === 'admin') {
+          window.location.href = 'admin.html';
+        } else {
+          window.location.href = 'index.html';
+        }
+      })
+      .catch(err => {
+        alert(err.message);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      });
+    }
+  });
+</script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>World News | The Public Brief</title>
+<meta name="description" content="World news coverage from The Public Brief – Europe, Asia, Americas, Africa, Middle East."/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"meta-text":"#6B7280","primary":"#000000","separator":"#E5E7EB","background":"#f9f9f9","breaking-red":"#B00020","on-surface-variant":"#444748","surface":"#f9f9f9","surface-container-high":"#e8e8e8","surface-container-highest":"#e2e2e2","secondary":"#b90c25","secondary-container":"#dd2e3a","surface-gray":"#F9FAFB","on-primary-container":"#858383","surface-tint":"#5f5e5e","accent-amber":"#D97706","surface-container":"#eeeeee","surface-container-low":"#f3f3f4","on-primary":"#ffffff"}}}}
+</script>
+<style>
+  .serif-text{font-family:'Playfair Display',serif;}
+  .sans-text{font-family:'Inter',sans-serif;}
+  body{background-color:#f9f9f9;color:#1a1c1c;font-family:'Inter',sans-serif;}
+</style>
+<link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body class="sans-text">
+
+<!-- Header -->
+<header class="flex items-center justify-between border-b border-separator px-4 md:px-16 py-4 bg-white sticky top-0 z-50">
+  <div class="flex items-center gap-8">
+    <a href="index.html" class="text-primary text-xl font-bold leading-tight tracking-tight serif-text">The Public Brief</a>
+    <nav class="hidden lg:flex items-center gap-8">
+      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="index.html">Home</a>
+      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="national.html">National</a>
+      <a class="text-secondary text-sm font-bold border-b-2 border-secondary pb-1" href="world.html">World</a>
+      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="sports.html">Sports</a>
+      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="entertainment.html">Entertainment</a>
+      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="opinion.html">Opinion</a>
+    </nav>
+  </div>
+  <div class="flex flex-1 justify-end gap-3">
+    <a href="login.html" class="flex items-center justify-center rounded-xl h-10 px-4 bg-surface-container-high text-primary hover:bg-surface-container-highest transition-all text-sm font-medium">Login</a>
+    <a href="login.html" class="flex items-center justify-center rounded-xl h-10 px-4 bg-secondary text-white hover:bg-secondary-container transition-all text-sm font-bold">Subscribe</a>
+  </div>
+</header>
+
+<!-- Sub-Navigation -->
+<div class="bg-white border-b border-separator px-4 md:px-16">
+  <div class="flex gap-8 overflow-x-auto py-1">
+    <a class="flex flex-col items-center border-b-[3px] border-secondary text-primary pb-3 pt-4 whitespace-nowrap" href="#global"><p class="text-sm font-bold tracking-[0.015em]">Global Feed</p></a>
+    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#europe"><p class="text-sm font-bold tracking-[0.015em]">Europe</p></a>
+    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#asia"><p class="text-sm font-bold tracking-[0.015em]">Asia</p></a>
+    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#americas"><p class="text-sm font-bold tracking-[0.015em]">Americas</p></a>
+    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#africa"><p class="text-sm font-bold tracking-[0.015em]">Africa</p></a>
+    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#middle-east"><p class="text-sm font-bold tracking-[0.015em]">Middle East</p></a>
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="flex-1 px-4 md:px-16 py-8 bg-surface" id="global">
+  <div class="max-w-[1280px] mx-auto">
+
+    <!-- Hero -->
+    <section class="mb-16">
+      <div class="flex flex-col lg:flex-row gap-10 items-center">
+        <div class="w-full lg:w-2/3 group cursor-pointer">
+          <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-lg">
+            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all z-10"></div>
+            <div class="w-full h-full bg-cover bg-center transform group-hover:scale-105 transition-transform duration-700" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUFtuVO6QyERg19XUxmsqAKllyPUOBRPrITAQ9vtF7BFceGyLGA04CWqI_n2KCNylRmL1M0C_ZnQRxcx3837jDKHghbA_r9U8ZYvzfEA4Tb-bQ8Euw0S3ukmsbbS0HRvqdoS-k6UzBeJbB0OBuBw18nYeLyx85IZlM5Q35R3Ne7yKPrrkwGFLbqkhkPGmp3xNiLKts8p3Lq_h2f6jBNnYl3nC2HG-J34j0OEjK_W5cn5T_iF_r9DAi')"></div>
+            <div class="absolute top-4 left-4 z-20">
+              <span class="bg-secondary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Breaking Diplomacy</span>
+            </div>
+          </div>
+        </div>
+        <div class="w-full lg:w-1/3 flex flex-col gap-6">
+          <h1 class="text-4xl md:text-5xl font-black serif-text leading-tight tracking-tight text-primary">
+            Global Markets Rally Amid Breakthrough <span class="text-secondary">Geneva Accord</span>
+          </h1>
+          <p class="text-lg text-on-surface-variant leading-relaxed">World leaders have reached a tentative agreement to stabilize international trade routes through the Red Sea, triggering a positive wave across Asian and European exchanges this morning.</p>
+          <div class="flex items-center gap-4 text-sm font-semibold text-meta-text">
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 12 mins ago</span>
+            <span>•</span><span>By Julian Vane</span>
+          </div>
+          <button id="hero-read-btn" class="w-fit flex items-center justify-center rounded-xl h-12 px-8 bg-primary text-white font-bold hover:bg-secondary transition-all shadow-md flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px]">open_in_new</span> Read Full Analysis
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- World Grid -->
+    <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"></div>
+
+    <!-- Newsletter -->
+    <section class="mt-20 py-12 px-8 bg-primary rounded-2xl text-white flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-1 flex flex-col gap-4">
+        <h2 class="text-3xl font-bold serif-text">Global Briefing in Your Inbox</h2>
+        <p class="text-surface-variant font-light max-w-md">Join 50,000+ decision makers who receive our daily digest of the most critical world news every morning.</p>
+      </div>
+      <div class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
+        <input class="bg-white/10 border-white/20 text-white rounded-xl px-6 py-3 focus:ring-secondary focus:border-secondary min-w-[280px]" placeholder="email@address.com" type="email"/>
+        <button class="bg-secondary hover:bg-secondary-container text-white font-bold py-3 px-8 rounded-xl transition-all">Subscribe Now</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-separator px-4 md:px-16 py-12">
+  <div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-start gap-10">
+    <div class="flex flex-col gap-4">
+      <h2 class="text-lg font-bold serif-text">The Public Brief</h2>
+      <p class="text-sm text-meta-text max-w-xs">Independent journalism for a global audience. We provide context to the world's most complex stories.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-12">
+      <div class="flex flex-col gap-4">
+        <h4 class="font-bold text-sm uppercase tracking-widest text-primary">Sections</h4>
+        <nav class="flex flex-col gap-2 text-sm text-meta-text">
+          <a class="hover:text-secondary" href="index.html">Home</a>
+          <a class="hover:text-secondary" href="national.html">National</a>
+          <a class="hover:text-secondary font-bold text-primary" href="world.html">World</a>
+          <a class="hover:text-secondary" href="sports.html">Sports</a>
+          <a class="hover:text-secondary" href="entertainment.html">Entertainment</a>
+          <a class="hover:text-secondary" href="opinion.html">Opinion</a>
+        </nav>
+      </div>
+      <div class="flex flex-col gap-4">
+        <h4 class="font-bold text-sm uppercase tracking-widest text-primary">Connect</h4>
+        <nav class="flex flex-col gap-2 text-sm text-meta-text">
+          <a class="hover:text-secondary" href="#">X (Twitter)</a>
+          <a class="hover:text-secondary" href="#">LinkedIn</a>
+          <a class="hover:text-secondary" href="#">Instagram</a>
+          <a class="hover:text-secondary" href="#">Podcasts</a>
+        </nav>
+      </div>
+      <div class="flex flex-col gap-4">
+        <h4 class="font-bold text-sm uppercase tracking-widest text-primary">About</h4>
+        <nav class="flex flex-col gap-2 text-sm text-meta-text">
+          <a class="hover:text-secondary" href="#">Our Mission</a>
+          <a class="hover:text-secondary" href="#">Privacy Policy</a>
+          <a class="hover:text-secondary" href="#">Terms</a>
+          <a class="hover:text-secondary" href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-[1280px] mx-auto mt-12 pt-8 border-t border-separator text-xs text-meta-text text-center">© 2024 The Public Brief. All rights reserved.</div>
+</footer>
+
+<!-- ═══ ARTICLE READER MODAL (embedded directly — always in DOM) ═══ -->
+<div id="world-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#fff;width:100%;max-width:760px;max-height:88vh;overflow-y:auto;padding:2.5rem;position:relative;animation:modalIn 0.3s ease;">
+    <button id="world-modal-close" style="position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.75rem;cursor:pointer;color:#747878;line-height:1;" title="Close">✕</button>
+    <img id="wm-img" src="" alt="" style="width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:1.5rem;display:none;"/>
+    <span id="wm-category" style="display:block;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#B00020;margin-bottom:0.75rem;font-family:Inter,sans-serif;"></span>
+    <h2 id="wm-headline" style="font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:700;line-height:1.25;color:#000;margin-bottom:0.75rem;"></h2>
+    <p id="wm-byline" style="font-size:0.85rem;color:#6B7280;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E5E7EB;font-family:Inter,sans-serif;"></p>
+    <div id="wm-body" style="font-family:Inter,sans-serif;font-size:1.05rem;line-height:1.85;color:#1a1c1c;"></div>
+  </div>
+</div>
+<style>
+  @keyframes modalIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+</style>
+
+<script src="js/app.js"></script>
+<script>
+(function() {
+  var WORLD_ARTICLES = {
+    'Global Markets Rally Amid Breakthrough Geneva Accord': {
+      category: 'World / Diplomacy',
+      byline: 'By Julian Vane  •  12 mins ago  •  7 min read',
+      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUFtuVO6QyERg19XUxmsqAKllyPUOBRPrITAQ9vtF7BFceGyLGA04CWqI_n2KCNylRmL1M0C_ZnQRxcx3837jDKHghbA_r9U8ZYvzfEA4Tb-bQ8Euw0S3ukmsbbS0HRvqdoS-k6UzBeJbB0OBuBw18nYeLyx85IZlM5Q35R3Ne7yKPrrkwGFLbqkhkPGmp3xNiLKts8p3Lq_h2f6jBNnYl3nC2HG-J34j0OEjK_W5cn5T_iF_r9DAi',
+      body: '<p>World leaders have reached a tentative agreement to stabilize international trade routes through the Red Sea, triggering a positive wave across Asian and European exchanges this morning.</p><p>The Geneva Accord, signed by representatives of forty-two nations, marks the first time that digital infrastructure has been formally classified as critical national security architecture. Data centers, subsea cables, and AI research facilities now fall under the same protective treaties as military installations.</p><p>"We are no longer debating whether the internet is a public good," said Dr. Miriam Solberg of the Copenhagen Institute. "The question is who controls its architecture, and what that means for the balance of power in the 21st century."</p><p>Markets reacted immediately: the Nikkei rose 2.3%, the DAX climbed 1.8%, and gold futures dipped as risk appetite returned. Economists expect a sustained rally if the accord is ratified within the agreed 90-day window.</p><p>For decades, the United States and European Union maintained a relatively stable digital hegemony. But the rapid rise of state-sponsored AI programs has introduced new vectors of competition that traditional diplomacy was not designed to address. The Geneva Accord may be the first meaningful attempt to close that gap.</p>'
+    },
+    'EU Proposes Unified Green Energy Grid by 2030': {
+      category: 'Europe / Energy Policy',
+      byline: 'By Anna Fischer, Brussels Correspondent  •  3 hours ago  •  5 min read',
+      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDrTj3zWWM3AekbcHKDAHx1lXXBg_wAeWZRsqC5IXyL3-VYr6h6ZjNkND3SZrIOB7Wzu11sDDmP-yx0Jb2L-OrJFIHIQ3Mk_RBWxGcAtZhuuqp_jbOyWyKrIgHb-pri9Z_fTSYN8JaCVQg9mcYtipWZKqmifEq3uZxqV4TGSsr_4pBzQam159bOZVqBQ5ny1XSy-Ofo1n3P6GE1K_GOPzDxi34BqkNsbfXup6CJck66pJ54StK8PlsP',
+      body: '<p>Brussels is moving to centralize renewable energy distribution across member states, reducing dependency on external fossil fuel markets through a bold new infrastructure initiative.</p><p>The proposal, backed by 19 of 27 member states, would require interconnected cross-border grid upgrades costing an estimated €420 billion over six years. The investment is expected to be co-financed through green bonds and EU structural funds.</p><p>Critics from Eastern European member states argue that the timeline is unrealistic and fails to account for existing coal dependency in their energy mixes. However, Commission President von der Leyen remained firm: "The cost of inaction is always higher than the cost of transformation."</p>'
+    },
+    'Tech Hubs in Southeast Asia See 40% Investment Surge': {
+      category: 'Asia / Technology',
+      byline: 'By Ravi Menon, Singapore Bureau  •  1 hour ago  •  6 min read',
+      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCYynQkNwfQuoz-Qlwihrnoi4chGB4E3kWh6NKvEDiT2vRdLQ2jXLEgFci_VnrMCDGHeHanI3rsBx_4X1NbP33tw_6CAa7HR1qgaLHLZH3uEicXo3qSjDRvl5a5l2fyNpjXy_rKoS8H8WGz3gW4LvptpbATUbQv8KtGNBEK3QIzsBM_an2vA2dd3o1R7NqHRcYGNIF-CzejK3-kfm8qZbeWuDyVXnryndeauE948K9waLMXDb89jKzS',
+      body: '<p>Venture capital flows into Singapore and Jakarta have reached record highs as regional tech manufacturing pivots aggressively toward AI semiconductors and cloud infrastructure.</p><p>The 40% investment surge reflects growing confidence in Southeast Asia as an alternative to supply chains disrupted by US-China trade tensions. Singapore attracted $14.2 billion in tech FDI, while Jakarta recorded $6.8 billion—double its 2022 figure.</p><p>Governments across the region have responded with targeted incentives: Malaysia is offering a 10-year tax holiday for semiconductor fabs, while Thailand has earmarked $2 billion for AI research parks in its Eastern Economic Corridor.</p>'
+    },
+    'US-LatAm Trade Partnership Reaches Historic Milestone': {
+      category: 'Americas / Trade',
+      byline: 'By Carlos Reyes, Washington Correspondent  •  6 hours ago  •  4 min read',
+      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCRTM5ScLdJWVl_rrZ1ugjJs43GWVTOGQy5kri-gqL9P5BMiO9WeQDJjOkcxWqnmIJjyNwEYbwITHR_O1DOyvrTXDjeDACxtkNIzVtAjeetBnzO6K9WMCGxwQao1cJKkknM3TctFefukfIeN0tcx3_FTrRa5t_7S4121TX62DfXtOMtW6EwhytiRourlPIugcr1iOnKnoOEveq0mX0hywNYUW6e1UcsqTF8LTWMV-6LZtjdj9wBZXSw',
+      body: '<p>New infrastructure projects across Brazil and Argentina receive a combined $38 billion in backing from a joint Washington-led initiative, marking the most significant US investment in Latin America in two decades.</p><p>The deal, brokered at the Panama City Summit, includes port modernization, renewable energy corridors, and a new trans-Andean rail link connecting Pacific and Atlantic coasts. US Secretary of Commerce described it as "the Western Hemisphere\'s answer to the Belt and Road."</p><p>For Brazil, the partnership offers leverage as it navigates an increasingly multipolar trade environment, while Argentina gains much-needed foreign capital to stabilize its battered economy.</p>'
+    }
+  };
+
+  var modal    = document.getElementById('world-modal');
+  var closeBtn = document.getElementById('world-modal-close');
+
+  function openWorldModal(title) {
+    var data = WORLD_ARTICLES[title] || {
+      category: 'World', byline: '', img: '',
+      body: '<p>Full article coming soon.</p>'
+    };
+    document.getElementById('wm-category').textContent  = data.category;
+    document.getElementById('wm-headline').textContent  = title;
+    document.getElementById('wm-byline').textContent    = data.byline;
+    document.getElementById('wm-body').innerHTML        = data.body;
+    var img = document.getElementById('wm-img');
+    if (data.img) { img.src = data.img; img.style.display = 'block'; }
+    else           { img.style.display = 'none'; }
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeWorldModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeWorldModal);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeWorldModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeWorldModal();
+  });
+
+  // Wire hero button — runs immediately (script is after button in DOM)
+  document.getElementById('hero-read-btn').addEventListener('click', function() {
+    openWorldModal('Global Markets Rally Amid Breakthrough Geneva Accord');
+  });
+
+  // Wire all article headlines
+  document.querySelectorAll('article h3, article h4').forEach(function(h) {
+    h.style.cursor = 'pointer';
+    h.addEventListener('click', function() { openWorldModal(h.textContent.trim()); });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var el = document.getElementById(link.getAttribute('href').substring(1));
+      if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 120, behavior: 'smooth' }); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
+

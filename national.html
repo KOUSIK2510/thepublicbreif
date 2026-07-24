@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>National - The Public Brief</title>
+<meta name="description" content="National news coverage from The Public Brief – Politics, Economy, Health, Infrastructure."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode:"class",
+    theme:{extend:{
+      colors:{"on-surface-variant":"#444748","separator":"#E5E7EB","surface-variant":"#e2e2e2","background":"#f9f9f9","breaking-red":"#B00020","meta-text":"#6B7280","on-primary":"#ffffff","surface-container-lowest":"#ffffff","surface-container-low":"#f3f3f4","surface-container":"#eeeeee","surface-container-high":"#e8e8e8","surface-gray":"#F9FAFB","on-surface":"#1a1c1c","primary":"#000000","secondary":"#b90c25","secondary-container":"#dd2e3a","surface":"#f9f9f9","on-primary-container":"#858383","surface-tint":"#5f5e5e","accent-amber":"#D97706","outline-variant":"#c4c7c7","primary-fixed-dim":"#c8c6c5"},
+      spacing:{"container-max":"1280px","section-gap":"64px","margin-desktop":"48px","gutter":"24px","margin-mobile":"16px"},
+      fontFamily:{"label-lg":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"display-lg":["Playfair Display"],"headline-lg":["Playfair Display"],"headline-xl":["Playfair Display"],"headline-md":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"body-md":["Inter"]},
+      fontSize:{"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"30px","fontWeight":"400"}],"label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"display-lg-mobile":["32px",{"lineHeight":"40px","fontWeight":"700"}],"body-md":["16px",{"lineHeight":"26px","fontWeight":"400"}]}
+    }}
+  }
+</script>
+<style>
+  @keyframes marquee { 0%{transform:translateX(100%)} 100%{transform:translateX(-100%)} }
+</style>
+<link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="bg-surface flex flex-col w-full sticky top-0 z-50 border-b border-separator">
+  <div class="flex items-center justify-between py-5 px-4 md:px-12 max-w-container-max mx-auto w-full">
+    <div class="flex items-center gap-4">
+      <button class="p-2 hover:bg-surface-container-low rounded-full transition-colors md:hidden">
+        <span class="material-symbols-outlined text-primary">menu</span>
+      </button>
+    </div>
+    <a href="index.html" class="text-headline-xl font-headline-xl text-primary uppercase tracking-tighter text-center">The Public Brief</a>
+    <div class="flex items-center gap-4">
+      <a href="login.html" class="hidden md:block text-primary hover:text-secondary transition-colors duration-200 text-label-lg font-label-lg">Login</a>
+      <a href="login.html" class="bg-breaking-red text-white px-6 py-2 rounded-none font-label-lg text-label-lg hover:bg-secondary-container transition-colors">Subscribe</a>
+    </div>
+  </div>
+  <nav class="hidden md:flex justify-center gap-8 py-2 overflow-x-auto px-4 md:px-12 max-w-container-max mx-auto w-full">
+    <a class="text-on-surface font-label-lg text-label-lg hover:text-secondary transition-colors duration-200 whitespace-nowrap pb-2 border-b-2 border-transparent hover:border-secondary" href="index.html">Home</a>
+    <a class="text-secondary border-b-2 border-secondary pb-2 font-label-lg text-label-lg whitespace-nowrap opacity-80" href="national.html">National</a>
+    <a class="text-on-surface font-label-lg text-label-lg hover:text-secondary transition-colors duration-200 whitespace-nowrap pb-2 border-b-2 border-transparent hover:border-secondary" href="world.html">World</a>
+    <a class="text-on-surface font-label-lg text-label-lg hover:text-secondary transition-colors duration-200 whitespace-nowrap pb-2 border-b-2 border-transparent hover:border-secondary" href="sports.html">Sports</a>
+    <a class="text-on-surface font-label-lg text-label-lg hover:text-secondary transition-colors duration-200 whitespace-nowrap pb-2 border-b-2 border-transparent hover:border-secondary" href="entertainment.html">Entertainment</a>
+    <a class="text-on-surface font-label-lg text-label-lg hover:text-secondary transition-colors duration-200 whitespace-nowrap pb-2 border-b-2 border-transparent hover:border-secondary" href="opinion.html">Opinion</a>
+  </nav>
+</header>
+
+<!-- Breaking News Ticker -->
+<div class="bg-primary text-white w-full py-2 px-4 text-sm font-medium flex items-center gap-4 overflow-hidden">
+  <span class="bg-breaking-red text-white px-2 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider whitespace-nowrap">Breaking</span>
+  <div class="overflow-hidden relative w-full flex">
+    <span class="animate-[marquee_20s_linear_infinite] inline-block">
+      Senate passes comprehensive infrastructure bill in rare bipartisan vote. Highlights include major investments in high-speed rail and broadband expansion across rural areas.
+    </span>
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-4 md:px-12 py-16 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+  <!-- Main Area -->
+  <div class="lg:col-span-8 flex flex-col gap-12">
+    <!-- Featured Article -->
+    <article class="flex flex-col gap-6 group">
+      <div class="relative w-full aspect-video overflow-hidden border border-separator">
+        <img alt="US Capitol at sunset" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwGf62FEFMDDbFpb32yKeoc0wS2R9dxmFv6gC22-ieWiYK8zi0gdnV1zK3RkvyUS7E8BQIP9SyOj8RFBZO0Fi8HPTmpSen6Z9sKDXkRyyYSc6GkNl_YQKKX8Do0tTl32dBZcc4GBVAshhJ1-m_6AcIXIceYXc4leMNDSqHTeMsVMosj-1HBJgAjt-DGPmBcZL5fPaSM1CBOqB95dYN-OCmg_mXBQIt6vDsY6ZwAZ6w9NBR3lhirVvW"/>
+      </div>
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+          <span class="text-breaking-red font-label-sm text-label-sm uppercase tracking-wider">Politics</span>
+          <span class="text-meta-text text-sm">4 hours ago</span>
+        </div>
+        <h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-primary leading-tight">Congress Reaches Historic Agreement on Clean Energy Mandates</h1>
+        <p class="text-body-lg font-body-lg text-on-surface-variant mt-2 max-w-3xl">In an unprecedented late-night session, lawmakers finalized a sweeping legislative package aimed at overhauling the nation's energy grid, promising significant shifts in both corporate compliance and consumer incentives over the next decade.</p>
+        <div class="flex items-center gap-3 mt-4">
+          <div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-separator">
+            <img alt="Sarah Jenkins" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzwsCn7YmMaI55GqBcbpKmKOaXFOhp8vYPrCnVk9sUZOh4Jk6mfSctD3bfsAk4xxED9ku5u_NYXzzDjW4f1l4k7S84F9edzKbmNL5scJiGutsj3i9pnH-wr4bxxdftXZ-awosE-RzZ6SvJfk9q1oowIDh3pBlzgVarhmF5GzQTowIhNhbw9HgK8VGaN_4nrlMK4XMEwMpxkxJrDfkm8UeXksdJPUf2lHglccWdYr8zzU6DBWM7O2yP"/>
+          </div>
+          <div>
+            <p class="font-label-lg text-label-lg text-primary">Sarah Jenkins</p>
+            <p class="text-sm text-meta-text">Chief Political Correspondent</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <hr class="border-separator"/>
+
+    <!-- Secondary Grid -->
+    <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="lg:col-span-4 flex flex-col gap-8">
+    <div class="bg-surface-gray p-6 border border-separator flex flex-col gap-6">
+      <div class="flex items-center gap-2 border-b border-separator pb-3">
+        <span class="material-symbols-outlined text-breaking-red">trending_up</span>
+        <h3 class="text-headline-md font-headline-md text-primary">Trending National</h3>
+      </div>
+      <ol class="flex flex-col gap-4 list-decimal list-inside marker:text-breaking-red marker:font-bold marker:text-lg">
+        <li class="pl-2 border-b border-separator pb-4"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary transition-colors" href="#">Supreme Court to Hear Landmark Case on Digital Privacy Rights</a></li>
+        <li class="pl-2 border-b border-separator pb-4"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary transition-colors" href="#">National Archives Releases Previously Classified Documents</a></li>
+        <li class="pl-2 border-b border-separator pb-4"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary transition-colors" href="#">Aviation Authority Announces New Safety Protocols for Commercial Flights</a></li>
+        <li class="pl-2"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary transition-colors" href="#">Housing Market Shows Signs of Cooling in Major Metro Areas</a></li>
+      </ol>
+    </div>
+
+    <!-- Local Highlights -->
+    <div class="border border-separator p-6 flex flex-col gap-6">
+      <div class="flex flex-col gap-1 border-b border-separator pb-3">
+        <h3 class="text-headline-md font-headline-md text-primary">Local Highlights</h3>
+        <p class="text-sm text-meta-text">Impacts of national policy in your area</p>
+      </div>
+      <div class="flex flex-col gap-5">
+        <article class="flex gap-4 group">
+          <div class="w-24 h-24 shrink-0 overflow-hidden border border-separator">
+            <img alt="Small Business" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeoxWurTvVDWdqzJyZLmjhivHQOruOZvbHXshzLUX8hJTn_cIM0JQtZgGLOfbxOk1AzBrZ3JZ7PUI2QXYp6k70BfTklYy9thncBbRHhnXZaiqQ_x4uZ21q4z6dQygEv1oTnRqeqpHI9JPsdkrMYmliNS0NjpKaz0kTP_-ONlwhaS2hxmd83cYP3o4qc0wzbRXt6s1bc4j3VaGwtQ0zipJ9UCmESXXe_C71Os0SiyRnLIqupCKjybFM"/>
+          </div>
+          <div class="flex flex-col justify-center">
+            <a class="text-body-md font-body-md font-medium text-primary group-hover:underline decoration-1 underline-offset-2 leading-snug" href="#">Regional Small Businesses React to Proposed Tax Code Changes</a>
+            <span class="text-xs text-meta-text mt-1">2 hours ago</span>
+          </div>
+        </article>
+        <article class="flex gap-4 group">
+          <div class="w-24 h-24 shrink-0 overflow-hidden border border-separator">
+            <img alt="Voter Registration" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzQTGx1uGjKmvkaVDApRiY1zmfrEZ8SmYjCtHo2tY9oRcoDJ7SWRPwOVSYx8rZf8Ms5xt9h9wdk68LzVWPvTQoPgKRUl6MM8l2hBr_9DAVN0k_aCfbogOkMAQj9EakgPkhMrgPQz0rNP_2iZyMeOXcERIcj-KEbw3kXEPCm84mFly4ycipjkQ2WXq3xmPgekMt5j9756rPNffOlQ5ubHrf5z3f4UQOvNDfsiyr1FlRIWEWyIE29JAs"/>
+          </div>
+          <div class="flex flex-col justify-center">
+            <a class="text-body-md font-body-md font-medium text-primary group-hover:underline decoration-1 underline-offset-2 leading-snug" href="#">State Prepares for Record Turnout in Upcoming Midterm Primaries</a>
+            <span class="text-xs text-meta-text mt-1">5 hours ago</span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="bg-primary text-white p-6 flex flex-col gap-4 text-center">
+      <span class="material-symbols-outlined text-4xl text-accent-amber mx-auto">mail</span>
+      <h3 class="text-headline-md font-headline-md">The National Briefing</h3>
+      <p class="text-body-md font-body-md text-surface-variant">Get the most important national stories delivered to your inbox daily.</p>
+      <form class="flex flex-col gap-3 mt-2">
+        <input class="w-full px-4 py-3 bg-white text-primary border-0 rounded-none focus:ring-2 focus:ring-accent-amber font-body-md" placeholder="Your email address" required type="email"/>
+        <button class="w-full bg-breaking-red text-white py-3 font-label-lg text-label-lg hover:bg-secondary-container transition-colors rounded-none" type="submit">Sign Up</button>
+      </form>
+    </div>
+  </aside>
+</main>
+
+<!-- Footer -->
+<footer class="bg-primary text-on-primary mt-auto w-full py-16 px-4 md:px-12">
+  <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="md:col-span-1 flex flex-col gap-4">
+      <span class="text-headline-lg font-headline-lg text-white uppercase tracking-tighter">The Public Brief</span>
+      <p class="text-on-primary-container text-sm mt-2">Your Voice. Your Brief. Delivering uncompromising journalism and deep analysis on the issues that matter most.</p>
+    </div>
+    <div class="md:col-span-2 grid grid-cols-3 gap-8">
+      <div class="flex flex-col gap-3">
+        <h4 class="text-white font-label-lg text-label-lg uppercase tracking-wider mb-2">Sections</h4>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="index.html">Home</a>
+        <a class="text-white underline hover:text-secondary-container transition-colors text-label-sm font-label-sm opacity-70" href="national.html">National</a>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="world.html">World</a>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="sports.html">Sports</a>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="entertainment.html">Entertainment</a>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="opinion.html">Opinion</a>
+      </div>
+      <div class="flex flex-col gap-3">
+        <h4 class="text-white font-label-lg text-label-lg uppercase tracking-wider mb-2">Company</h4>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="#">About Us</a>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="#">Contact</a>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="#">Archive</a>
+      </div>
+      <div class="flex flex-col gap-3">
+        <h4 class="text-white font-label-lg text-label-lg uppercase tracking-wider mb-2">Legal</h4>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="#">Privacy Policy</a>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="#">Terms of Service</a>
+        <a class="text-on-primary-container hover:text-white transition-colors text-label-sm font-label-sm" href="#">Advertising</a>
+      </div>
+    </div>
+    <div class="md:col-span-1 flex flex-col justify-between items-start md:items-end mt-8 md:mt-0">
+      <div class="flex gap-4">
+        <a class="text-on-primary-container hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+        <a class="text-on-primary-container hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">forum</span></a>
+      </div>
+      <p class="text-on-primary-container text-label-sm font-label-sm mt-8">© 2024 The Public Brief. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="js/app.js"></script>
+</body>
+</html>

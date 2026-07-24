@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Entertainment | The Public Brief</title>
+<meta name="description" content="Entertainment news from The Public Brief – Film, Art, Music, Books and Critics' Picks."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"separator":"#E5E7EB","background":"#f9f9f9","breaking-red":"#B00020","meta-text":"#6B7280","on-primary":"#ffffff","surface-container":"#eeeeee","surface-container-high":"#e8e8e8","surface-gray":"#F9FAFB","on-surface":"#1a1c1c","primary":"#000000","secondary":"#b90c25","secondary-container":"#dd2e3a","surface":"#f9f9f9","on-primary-container":"#858383","surface-tint":"#5f5e5e","accent-amber":"#D97706","on-surface-variant":"#444748","surface-container-low":"#f3f3f4","outline-variant":"#c4c7c7"},spacing:{"container-max":"1280px","section-gap":"64px","margin-desktop":"48px","gutter":"24px","margin-mobile":"16px"},fontFamily:{"label-lg":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"display-lg":["Playfair Display"],"headline-lg":["Playfair Display"],"headline-xl":["Playfair Display"],"headline-md":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"body-md":["Inter"]},fontSize:{"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"30px","fontWeight":"400"}],"label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"display-lg-mobile":["32px",{"lineHeight":"40px","fontWeight":"700"}],"body-md":["16px",{"lineHeight":"26px","fontWeight":"400"}]}}}}
+</script>
+<link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="bg-surface flex flex-col w-full sticky top-0 z-50 border-b border-separator">
+  <div class="flex items-center justify-between py-5 px-4 md:px-12 max-w-container-max mx-auto w-full">
+    <div class="w-1/3 hidden md:flex items-center text-meta-text font-label-sm text-label-sm uppercase tracking-wider">
+      <script>document.write(new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));</script>
+    </div>
+    <div class="w-1/3 flex justify-center">
+      <a href="index.html" class="text-headline-xl font-headline-xl text-primary uppercase tracking-tighter">The Public Brief</a>
+    </div>
+    <div class="w-1/3 flex justify-end items-center gap-4">
+      <a href="login.html" class="hidden md:block text-primary hover:text-breaking-red transition-colors font-label-sm text-label-sm uppercase tracking-wider">Login</a>
+      <a href="login.html" class="bg-breaking-red text-white px-6 py-2 font-label-lg text-label-lg uppercase tracking-wider hover:bg-secondary-container transition-colors">Subscribe</a>
+    </div>
+  </div>
+  <nav class="flex justify-center w-full max-w-container-max mx-auto px-4 md:px-12">
+    <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap">
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="index.html">Home</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="national.html">National</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="world.html">World</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="sports.html">Sports</a></li>
+      <li><a class="text-secondary border-b-2 border-secondary pb-4 block font-label-lg text-label-lg uppercase tracking-wider" href="entertainment.html">Entertainment</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="opinion.html">Opinion</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Page Banner -->
+<div class="bg-primary text-white py-12 px-4 md:px-12 text-center border-b-4 border-breaking-red">
+  <p class="text-breaking-red font-label-sm text-label-sm uppercase tracking-widest mb-2">Culture &amp; Arts</p>
+  <h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-white">Entertainment</h1>
+</div>
+
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-4 md:px-12 py-16 grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+  <!-- Main Area -->
+  <div class="lg:col-span-8 flex flex-col gap-12">
+
+    <!-- Hero Feature -->
+    <article class="group cursor-pointer flex flex-col gap-6">
+      <div class="relative w-full aspect-video overflow-hidden border border-separator">
+        <img alt="Film Resurgence" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrTj3zWWM3AekbcHKDAHx1lXXBg_wAeWZRsqC5IXyL3-VYr6h6ZjNkND3SZrIOB7Wzu11sDDmP-yx0Jb2L-OrJFIHIQ3Mk_RBWxGcAtZhuuqp_jbOyWyKrIgHb-pri9Z_fTSYN8JaCVQg9mcYtipWZKqmifEq3uZxqV4TGSsr_4pBzQam159bOZVqBQ5ny1XSy-Ofo1n3P6GE1K_GOPzDxi34BqkNsbfXup6CJck66pJ54StK8PlsP"/>
+        <div class="absolute top-4 left-4">
+          <span class="bg-accent-amber text-white text-xs font-bold uppercase tracking-widest px-3 py-1">Cover Story</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3">
+        <span class="text-breaking-red font-label-sm text-label-sm uppercase tracking-widest font-bold">Film</span>
+        <h2 class="text-display-lg-mobile font-display-lg-mobile text-primary leading-tight">The Celluloid Renaissance: Why Film Photography Is Making Its Grand Return</h2>
+        <p class="text-body-lg font-body-lg text-on-surface-variant">A new wave of filmmakers and artists are abandoning digital perfection in favor of analog texture. From Hollywood studios to indie directors, celluloid film is being reclaimed as a deliberate artistic statement in an era of algorithmic content.</p>
+        <div class="flex items-center gap-3 text-meta-text text-sm">
+          <span>By Elena Rodriguez, Arts Critic</span><span>•</span><span>Nov 13, 2024</span><span>•</span><span>9 min read</span>
+        </div>
+
+        <!-- Critics Rating -->
+        <div class="flex items-center gap-2 mt-2">
+          <span class="text-accent-amber text-lg">★★★★★</span>
+          <span class="text-meta-text text-sm font-medium">Critics' Choice — Must Read</span>
+        </div>
+      </div>
+    </article>
+
+    <hr class="border-separator border-t-2"/>
+
+    <!-- Arts Grid -->
+    <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="lg:col-span-4 flex flex-col gap-8">
+
+    <!-- Critics' Picks -->
+    <div class="bg-primary text-white p-6">
+      <div class="flex items-center gap-2 mb-4 border-b border-surface-tint pb-3">
+        <span class="material-symbols-outlined text-accent-amber">star</span>
+        <h3 class="text-headline-md font-headline-md">Critics' Picks</h3>
+      </div>
+      <div class="space-y-4">
+        <div class="border-b border-surface-tint pb-4">
+          <p class="text-accent-amber text-sm font-bold uppercase tracking-widest mb-1">Film</p>
+          <h4 class="font-semibold mb-1 leading-tight">The Wandering Hours</h4>
+          <p class="text-on-primary-container text-xs">Dir. Clara Hoffman • ★★★★★</p>
+        </div>
+        <div class="border-b border-surface-tint pb-4">
+          <p class="text-accent-amber text-sm font-bold uppercase tracking-widest mb-1">Album</p>
+          <h4 class="font-semibold mb-1 leading-tight">Frequencies — Maya Lin</h4>
+          <p class="text-on-primary-container text-xs">Electronica/Ambient • ★★★★</p>
+        </div>
+        <div class="border-b border-surface-tint pb-4">
+          <p class="text-accent-amber text-sm font-bold uppercase tracking-widest mb-1">Book</p>
+          <h4 class="font-semibold mb-1 leading-tight">Salt and Shadows</h4>
+          <p class="text-on-primary-container text-xs">A. J. Okonkwo • ★★★★★</p>
+        </div>
+        <div>
+          <p class="text-accent-amber text-sm font-bold uppercase tracking-widest mb-1">Exhibition</p>
+          <h4 class="font-semibold mb-1 leading-tight">Chromatic Futures — MOMA NY</h4>
+          <p class="text-on-primary-container text-xs">Through Jan 2025 • ★★★★</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trending in Culture -->
+    <div class="bg-surface-gray p-6 border border-separator">
+      <div class="flex items-center gap-2 mb-4 border-b border-separator pb-2">
+        <span class="material-symbols-outlined text-breaking-red">trending_up</span>
+        <h3 class="text-headline-md font-headline-md text-primary">Trending in Culture</h3>
+      </div>
+      <ol class="list-decimal list-inside space-y-4 marker:text-breaking-red marker:font-bold marker:text-base">
+        <li class="pl-2 border-b border-separator pb-3"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary" href="#">Streaming Giant Announces Largest Original Film Budget Ever</a></li>
+        <li class="pl-2 border-b border-separator pb-3"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary" href="#">Grammy Nominations Announced with Surprise Inclusions</a></li>
+        <li class="pl-2 border-b border-separator pb-3"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary" href="#">Bestselling Author Signs Historic Publishing Deal</a></li>
+        <li class="pl-2"><a class="text-body-md font-body-md font-medium text-primary hover:text-secondary" href="#">Iconic Theatre Company Announces 50th Anniversary Season</a></li>
+      </ol>
+    </div>
+  </aside>
+</main>
+
+<!-- Footer -->
+<footer class="bg-primary text-on-primary mt-auto w-full py-16 px-4 md:px-12">
+  <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between gap-8">
+    <div><h2 class="text-headline-lg font-headline-lg text-white uppercase tracking-tighter mb-2">The Public Brief</h2><p class="text-on-primary-container text-sm max-w-xs">Arts and entertainment journalism for a sophisticated readership.</p></div>
+    <div class="flex gap-12">
+      <div class="flex flex-col gap-3">
+        <h4 class="text-white font-label-lg text-label-lg uppercase tracking-wider mb-2">Sections</h4>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="index.html">Home</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="national.html">National</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="world.html">World</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="sports.html">Sports</a>
+        <a class="text-white font-bold text-label-sm font-label-sm" href="entertainment.html">Entertainment</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="opinion.html">Opinion</a>
+      </div>
+      <div class="flex flex-col gap-3">
+        <h4 class="text-white font-label-lg text-label-lg uppercase tracking-wider mb-2">Legal</h4>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="#">Privacy Policy</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="#">Terms of Service</a>
+        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-container-max mx-auto mt-12 pt-6 border-t border-surface-tint text-on-primary-container text-label-sm font-label-sm">© 2024 The Public Brief. All rights reserved.</div>
+</footer>
+<script src="js/app.js"></script>
+</body>
+</html>

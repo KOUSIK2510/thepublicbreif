@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up - The Public Brief</title>
+<meta name="description" content="Create your Public Brief account for access to personalized editorial content."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<link href="css/styles.css" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface":"#f9f9f9","outline-variant":"#c4c7c7","secondary":"#b90c25","background":"#f9f9f9","on-primary":"#ffffff","outline":"#747878","separator":"#E5E7EB","surface-container-low":"#f3f3f4","breaking-red":"#B00020","on-surface-variant":"#444748","primary-fixed":"#e5e2e1","inverse-surface":"#2f3131","on-primary-fixed":"#1c1b1b","on-primary-container":"#858383","primary":"#000000","meta-text":"#6B7280","surface-gray":"#F9FAFB","on-background":"#1a1c1c","surface-container-high":"#e8e8e8","on-surface":"#1a1c1c","surface-dim":"#dadada","surface-container":"#eeeeee","secondary-container":"#dd2e3a","surface-container-lowest":"#ffffff","accent-amber":"#D97706"},spacing:{"container-max":"1280px","section-gap":"64px","margin-desktop":"48px","gutter":"24px","margin-mobile":"16px"},fontFamily:{"label-lg":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"display-lg":["Playfair Display"],"headline-lg":["Playfair Display"],"headline-xl":["Playfair Display"],"headline-md":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"body-md":["Inter"]},fontSize:{"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"30px","fontWeight":"400"}],"label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"display-lg-mobile":["32px",{"lineHeight":"40px","fontWeight":"700"}],"body-md":["16px",{"lineHeight":"26px","fontWeight":"400"}]}}}}
+</script>
+<style>
+  .field-error { border-color: #B00020 !important; }
+  .error-msg { color: #B00020; font-size: 12px; margin-top: 4px; display: none; font-family: 'Inter', sans-serif; }
+  .error-msg.visible { display: block; }
+  .strength-bar { height: 4px; background: #E5E7EB; border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  .strength-fill { height: 100%; width: 0%; transition: width 0.3s, background 0.3s; border-radius: 2px; }
+  .success-banner { display: none; background: #000; color: #fff; padding: 2rem; text-align: center; border-radius: 0; }
+  .success-banner.show { display: block; }
+  .check-icon { color: #D97706; font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+</style>
+</head>
+<body class="bg-background text-on-background flex flex-col min-h-screen antialiased">
+
+<!-- Header -->
+<header class="bg-surface border-b border-separator py-6 w-full">
+  <div class="max-w-container-max mx-auto px-4 md:px-12 flex justify-between items-center">
+    <a href="index.html" class="text-headline-xl font-headline-xl text-primary uppercase tracking-tighter">The Public Brief</a>
+    <nav class="hidden md:flex items-center gap-6 text-label-sm font-label-sm">
+      <a href="index.html" class="text-meta-text hover:text-primary transition-colors uppercase tracking-wider">Home</a>
+      <a href="login.html" class="text-meta-text hover:text-primary transition-colors uppercase tracking-wider">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main class="flex-grow flex items-center justify-center py-16 px-4 md:px-12">
+  <div class="w-full max-w-md">
+
+    <!-- Success Banner (shown after signup) -->
+    <div class="success-banner" id="success-banner">
+      <span class="material-symbols-outlined check-icon">verified</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;margin-bottom:0.75rem;">Welcome to The Public Brief!</h2>
+      <p style="font-family:'Inter',sans-serif;font-size:1rem;color:#858383;margin-bottom:1.5rem;">Your account has been created successfully.</p>
+      <a href="index.html" style="display:inline-block;background:#B00020;color:#fff;padding:0.875rem 2rem;font-family:'Inter',sans-serif;font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;text-decoration:none;">Go to Homepage</a>
+    </div>
+
+    <!-- Sign Up Form Card -->
+    <div class="bg-surface-container-lowest p-8 md:p-12 shadow-sm border border-separator rounded-sm" id="signup-card">
+      <div class="text-center mb-8">
+        <h1 class="text-headline-lg font-headline-lg text-primary mb-2">Create Your Account</h1>
+        <p class="text-body-md font-body-md text-on-surface-variant">Join The Public Brief for independent, authoritative journalism.</p>
+      </div>
+
+      <form id="signup-form" class="space-y-5" novalidate>
+
+        <!-- Full Name -->
+        <div>
+          <label class="block text-label-lg font-label-lg text-primary mb-2" for="fullname">Full Name</label>
+          <input id="fullname" name="fullname" type="text" placeholder="e.g. Jane Doe"
+            class="w-full border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-0 rounded-none text-body-md font-body-md py-3 px-4 transition-colors"/>
+          <p class="error-msg" id="fullname-error">Please enter your full name.</p>
+        </div>
+
+        <!-- Username -->
+        <div>
+          <label class="block text-label-lg font-label-lg text-primary mb-2" for="username">Username</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-meta-text text-[20px]">person</span>
+            <input id="username" name="username" type="text" placeholder="Choose a unique username"
+              class="w-full border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-0 rounded-none text-body-md font-body-md py-3 pl-10 pr-4 transition-colors"/>
+          </div>
+          <p class="error-msg" id="username-error">Username must be at least 3 characters, letters/numbers only.</p>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-label-lg font-label-lg text-primary mb-2" for="email">Email Address</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-meta-text text-[20px]">mail</span>
+            <input id="email" name="email" type="email" placeholder="your@email.com"
+              class="w-full border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-0 rounded-none text-body-md font-body-md py-3 pl-10 pr-4 transition-colors"/>
+          </div>
+          <p class="error-msg" id="email-error">Please enter a valid email address.</p>
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label class="block text-label-lg font-label-lg text-primary mb-2" for="password">Password</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-meta-text text-[20px]">lock</span>
+            <input id="password" name="password" type="password" placeholder="At least 8 characters"
+              class="w-full border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-0 rounded-none text-body-md font-body-md py-3 pl-10 pr-12 transition-colors"/>
+            <button type="button" id="toggle-pw" class="absolute right-3 top-3 text-meta-text hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-[20px]" id="pw-icon">visibility</span>
+            </button>
+          </div>
+          <!-- Strength Bar -->
+          <div class="strength-bar mt-2">
+            <div class="strength-fill" id="strength-fill"></div>
+          </div>
+          <p class="text-label-sm font-label-sm text-meta-text mt-1" id="strength-label"></p>
+          <p class="error-msg" id="password-error">Password must be at least 8 characters.</p>
+        </div>
+
+        <!-- Confirm Password -->
+        <div>
+          <label class="block text-label-lg font-label-lg text-primary mb-2" for="confirm-password">Confirm Password</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-meta-text text-[20px]">lock_reset</span>
+            <input id="confirm-password" name="confirm-password" type="password" placeholder="Re-enter your password"
+              class="w-full border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-0 rounded-none text-body-md font-body-md py-3 pl-10 pr-4 transition-colors"/>
+          </div>
+          <p class="error-msg" id="confirm-error">Passwords do not match.</p>
+        </div>
+
+        <!-- Newsletter opt-in -->
+        <div class="flex items-start gap-3 pt-1">
+          <input id="newsletter" name="newsletter" type="checkbox" checked
+            class="mt-1 border-outline-variant rounded-none focus:ring-0 focus:ring-offset-0 text-breaking-red cursor-pointer"/>
+          <label for="newsletter" class="text-body-md font-body-md text-on-surface-variant cursor-pointer">
+            Subscribe to <strong class="text-primary">The Daily Briefing</strong> — essential news delivered every morning.
+          </label>
+        </div>
+
+        <!-- Terms -->
+        <div class="flex items-start gap-3">
+          <input id="terms" name="terms" type="checkbox"
+            class="mt-1 border-outline-variant rounded-none focus:ring-0 focus:ring-offset-0 text-breaking-red cursor-pointer"/>
+          <label for="terms" class="text-body-md font-body-md text-on-surface-variant cursor-pointer">
+            I agree to the <a href="#" class="text-secondary hover:underline font-semibold">Terms of Service</a> and <a href="#" class="text-secondary hover:underline font-semibold">Privacy Policy</a>.
+          </label>
+        </div>
+        <p class="error-msg" id="terms-error">You must accept the terms to continue.</p>
+
+        <!-- Submit -->
+        <div class="pt-2">
+          <button id="submit-btn" type="submit"
+            class="w-full bg-primary text-on-primary text-label-lg font-label-lg py-4 rounded-none hover:bg-inverse-surface transition-colors flex justify-center items-center gap-2">
+            <span id="btn-text">Create Account</span>
+            <span class="material-symbols-outlined text-[20px]" id="btn-icon">arrow_forward</span>
+            <span id="btn-spinner" class="hidden material-symbols-outlined text-[20px] animate-spin">autorenew</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-8 text-center border-t border-separator pt-6">
+        <p class="text-body-md font-body-md text-on-surface-variant">
+          Already have an account? <a href="login.html" class="text-secondary hover:underline font-semibold">Log In</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-primary text-on-primary w-full py-10 px-4 md:px-12 mt-auto">
+  <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <span class="text-headline-lg font-headline-lg text-white uppercase tracking-tighter">The Public Brief</span>
+    <p class="text-on-primary-container text-label-sm font-label-sm">© 2024 The Public Brief. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+(function() {
+  // Toggle password visibility
+  var pwInput = document.getElementById('password');
+  var pwIcon = document.getElementById('pw-icon');
+  document.getElementById('toggle-pw').addEventListener('click', function() {
+    if (pwInput.type === 'password') {
+      pwInput.type = 'text';
+      pwIcon.textContent = 'visibility_off';
+    } else {
+      pwInput.type = 'password';
+      pwIcon.textContent = 'visibility';
+    }
+  });
+
+  // Password strength meter
+  pwInput.addEventListener('input', function() {
+    var val = this.value;
+    var fill = document.getElementById('strength-fill');
+    var label = document.getElementById('strength-label');
+    var strength = 0;
+    if (val.length >= 8) strength++;
+    if (/[A-Z]/.test(val)) strength++;
+    if (/[0-9]/.test(val)) strength++;
+    if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+    var colors = ['#B00020','#D97706','#b90c25','#16a34a'];
+    var labels = ['Weak','Fair','Good','Strong'];
+    var widths = ['25%','50%','75%','100%'];
+    if (val.length === 0) { fill.style.width = '0%'; label.textContent = ''; return; }
+    fill.style.width = widths[strength - 1] || '25%';
+    fill.style.background = colors[strength - 1] || '#B00020';
+    label.textContent = 'Password strength: ' + (labels[strength - 1] || 'Weak');
+  });
+
+  // Helpers
+  function setError(id, inputId, show) {
+    var err = document.getElementById(id);
+    var inp = document.getElementById(inputId);
+    if (show) { err.classList.add('visible'); inp.classList.add('field-error'); }
+    else { err.classList.remove('visible'); inp.classList.remove('field-error'); }
+  }
+
+  function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+  function validateUsername(u) { return /^[A-Za-z0-9_]{3,}$/.test(u); }
+
+  // Form submission
+  document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var fullname = document.getElementById('fullname').value.trim();
+    var username = document.getElementById('username').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var password = document.getElementById('password').value;
+    var confirm = document.getElementById('confirm-password').value;
+    var terms = document.getElementById('terms').checked;
+    var newsletter = document.getElementById('newsletter').checked;
+    var valid = true;
+
+    setError('fullname-error','fullname', !fullname);
+    if (!fullname) valid = false;
+
+    setError('username-error','username', !validateUsername(username));
+    if (!validateUsername(username)) valid = false;
+
+    setError('email-error','email', !validateEmail(email));
+    if (!validateEmail(email)) valid = false;
+
+    setError('password-error','password', password.length < 8);
+    if (password.length < 8) valid = false;
+
+    setError('confirm-error','confirm-password', password !== confirm);
+    if (password !== confirm) valid = false;
+
+    setError('terms-error','terms', !terms);
+    if (!terms) valid = false;
+
+    if (!valid) return;
+
+    // Show loading state
+    var btn = document.getElementById('submit-btn');
+    document.getElementById('btn-text').textContent = 'Creating account…';
+    document.getElementById('btn-icon').classList.add('hidden');
+    document.getElementById('btn-spinner').classList.remove('hidden');
+    btn.disabled = true;
+
+    function resetBtn() {
+      document.getElementById('btn-text').textContent = 'Create Account';
+      document.getElementById('btn-icon').classList.remove('hidden');
+      document.getElementById('btn-spinner').classList.add('hidden');
+      btn.disabled = false;
+    }
+
+    fetch('http://localhost:3001/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fullname: fullname, username: username, email: email, password: password, newsletter: newsletter })
+    })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.json().then(function(data) { throw new Error(data.error || 'Signup failed'); });
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      // Store token and user data
+      localStorage.setItem('pb_token', data.token);
+      localStorage.setItem('pb_user', JSON.stringify({ name: data.user.fullname, username: data.user.username, email: data.user.email, role: data.user.role }));
+      
+      // Show success
+      document.getElementById('signup-card').style.display = 'none';
+      document.getElementById('success-banner').classList.add('show');
+    })
+    .catch(function(err) {
+      resetBtn();
+      if (err.message.includes('Username')) {
+        setError('username-error','username', true);
+        document.getElementById('username-error').textContent = err.message;
+      } else if (err.message.includes('email')) {
+        setError('email-error','email', true);
+        document.getElementById('email-error').textContent = err.message;
+      } else {
+        alert(err.message);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
