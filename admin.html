@@ -395,7 +395,7 @@
     var headers = { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
 
     // Fetch Pending
-    fetch('http://localhost:3001/api/articles/pending', { headers: headers })
+    fetch('/api/articles/pending', { headers: headers })
       .then(function(res) { return res.json(); })
       .then(function(articles) {
         var queue = document.getElementById('article-queue');
@@ -428,7 +428,7 @@
       });
 
     // Fetch Published
-    fetch('http://localhost:3001/api/articles', { headers: headers })
+    fetch('/api/articles', { headers: headers })
       .then(function(res) { return res.json(); })
       .then(function(articles) {
         var list = document.getElementById('published-list');
@@ -457,7 +457,7 @@
   // Expose global approve
   window.approveArticle = function(id) {
     var token = localStorage.getItem('pb_token');
-    fetch('http://localhost:3001/api/articles/' + id + '/approve', {
+    fetch('/api/articles/' + id + '/approve', {
       method: 'PUT',
       headers: { 'Authorization': 'Bearer ' + token }
     }).then(function(res) {
@@ -475,7 +475,7 @@
     var title = prompt('Enter article title:');
     if (!title) return;
     var token = localStorage.getItem('pb_token');
-    fetch('http://localhost:3001/api/articles', {
+    fetch('/api/articles', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: title, category: 'Draft', byline: 'Editorial Admin', status: 'pending' })

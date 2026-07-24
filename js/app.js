@@ -288,7 +288,7 @@
         var origText = btn ? btn.textContent : '';
         if (btn) btn.textContent = '...';
 
-        fetch('http://localhost:3001/api/subscribe', {
+        fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email })
@@ -356,7 +356,7 @@
     var category = filename.replace('.html', '') || '';
     if (category === 'index' || category === '') return; // handled by loadHomeArticles
 
-    var url = 'http://localhost:3001/api/articles';
+    var url = '/api/articles';
     if (category) {
       category = category.charAt(0).toUpperCase() + category.slice(1);
       url += '?category=' + category;
@@ -407,7 +407,7 @@
     
     if (!latestContainer || !centerContainer || !trendingContainer) return;
 
-    fetch('http://localhost:3001/api/articles')
+    fetch('/api/articles')
       .then(function(res) { return res.json(); })
       .then(function(articles) {
         if (articles.length === 0) return;
