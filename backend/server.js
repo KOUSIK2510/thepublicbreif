@@ -17,10 +17,90 @@ const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkey123';
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/thepublicbrief';
 
-// Connect to MongoDB
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
+// Connect to MongoDB with in-memory fallback
+async function initDatabase() {
+  try {
+    await mongoose.connect(MONGO_URI, { serverSelectionTimeoutMS: 2000 });
+    console.log('Connected to MongoDB at', MONGO_URI);
+  } catch (err) {
+    console.log('Local MongoDB not available. Starting in-memory MongoDB server...');
+    try {
+      const { MongoMemoryServer } = require('mongodb-memory-server');
+      const mongod = await MongoMemoryServer.create();
+      const uri = mongod.getUri();
+      await mongoose.connect(uri);
+      console.log('Connected to in-memory MongoDB at', uri);
+
+      // Auto-seed in-memory DB if empty
+      const articleCount = await Article.countDocuments();
+      if (articleCount === 0) {
+        const seedArticles = [
+          {
+            title: 'Global Markets Rally Amid Breakthrough Geneva Accord',
+            category: 'World',
+            byline: 'By Julian Vane',
+            imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUFtuVO6QyERg19XUxmsqAKllyPUOBRPrITAQ9vtF7BFceGyLGA04CWqI_n2KCNylRmL1M0C_ZnQRxcx3837jDKHghbA_r9U8ZYvzfEA4Tb-bQ8Euw0S3ukmsbbS0HRvqdoS-k6UzBeJbB0OBuBw18nYeLyx85IZlM5Q35R3Ne7yKPrrkwGFLbqkhkPGmp3xNiLKts8p3Lq_h2f6jBNnYl3nC2HG-J34j0OEjK_W5cn5T_iF_r9DAi',
+            body: '<p>World leaders have reached a tentative agreement to stabilize international trade routes through the Red Sea, triggering a positive wave across Asian and European exchanges this morning.</p>',
+            status: 'published'
+          },
+          {
+            title: 'EU Proposes Unified Green Energy Grid by 2030',
+            category: 'World',
+            byline: 'By Anna Fischer',
+            imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDrTj3zWWM3AekbcHKDAHx1lXXBg_wAeWZRsqC5IXyL3-VYr6h6ZjNkND3SZrIOB7Wzu11sDDmP-yx0Jb2L-OrJFIHIQ3Mk_RBWxGcAtZhuuqp_jbOyWyKrIgHb-pri9Z_fTSYN8JaCVQg9mcYtipWZKqmifEq3uZxqV4TGSsr_4pBzQam159bOZVqBQ5ny1XSy-Ofo1n3P6GE1K_GOPzDxi34BqkNsbfXup6CJck66pJ54StK8PlsP',
+            body: '<p>Brussels is moving to centralize renewable energy distribution across member states.</p>',
+            status: 'published'
+          },
+          {
+            title: 'Tech Hubs in Southeast Asia See 40% Investment Surge',
+            category: 'World',
+            byline: 'By Ravi Menon',
+            imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCYynQkNwfQuoz-Qlwihrnoi4chGB4E3kWh6NKvEDiT2vRdLQ2jXLEgFci_VnrMCDGHeHanI3rsBx_4X1NbP33tw_6CAa7HR1qgaLHLZH3uEicXo3qSjDRvl5a5l2fyNpjXy_rKoS8H8WGz3gW4LvptpbATUbQv8KtGNBEK3QIzsBM_an2vA2dd3o1R7NqHRcYGNIF-CzejK3-kfm8qZbeWuDyVXnryndeauE948K9waLMXDb89jKzS',
+            body: '<p>Venture capital flows into Singapore and Jakarta have reached record highs.</p>',
+            status: 'published'
+          },
+          {
+            title: 'US-LatAm Trade Partnership Reaches Historic Milestone',
+            category: 'World',
+            byline: 'By Carlos Reyes',
+            imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCRTM5ScLdJWVl_rrZ1ugjJs43GWVTOGQy5kri-gqL9P5BMiO9WeQDJjOkcxWqnmIJjyNwEYbwITHR_O1DOyvrTXDjeDACxtkNIzVtAjeetBnzO6K9WMCGxwQao1cJKkknM3TctFefukfIeN0tcx3_FTrRa5t_7S4121TX62DfXtOMtW6EwhytiRourlPIugcr1iOnKnoOEveq0mX0hywNYUW6e1UcsqTF8LTWMV-6LZtjdj9wBZXSw',
+            body: '<p>New infrastructure projects across Brazil and Argentina receive a combined $38 billion in backing.</p>',
+            status: 'published'
+          },
+          {
+            title: 'The Shifting Dynamics of Urban Policy',
+            category: 'Politics',
+            byline: 'By Admin',
+            imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBSDzNxgXIw8fRvHqi57TobEZraNtodOwgSWgTFqZpF8ewFguSNfU7Y1Qb9idR-GhIVPBCidFLNg3hNHBrei-Bb7YElUxeS2xmx9Ab200xsYfzR59jv50klpv2RH9ft-xYYabY9b0ZZXzON2bzadWOCF6iADKlpfvfGix3IiZUGAohn0M4pDRXAyS8bNsJc3Em0ccE0AmFXzCoYFpBIpf1htMk0XIeizT2vJzGlDN6BSzGzExNuAMKu',
+            body: '<p>Draft content about urban policy.</p>',
+            status: 'pending'
+          }
+        ];
+        await Article.insertMany(seedArticles);
+        console.log(`Auto-seeded ${seedArticles.length} default articles into in-memory database.`);
+      }
+
+      // Seed default admin user if none exists
+      const adminExists = await User.findOne({ role: 'admin' });
+      if (!adminExists) {
+        const admin = new User({
+          fullname: 'Editorial Admin',
+          username: 'admin',
+          email: 'admin@thepublicbrief.com',
+          password: 'Admin@1234',
+          role: 'admin',
+          newsletter: false
+        });
+        await admin.save();
+        console.log('Default admin user seeded: username=admin, password=Admin@1234');
+      }
+    } catch (memErr) {
+      console.error('Failed to start in-memory MongoDB server:', memErr);
+    }
+  }
+}
+initDatabase();
+
 
 // Middleware to verify JWT
 const authMiddleware = (req, res, next) => {
@@ -71,6 +151,62 @@ app.post('/api/auth/signup', async (req, res) => {
   }
 });
 
+// Simulated Google OAuth Login
+app.post('/api/auth/google', async (req, res) => {
+  try {
+    // In a real app, this would use google-auth-library to verify an ID token
+    // For this simulation, we'll mock a successful Google profile response
+    const mockGoogleProfile = {
+      id: 'google-oauth2-1234567890',
+      email: 'mockuser@gmail.com',
+      name: 'Simulated Google User'
+    };
+
+    let user = await User.findOne({ googleId: mockGoogleProfile.id });
+    
+    if (!user) {
+      // Check if email already exists (maybe they signed up manually before)
+      user = await User.findOne({ email: mockGoogleProfile.email });
+      if (user) {
+        // Link the accounts
+        user.googleId = mockGoogleProfile.id;
+        await user.save();
+      } else {
+        // Create a new user entirely
+        const baseUsername = mockGoogleProfile.email.split('@')[0];
+        let username = baseUsername;
+        let counter = 1;
+        while (await User.findOne({ username })) {
+          username = `${baseUsername}${counter}`;
+          counter++;
+        }
+
+        user = new User({
+          fullname: mockGoogleProfile.name,
+          username,
+          email: mockGoogleProfile.email,
+          googleId: mockGoogleProfile.id,
+          role: 'subscriber'
+        });
+        await user.save();
+      }
+    }
+
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
+    res.json({
+      token,
+      user: { id: user._id, fullname: user.fullname, username: user.username, email: user.email, role: user.role }
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Login
 app.post('/api/auth/login', async (req, res) => {
   try {
@@ -88,6 +224,17 @@ app.post('/api/auth/login', async (req, res) => {
       token,
       user: { id: user._id, fullname: user.fullname, username: user.username, email: user.email, role: user.role }
     });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get current authenticated user
+app.get('/api/auth/me', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json({ user: { id: user._id, fullname: user.fullname, username: user.username, email: user.email, role: user.role } });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -169,9 +316,12 @@ app.post('/api/subscribe', async (req, res) => {
   res.json({ message: 'Subscribed successfully' });
 });
 
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, '..')));
+
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
-    console.log(`Backend server running on port ${PORT}`);
+    console.log(`Backend server running on http://localhost:${PORT}`);
   });
 }
 

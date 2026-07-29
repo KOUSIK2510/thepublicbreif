@@ -1,0 +1,25 @@
+<svg width="320" height="200" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="4" stdDeviation="2.5" flood-color="#000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Layer 1: Letter B (Back) -->
+  <g fill="none" stroke="#FF0000" stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter" filter="url(#shadow)">
+    <path d="M 220 20 L 220 180" />
+    <path d="M 220 20 L 255 20 A 40 40 0 0 1 255 100 L 220 100" />
+    <path d="M 220 100 L 255 100 A 40 40 0 0 1 255 180 L 220 180" />
+  </g>
+
+  <!-- Layer 2: P Stem (Middle) -->
+  <g fill="none" stroke="#FF0000" stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter" filter="url(#shadow)">
+    <path d="M 160 20 L 160 180" />
+  </g>
+  
+  <!-- Layer 3: Letter T & P Loop (Front) -->
+  <g fill="none" stroke="#FF0000" stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter" filter="url(#shadow)">
+    <path d="M 100 20 L 100 180" />
+    <path d="M 25 20 L 210 20 A 40 40 0 0 1 210 100 L 145 100" />
+  </g>
+</svg>

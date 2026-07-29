@@ -23,6 +23,25 @@
     });
   }
 
+  /* ── Hamburger Menu ───────────────────────────────────── */
+  function initHamburgerMenu() {
+    const btn = document.getElementById('hamburger-btn');
+    const menu = document.getElementById('hamburger-menu');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation(); // prevent document click from immediately closing
+      menu.classList.toggle('hidden');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+  }
+
   /* ── Search Overlay ───────────────────────────────────── */
   const SEARCH_ARTICLES = [
     { category: 'World Affairs', title: 'The Paradigm Shift: How Global Alliances are Realigning', href: 'index.html' },
@@ -166,9 +185,10 @@
     });
   }
 
+  window.openArticleModal = openArticleModal;
   function openArticleModal(title) {
     buildArticleModal();
-    const data = ARTICLE_CONTENT[title] || {
+    const data = ARTICLE_CONTENT[title] || (window.WORLD_ARTICLES && window.WORLD_ARTICLES[title]) || {
       category: 'The Public Brief',
       byline: 'Editorial Team',
       img: '',
@@ -495,6 +515,7 @@
   /* ── Init ─────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initActiveNav();
+    initHamburgerMenu();
     initSearchTriggers();
     wireSearchIcons();
     initArticleCards();

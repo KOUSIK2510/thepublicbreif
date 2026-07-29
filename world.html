@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>World News | The Public Brief</title>
-<meta name="description" content="World news coverage from The Public Brief – Europe, Asia, Americas, Africa, Middle East."/>
+<meta name="description" content="Global news coverage from The Public Brief."/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -24,30 +24,32 @@
 <header class="flex items-center justify-between border-b border-separator px-4 md:px-16 py-4 bg-white sticky top-0 z-50">
   <div class="flex items-center gap-8">
     <a href="index.html" class="text-primary text-xl font-bold leading-tight tracking-tight serif-text">The Public Brief</a>
-    <nav class="hidden lg:flex items-center gap-8">
-      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="index.html">Home</a>
-      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="national.html">National</a>
-      <a class="text-secondary text-sm font-bold border-b-2 border-secondary pb-1" href="world.html">World</a>
-      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="sports.html">Sports</a>
-      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="entertainment.html">Entertainment</a>
-      <a class="text-primary text-sm font-medium hover:text-secondary transition-colors" href="opinion.html">Opinion</a>
-    </nav>
-  </div>
-  <div class="flex flex-1 justify-end gap-3">
-    <a href="login.html" class="flex items-center justify-center rounded-xl h-10 px-4 bg-surface-container-high text-primary hover:bg-surface-container-highest transition-all text-sm font-medium">Login</a>
-    <a href="login.html" class="flex items-center justify-center rounded-xl h-10 px-4 bg-secondary text-white hover:bg-secondary-container transition-all text-sm font-bold">Subscribe</a>
-  </div>
+      <nav class="flex justify-center w-full max-w-container-max mx-auto px-4 md:px-12 mb-0 relative">
+    <!-- Hamburger Menu -->
+    <div class="absolute left-4 md:left-12 top-0 z-50">
+      <button id="hamburger-btn" class="p-1 -ml-1 hover:bg-surface-gray transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined text-[28px] text-primary">menu</span>
+      </button>
+      <div id="hamburger-menu" class="hidden absolute left-0 top-full mt-3 bg-white border border-separator shadow-xl w-56 py-2">
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="opinion.html">Opinion</a>
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="about.html">About</a>
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="support.html">Support</a>
+      </div>
+    </div>
+
+    <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap pb-0">
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="national.html">National</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="world.html">World</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="sports.html">Sports</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="entertainment.html">Entertainment</a></li>
+    </ul>
+  </nav>
 </header>
 
 <!-- Sub-Navigation -->
 <div class="bg-white border-b border-separator px-4 md:px-16">
   <div class="flex gap-8 overflow-x-auto py-1">
-    <a class="flex flex-col items-center border-b-[3px] border-secondary text-primary pb-3 pt-4 whitespace-nowrap" href="#global"><p class="text-sm font-bold tracking-[0.015em]">Global Feed</p></a>
-    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#europe"><p class="text-sm font-bold tracking-[0.015em]">Europe</p></a>
-    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#asia"><p class="text-sm font-bold tracking-[0.015em]">Asia</p></a>
-    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#americas"><p class="text-sm font-bold tracking-[0.015em]">Americas</p></a>
-    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#africa"><p class="text-sm font-bold tracking-[0.015em]">Africa</p></a>
-    <a class="flex flex-col items-center border-b-[3px] border-transparent text-meta-text hover:text-primary pb-3 pt-4 whitespace-nowrap" href="#middle-east"><p class="text-sm font-bold tracking-[0.015em]">Middle East</p></a>
+    <a class="flex flex-col items-center border-b-[3px] border-secondary text-primary pb-3 pt-4 whitespace-nowrap" href="#global"><p class="text-sm font-bold tracking-[0.015em]">Global</p></a>
   </div>
 </div>
 
@@ -157,6 +159,7 @@
   @keyframes modalIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
 </style>
 
+<script src="js/auth.js"></script>
 <script src="js/app.js"></script>
 <script>
 (function() {

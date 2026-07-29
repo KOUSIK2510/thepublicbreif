@@ -26,63 +26,27 @@
 <body class="bg-surface text-on-surface font-body-md text-body-md flex min-h-screen">
 
 <!-- Sidebar -->
-<nav class="fixed left-0 top-0 h-full flex flex-col p-6 border-r border-separator bg-surface-gray w-64 hidden md:flex z-30">
-  <div class="mb-8">
-    <a href="index.html" class="text-headline-md font-headline-md text-primary hover:text-secondary transition-colors">The Public Brief</a>
-    <p class="font-label-sm text-label-sm text-meta-text mt-1" id="sidebar-user-name">Managing Editor</p>
-  </div>
-  <button id="new-article-btn" class="w-full bg-breaking-red text-white py-2 px-4 rounded font-label-lg text-label-lg mb-6 hover:bg-secondary-container transition-colors flex items-center justify-center gap-2">
-    <span class="material-symbols-outlined text-[18px]">add</span> New Article
-  </button>
-  <ul class="space-y-1 flex-grow">
-    <li>
-      <button data-view="pending" class="nav-item active-nav w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-left">
-        <span class="material-symbols-outlined">rate_review</span><span>Pending Reviews</span>
-        <span class="ml-auto bg-breaking-red text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center" id="pending-badge">3</span>
+  <nav class="flex justify-center w-full max-w-container-max mx-auto px-4 md:px-12 mb-0 relative">
+    <!-- Hamburger Menu -->
+    <div class="absolute left-4 md:left-12 top-0 z-50">
+      <button id="hamburger-btn" class="p-1 -ml-1 hover:bg-surface-gray transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined text-[28px] text-primary">menu</span>
       </button>
-    </li>
-    <li>
-      <button data-view="published" class="nav-item w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high text-left">
-        <span class="material-symbols-outlined">article</span><span>Published</span>
-      </button>
-    </li>
-    <li>
-      <button data-view="authors" class="nav-item w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high text-left">
-        <span class="material-symbols-outlined">group</span><span>Authors</span>
-      </button>
-    </li>
-    <li>
-      <button data-view="settings" class="nav-item w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high text-left">
-        <span class="material-symbols-outlined">manage_accounts</span><span>Settings / Profile</span>
-      </button>
-    </li>
-    <li class="pt-4 border-t border-separator mt-4">
-      <a href="index.html" class="nav-item w-full flex items-center space-x-3 p-3 rounded font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high">
-        <span class="material-symbols-outlined">home</span><span>Back to Site</span>
-      </a>
-    </li>
-  </ul>
-  <div class="border-t border-separator pt-4 mt-4">
-    <button id="logout-btn" class="flex items-center space-x-2 text-meta-text hover:text-primary transition-colors font-label-sm text-label-sm">
-      <span class="material-symbols-outlined text-sm">logout</span><span>Logout</span>
-    </button>
-  </div>
-</nav>
-
-<!-- Main -->
-<div class="flex-1 md:ml-64 flex flex-col min-h-screen bg-background">
-
-  <!-- Top Bar -->
-  <header class="sticky top-0 z-50 flex justify-between items-center px-6 md:px-12 h-16 w-full bg-surface-container-lowest border-b border-separator">
-    <h2 class="font-headline-md text-headline-md text-primary" id="page-title">Pending Reviews</h2>
-    <div class="flex items-center space-x-4">
-      <button class="text-on-surface-variant hover:text-secondary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
-      <div class="h-9 w-9 rounded-full bg-surface-dim overflow-hidden border-2 border-separator">
-        <img alt="Admin" class="object-cover w-full h-full" id="top-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgekMISlL5_K2oonWnSZD91t9Ai0JxMK2xsUvMYnij22SracHAdWndR9qoaYTl5Il0UFf4NzaEdiOlkBCUgWrHTbGQc8MdJQLdLXKsNw3azHBuoZWZXtQqwvVQvd5NDhbSOvG5HoabGVfQDlBkUT5egUZDPMewoBYKQSGs4mzKMZ5m9Ed-TEgRKklFECeULXgylhnMotfSOEkzMKkoumV0s2FR1u4GIFRcFm5MywXETUQwhgaMJix5"/>
+      <div id="hamburger-menu" class="hidden absolute left-0 top-full mt-3 bg-white border border-separator shadow-xl w-56 py-2">
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="opinion.html">Opinion</a>
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="about.html">About</a>
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="support.html">Support</a>
       </div>
-      <button id="logout-btn-top" class="font-label-sm text-label-sm text-meta-text hover:text-secondary transition-colors">Logout</button>
     </div>
-  </header>
+
+    <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap pb-0">
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="national.html">National</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="world.html">World</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="sports.html">Sports</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="entertainment.html">Entertainment</a></li>
+    </ul>
+  </nav>
+</header>
 
   <main class="flex-1 px-4 md:px-10 py-8 max-w-container-max mx-auto w-full">
 
@@ -370,12 +334,28 @@
 <!-- Toast -->
 <div id="pb-toast" class="fixed bottom-6 right-6 z-50"></div>
 
+<script src="js/auth.js"></script>
 <script src="js/app.js"></script>
 <script>
 (function() {
+  // ── Admin Auth Guard ──────────────────────────────────────
+  // Must run before any DOM interaction
+  if (typeof window.requireAdmin === 'function') {
+    if (!window.requireAdmin()) return; // redirects if not admin
+  } else {
+    // Fallback: check localStorage if auth.js hasn't loaded yet
+    var token = localStorage.getItem('pb_token');
+    var user = JSON.parse(localStorage.getItem('pb_user') || 'null');
+    if (!token || !user || user.role !== 'admin') {
+      window.location.href = 'login.html?reason=admin';
+      return;
+    }
+  }
+
   var currentCard = null;
   var views = { pending: 'view-pending', published: 'view-published', authors: 'view-authors', settings: 'view-settings' };
   var titles = { pending: 'Pending Reviews', published: 'Published Articles', authors: 'Authors', settings: 'Settings / Profile' };
+
 
   // Nav switching
   document.querySelectorAll('[data-view]').forEach(function(btn) {
@@ -526,9 +506,13 @@
     }
   } catch(e) {}
 
-  // Logout
+  // Logout — clear full session (token + user)
   [document.getElementById('logout-btn'), document.getElementById('logout-btn-top')].forEach(function(btn) {
-    if(btn) btn.addEventListener('click', function() { localStorage.removeItem('pb_user'); window.location.href='login.html'; });
+    if(btn) btn.addEventListener('click', function() {
+      localStorage.removeItem('pb_token');
+      localStorage.removeItem('pb_user');
+      window.location.href = 'login.html';
+    });
   });
 
 })();

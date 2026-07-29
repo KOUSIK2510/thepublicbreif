@@ -31,14 +31,24 @@
       <a href="login.html" class="bg-breaking-red text-white px-6 py-2 font-label-lg text-label-lg uppercase tracking-wider hover:bg-secondary-container transition-colors">Subscribe</a>
     </div>
   </div>
-  <nav class="flex justify-center w-full max-w-container-max mx-auto px-4 md:px-12">
+    <nav class="flex justify-center w-full max-w-container-max mx-auto px-4 md:px-12 mb-0 relative">
+    <!-- Hamburger Menu -->
+    <div class="absolute left-4 md:left-12 top-0 z-50">
+      <button id="hamburger-btn" class="p-1 -ml-1 hover:bg-surface-gray transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined text-[28px] text-primary">menu</span>
+      </button>
+      <div id="hamburger-menu" class="hidden absolute left-0 top-full mt-3 bg-white border border-separator shadow-xl w-56 py-2">
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="opinion.html">Opinion</a>
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="about.html">About</a>
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="support.html">Support</a>
+      </div>
+    </div>
+
     <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap pb-0">
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="index.html">Home</a></li>
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="national.html">National</a></li>
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="world.html">World</a></li>
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="sports.html">Sports</a></li>
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="entertainment.html">Entertainment</a></li>
-      <li><a class="text-secondary border-b-2 border-secondary pb-4 block font-label-lg text-label-lg uppercase tracking-wider" href="opinion.html">Opinion</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="national.html">National</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="world.html">World</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="sports.html">Sports</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="entertainment.html">Entertainment</a></li>
     </ul>
   </nav>
 </header>
@@ -71,7 +81,7 @@
         <p class="text-headline-md font-headline-md text-primary italic leading-relaxed">"We have confused the speed of decision-making with its legitimacy. The guardrails of democratic process are not obstacles—they are the very architecture of trust."</p>
       </blockquote>
       <p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed">Across the developed world, a pattern has emerged that should alarm anyone who values accountable governance. The machinery of deliberation—committee hearings, public comment periods, judicial review—is increasingly treated as an impediment rather than a feature. Yet history teaches us that the quality of outcomes is inseparable from the quality of the process that produced them...</p>
-      <button class="mt-6 text-primary font-label-lg text-label-lg uppercase tracking-wider border-b-2 border-primary hover:text-breaking-red hover:border-breaking-red transition-colors pb-1">Continue Reading →</button>
+      <button id="continue-reading-btn" class="mt-6 text-primary font-label-lg text-label-lg uppercase tracking-wider border-b-2 border-primary hover:text-breaking-red hover:border-breaking-red transition-colors pb-1">Continue Reading →</button>
     </div>
     <aside class="lg:col-span-4">
       <div class="bg-surface-gray p-6 border border-separator mb-6">
@@ -108,15 +118,15 @@
       </div>
 
       <!-- Debate Poll -->
-      <div class="border border-separator p-6">
+      <div class="border border-separator p-6" id="debate-poll">
         <h3 class="text-headline-md font-headline-md text-primary mb-1">Reader Debate</h3>
         <p class="text-meta-text text-sm mb-4">Should economic growth take precedence over environmental protections?</p>
-        <div class="space-y-2">
-          <button class="w-full text-left py-3 px-4 border border-separator hover:bg-surface-container text-body-md font-body-md transition-colors">Yes – Growth funds future solutions</button>
-          <button class="w-full text-left py-3 px-4 border border-separator hover:bg-surface-container text-body-md font-body-md transition-colors">No – The planet must come first</button>
-          <button class="w-full text-left py-3 px-4 border border-separator hover:bg-surface-container text-body-md font-body-md transition-colors">Both can coexist with policy</button>
+        <div class="space-y-2" id="debate-options">
+          <button data-votes="1823" class="debate-btn w-full text-left py-3 px-4 border border-separator hover:bg-surface-container text-body-md font-body-md transition-colors">Yes – Growth funds future solutions</button>
+          <button data-votes="1654" class="debate-btn w-full text-left py-3 px-4 border border-separator hover:bg-surface-container text-body-md font-body-md transition-colors">No – The planet must come first</button>
+          <button data-votes="814" class="debate-btn w-full text-left py-3 px-4 border border-separator hover:bg-surface-container text-body-md font-body-md transition-colors">Both can coexist with policy</button>
         </div>
-        <p class="text-xs text-meta-text mt-3">4,291 votes • 3 days remaining</p>
+        <p class="text-xs text-meta-text mt-3" id="debate-meta">4,291 votes • 3 days remaining</p>
       </div>
     </aside>
   </div>
@@ -150,6 +160,141 @@
   </div>
   <div class="max-w-container-max mx-auto mt-12 pt-6 border-t border-surface-tint text-on-primary-container text-label-sm font-label-sm">© 2024 The Public Brief. All rights reserved.</div>
 </footer>
+<script src="js/auth.js"></script>
 <script src="js/app.js"></script>
+
+<!-- Article Reader Modal -->
+<div id="opinion-modal" class="fixed inset-0 z-[9999] hidden" style="background:rgba(0,0,0,0.7);overflow-y:auto;">
+  <div class="min-h-screen flex items-start justify-center py-12 px-4">
+    <div class="bg-white w-full max-w-3xl relative" style="max-height:90vh;overflow-y:auto;">
+      <button id="close-opinion-modal" class="absolute top-4 right-4 z-10 hover:text-breaking-red transition-colors">
+        <span class="material-symbols-outlined text-[28px]">close</span>
+      </button>
+      <div id="opinion-modal-body" class="p-8 md:p-14">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // ── Continue Reading Modal ─────────────────────────────
+  var fullArticle = {
+    category: 'Lead Essay',
+    author: 'Eleanor Ashford',
+    meta: 'Senior Political Analyst • Nov 14, 2024 • 12 min read',
+    title: 'The Quiet Crisis of Democratic Institutions: Why Process Matters More Than Outcome',
+    quote: '"We have confused the speed of decision-making with its legitimacy. The guardrails of democratic process are not obstacles—they are the very architecture of trust."',
+    body: [
+      'Across the developed world, a pattern has emerged that should alarm anyone who values accountable governance. The machinery of deliberation—committee hearings, public comment periods, judicial review—is increasingly treated as an impediment rather than a feature.',
+      'Yet history teaches us that the quality of outcomes is inseparable from the quality of the process that produced them. The Weimar Republic fell not because democracy failed, but because the guardrails of democratic process were systematically dismantled in the name of efficiency and urgency.',
+      'Today, we see the same logic at work. Executive orders bypass legislative deliberation. Emergency powers become permanent fixtures. Regulatory agencies are stripped of independence in the name of accountability to elected officials—who are themselves increasingly accountable only to narrow donor bases.',
+      'The answer is not to slow down governance for its own sake. It is to recognize that the legitimacy of a decision derives not only from its content but from how it was reached. A policy that bypasses public consultation may be technically sound yet fundamentally untrustworthy—because the public has no stake in a process they were excluded from.',
+      'Rebuilding trust in institutions requires rebuilding the processes that make those institutions trustworthy. That means protecting the independence of courts, restoring the deliberative function of legislatures, and creating genuine channels for public participation in regulatory decisions.',
+      'The crisis of democratic institutions is ultimately a crisis of democratic culture—a growing impatience with the slowness, messiness, and apparent inefficiency of genuine self-governance. But the alternative is not faster, cleaner governance. It is governance that is faster precisely because it has stopped listening.'
+    ]
+  };
+
+  var modal = document.getElementById('opinion-modal');
+  var modalBody = document.getElementById('opinion-modal-body');
+  var closeBtn = document.getElementById('close-opinion-modal');
+  var readBtn = document.getElementById('continue-reading-btn');
+
+  function openOpinionModal() {
+    modalBody.innerHTML = [
+      '<span class="text-breaking-red font-label-sm text-label-sm uppercase tracking-widest font-bold block mb-4">' + fullArticle.category + '</span>',
+      '<h2 style="font-family:Playfair Display,serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;line-height:1.2;margin-bottom:24px;">' + fullArticle.title + '</h2>',
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;">',
+        '<div style="width:44px;height:44px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-weight:700;color:#1a1a1a;">EA</div>',
+        '<div><p style="font-weight:700;font-size:14px;">' + fullArticle.author + '</p><p style="color:#6b7280;font-size:13px;">' + fullArticle.meta + '</p></div>',
+      '</div>',
+      '<blockquote style="border-left:4px solid #b90c25;padding-left:20px;margin:28px 0;">',
+        '<p style="font-style:italic;font-size:18px;line-height:1.6;color:#1a1a1a;font-family:Playfair Display,serif;">' + fullArticle.quote + '</p>',
+      '</blockquote>',
+      fullArticle.body.map(function(p) {
+        return '<p style="font-size:17px;line-height:1.9;color:#333;margin-bottom:20px;font-family:Inter,sans-serif;">' + p + '</p>';
+      }).join('')
+    ].join('');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOpinionModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  if (readBtn) readBtn.addEventListener('click', openOpinionModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeOpinionModal);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeOpinionModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeOpinionModal();
+  });
+
+  // ── Reader Debate Poll ─────────────────────────────────
+  var debateKey = 'tpb_debate_vote';
+  var buttons = document.querySelectorAll('.debate-btn');
+  var metaEl = document.getElementById('debate-meta');
+
+  function getVotes() {
+    var stored = localStorage.getItem(debateKey + '_votes');
+    if (stored) return JSON.parse(stored);
+    var v = [];
+    buttons.forEach(function(b) { v.push(parseInt(b.dataset.votes, 10)); });
+    return v;
+  }
+
+  function saveVotes(v) {
+    localStorage.setItem(debateKey + '_votes', JSON.stringify(v));
+  }
+
+  function totalVotes(v) {
+    return v.reduce(function(a, b) { return a + b; }, 0);
+  }
+
+  function renderResults(votes, chosen) {
+    var total = totalVotes(votes);
+    var optionsEl = document.getElementById('debate-options');
+    var labels = [];
+    buttons.forEach(function(b) { labels.push(b.textContent.trim()); });
+    var html = labels.map(function(label, i) {
+      var pct = total > 0 ? Math.round(votes[i] / total * 100) : 0;
+      var isChosen = i === chosen;
+      return [
+        '<div style="margin-bottom:10px;">',
+          '<div style="display:flex;justify-content:space-between;margin-bottom:4px;">',
+            '<span style="font-size:14px;font-weight:' + (isChosen ? '700' : '400') + ';color:' + (isChosen ? '#b90c25' : '#1a1a1a') + ';">' + (isChosen ? '✓ ' : '') + label + '</span>',
+            '<span style="font-size:13px;font-weight:700;color:#6b7280;">' + pct + '%</span>',
+          '</div>',
+          '<div style="height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;">',
+            '<div style="height:100%;width:' + pct + '%;background:' + (isChosen ? '#b90c25' : '#1a1c1c') + ';border-radius:3px;transition:width 0.6s ease;"></div>',
+          '</div>',
+        '</div>'
+      ].join('');
+    }).join('');
+    optionsEl.innerHTML = html;
+    if (metaEl) metaEl.textContent = total.toLocaleString() + ' votes • 3 days remaining';
+  }
+
+  var alreadyVoted = localStorage.getItem(debateKey);
+  if (alreadyVoted !== null) {
+    renderResults(getVotes(), parseInt(alreadyVoted, 10));
+  }
+
+  buttons.forEach(function(btn, idx) {
+    btn.addEventListener('click', function() {
+      if (localStorage.getItem(debateKey) !== null) return;
+      var votes = getVotes();
+      votes[idx]++;
+      saveVotes(votes);
+      localStorage.setItem(debateKey, idx);
+      renderResults(votes, idx);
+    });
+  });
+})();
+</script>
 </body>
 </html>

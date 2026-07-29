@@ -31,14 +31,24 @@
       <a href="login.html" class="bg-breaking-red text-white px-6 py-2 font-label-lg text-label-lg uppercase tracking-wider hover:bg-secondary-container transition-colors">Subscribe</a>
     </div>
   </div>
-  <nav class="flex justify-center w-full max-w-container-max mx-auto px-4 md:px-12">
-    <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap">
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="index.html">Home</a></li>
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="national.html">National</a></li>
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="world.html">World</a></li>
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="sports.html">Sports</a></li>
-      <li><a class="text-secondary border-b-2 border-secondary pb-4 block font-label-lg text-label-lg uppercase tracking-wider" href="entertainment.html">Entertainment</a></li>
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors" href="opinion.html">Opinion</a></li>
+    <nav class="flex justify-center w-full max-w-container-max mx-auto px-4 md:px-12 mb-0 relative">
+    <!-- Hamburger Menu -->
+    <div class="absolute left-4 md:left-12 top-0 z-50">
+      <button id="hamburger-btn" class="p-1 -ml-1 hover:bg-surface-gray transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined text-[28px] text-primary">menu</span>
+      </button>
+      <div id="hamburger-menu" class="hidden absolute left-0 top-full mt-3 bg-white border border-separator shadow-xl w-56 py-2">
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="opinion.html">Opinion</a>
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="about.html">About</a>
+        <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="support.html">Support</a>
+      </div>
+    </div>
+
+    <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap pb-0">
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="national.html">National</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="world.html">World</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="sports.html">Sports</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="entertainment.html">Entertainment</a></li>
     </ul>
   </nav>
 </header>
@@ -158,6 +168,7 @@
   </div>
   <div class="max-w-container-max mx-auto mt-12 pt-6 border-t border-surface-tint text-on-primary-container text-label-sm font-label-sm">© 2024 The Public Brief. All rights reserved.</div>
 </footer>
+<script src="js/auth.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
