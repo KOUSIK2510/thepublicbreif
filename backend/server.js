@@ -246,8 +246,10 @@ app.get('/api/auth/me', authMiddleware, async (req, res) => {
 app.get('/api/articles', async (req, res) => {
   try {
     const category = req.query.category;
+    const author = req.query.author;
     const query = { status: 'published' };
     if (category) query.category = category;
+    if (author) query.byline = new RegExp(author, 'i');
     
     const articles = await Article.find(query).sort({ createdAt: -1 }).populate('author', 'fullname username');
     res.json(articles);
