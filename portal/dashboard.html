@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Writer Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+  
+  <nav class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <h1 class="text-xl font-bold font-serif text-gray-900">The Public Brief</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span id="userNameDisplay" class="text-sm font-medium text-gray-700"></span>
+          <button onclick="logout()" class="text-sm text-red-600 hover:text-red-800 font-medium transition">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-2xl font-bold text-gray-900">My Articles</h2>
+      <a href="editor.html" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
+        Write New Article
+      </a>
+    </div>
+
+    <div class="bg-white shadow overflow-hidden sm:rounded-md border border-gray-200">
+      <ul id="articleList" class="divide-y divide-gray-200">
+        <!-- Articles injected here via JS -->
+        <li class="p-6 text-center text-gray-500 loading-indicator">Loading articles...</li>
+      </ul>
+    </div>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Ensure auth and load dashboard
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      const user = JSON.parse(localStorage.getItem('tpb_user') || '{}');
+      if (user.fullname) {
+        document.getElementById('userNameDisplay').textContent = user.fullname;
+      }
+      loadDashboardArticles();
+    });
+  </script>
+</body>
+</html>

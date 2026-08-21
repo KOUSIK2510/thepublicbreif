@@ -168,29 +168,40 @@ app.post('/api/auth/signup', async (req, res) => {
   }
 });
 
-// Simulated Google OAuth Login
+const { OAuth2Client } = require('google-auth-library');
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+// Real Google OAuth Login
 app.post('/api/auth/google', async (req, res) => {
   try {
-    // In a real app, this would use google-auth-library to verify an ID token
-    // For this simulation, we'll mock a successful Google profile response
-    const mockGoogleProfile = {
-      id: 'google-oauth2-1234567890',
-      email: 'mockuser@gmail.com',
-      name: 'Simulated Google User'
-    };
+    const { token } = req.body;
+    if (!token) return res.status(400).json({ error: 'Token is required' });
 
-    let user = await User.findOne({ googleId: mockGoogleProfile.id });
+    let payload;
+    try {
+      const ticket = await googleClient.verifyIdToken({
+        idToken: token,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+      payload = ticket.getPayload();
+    } catch (err) {
+      console.error('Google Auth Error:', err);
+      return res.status(401).json({ error: 'Invalid Google token' });
+    }
+
+    const googleId = payload['sub'];
+    const email = payload['email'];
+    const name = payload['name'];
+
+    let user = await User.findOne({ googleId: googleId });
     
     if (!user) {
-      // Check if email already exists (maybe they signed up manually before)
-      user = await User.findOne({ email: mockGoogleProfile.email });
+      user = await User.findOne({ email: email });
       if (user) {
-        // Link the accounts
-        user.googleId = mockGoogleProfile.id;
+        user.googleId = googleId;
         await user.save();
       } else {
-        // Create a new user entirely
-        const baseUsername = mockGoogleProfile.email.split('@')[0];
+        const baseUsername = email.split('@')[0];
         let username = baseUsername;
         let counter = 1;
         while (await User.findOne({ username })) {
@@ -199,24 +210,24 @@ app.post('/api/auth/google', async (req, res) => {
         }
 
         user = new User({
-          fullname: mockGoogleProfile.name,
+          fullname: name,
           username,
-          email: mockGoogleProfile.email,
-          googleId: mockGoogleProfile.id,
-          role: 'subscriber'
+          email: email,
+          googleId: googleId,
+          role: 'writer' // default role for google signup
         });
         await user.save();
       }
     }
 
-    const token = jwt.sign(
+    const jwtToken = jwt.sign(
       { id: user._id, role: user.role },
       JWT_SECRET,
       { expiresIn: '24h' }
     );
 
     res.json({
-      token,
+      token: jwtToken,
       user: { id: user._id, fullname: user.fullname, username: user.username, email: user.email, role: user.role }
     });
   } catch (error) {
@@ -337,6 +348,7 @@ app.post('/api/subscribe', async (req, res) => {
 
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, '..')));
+app.use('/portal', express.static(path.join(__dirname, '../portal')));
 
 // Health check endpoint (for Railway/Render uptime monitoring)
 app.get('/health', (req, res) => {
