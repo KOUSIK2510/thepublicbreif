@@ -1,0 +1,20 @@
+/*
+Theme Name:  The Public Brief
+Theme URI:   https://github.com/KOUSIK2510/thepublicbreif
+Description: Custom broadsheet editorial WordPress theme for The Public Brief — independent journalism. Includes full SEO support (Open Graph, Twitter Cards, JSON-LD NewsArticle schema, breadcrumbs, XML sitemap), custom post types, and an editorial design system.
+Version:     2.0.0
+Author:      The Public Brief Team
+Author URI:  https://thepublicbrief.in
+License:     GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: thepublicbrief
+Requires at least: 6.0
+Tested up to: 6.6
+Requires PHP: 7.4
+Tags:        news, magazine, editorial, custom-menu, featured-images, full-width-template, accessibility-ready, threaded-comments
+*/
+
+/*
+ * This file intentionally contains only the WordPress theme header.
+ * All theme styles are loaded via assets/css/styles.css and Tailwind CDN.
+ */
