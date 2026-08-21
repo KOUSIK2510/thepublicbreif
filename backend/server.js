@@ -174,7 +174,7 @@ const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 // Real Google OAuth Login
 app.post('/api/auth/google', async (req, res) => {
   try {
-    const { token } = req.body;
+    const token = req.body && req.body.token;
     if (!token) return res.status(400).json({ error: 'Token is required' });
 
     let payload;
