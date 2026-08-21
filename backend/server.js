@@ -1,5 +1,5 @@
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '.env') });
+require('dotenv').config({ path: path.join(__dirname, '.env'), override: true });
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -37,7 +37,7 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/thepublicb
 // Connect to MongoDB with in-memory fallback
 async function initDatabase() {
   try {
-    await mongoose.connect(MONGO_URI, { serverSelectionTimeoutMS: 2000 });
+    await mongoose.connect(MONGO_URI, { serverSelectionTimeoutMS: 15000 });
     console.log('Connected to MongoDB at', MONGO_URI);
   } catch (err) {
     console.log('Local MongoDB not available. Starting in-memory MongoDB server...');
@@ -344,7 +344,7 @@ app.get('/health', (req, res) => {
 });
 
 // Always listen (Railway/Render need the server to bind to PORT)
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`The Public Brief API running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
