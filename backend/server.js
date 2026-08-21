@@ -10,7 +10,24 @@ const User = require('./models/User');
 const Article = require('./models/Article');
 
 const app = express();
-app.use(cors());
+// Allow requests from WordPress (Hostinger) and local dev
+const allowedOrigins = [
+  process.env.WORDPRESS_URL || '',
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:8080',
+];
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow no-origin requests (mobile apps, curl, WP server-side calls)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.some(o => o && origin.startsWith(o))) return callback(null, true);
+    // In production allow all origins (WP makes server-to-server calls)
+    if (process.env.NODE_ENV === 'production') return callback(null, true);
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+}));
 app.use(express.json());
 
 const PORT = process.env.PORT || 3001;
@@ -321,10 +338,15 @@ app.post('/api/subscribe', async (req, res) => {
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, '..')));
 
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`Backend server running on http://localhost:${PORT}`);
-  });
-}
+// Health check endpoint (for Railway/Render uptime monitoring)
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), service: 'thepublicbrief-api' });
+});
+
+// Always listen (Railway/Render need the server to bind to PORT)
+app.listen(PORT, () => {
+  console.log(`The Public Brief API running on port ${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+});
 
 module.exports = app;

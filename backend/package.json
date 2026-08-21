@@ -1,15 +1,19 @@
 {
-  "name": "backend",
+  "name": "thepublicbrief-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "The Public Brief - Node.js/Express API backend",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "The Public Brief",
   "license": "ISC",
   "type": "commonjs",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
