@@ -419,3 +419,13 @@ function tpb_search_form() {
     </form>
     <?php
 }
+
+// Include custom post type in Search and Author archives for SEO
+add_action('pre_get_posts', 'tpb_include_custom_post_types_in_archive');
+function tpb_include_custom_post_types_in_archive($query) {
+    if ( ! is_admin() && $query->is_main_query() ) {
+        if ( $query->is_author() || $query->is_search() ) {
+            $query->set( 'post_type', array( 'post', 'tpb_article' ) );
+        }
+    }
+}
