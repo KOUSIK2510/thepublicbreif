@@ -304,10 +304,16 @@ app.post('/api/articles', authMiddleware, async (req, res) => {
     // Automatically set status to published if admin, otherwise pending
     const status = req.user.role === 'admin' ? 'published' : 'pending';
     
+    let finalByline = byline;
+    if (!finalByline) {
+      const user = await User.findById(req.user.id);
+      finalByline = user && user.fullname ? `By ${user.fullname}` : 'By Anonymous';
+    }
+
     const article = new Article({
       title,
       category,
-      byline: byline || req.user.fullname, // use user's name if no byline provided
+      byline: finalByline,
       imageUrl,
       body,
       status,
