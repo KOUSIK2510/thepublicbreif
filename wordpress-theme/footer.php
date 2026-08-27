@@ -16,12 +16,6 @@
         <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="<?php echo esc_url(home_url('/category/opinion')); ?>">Opinion</a>
       </div>
       <div class="flex flex-col gap-3">
-        <h4 class="text-white font-label-lg text-label-lg uppercase tracking-wider mb-2">Legal</h4>
-        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="<?php echo esc_url(home_url('/privacy-policy')); ?>">Privacy Policy</a>
-        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="<?php echo esc_url(home_url('/terms-of-service')); ?>">Terms of Service</a>
-        <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="<?php echo esc_url(home_url('/contact')); ?>">Contact</a>
-      </div>
-      <div class="flex flex-col gap-3">
         <h4 class="text-white font-label-lg text-label-lg uppercase tracking-wider mb-2">Follow Us</h4>
         <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="https://www.facebook.com/share/1UpHD9WnrN/" target="_blank" rel="noopener">Facebook</a>
         <a class="text-on-primary-container hover:text-white text-label-sm font-label-sm transition-colors" href="https://www.instagram.com/thepublicbrief.news?igsi=Nzg1dzMxOGdyY3kw" target="_blank" rel="noopener">Instagram</a>
