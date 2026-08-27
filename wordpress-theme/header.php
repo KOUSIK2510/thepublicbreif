@@ -17,8 +17,8 @@
 
     <!-- Logo -->
     <div class="w-1/3 flex justify-center">
-      <a href="<?php echo esc_url( home_url('/') ); ?>" class="text-headline-xl font-headline-xl text-primary uppercase tracking-tighter">
-        <?php bloginfo( 'name' ); ?>
+      <a href="<?php echo esc_url( home_url('/') ); ?>" class="block">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt="<?php bloginfo('name'); ?>" class="h-12 w-auto object-contain" />
       </a>
     </div>
 
