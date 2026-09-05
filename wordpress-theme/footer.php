@@ -2,7 +2,9 @@
 <footer class="bg-primary text-on-primary mt-auto w-full py-16 px-4 md:px-12">
   <div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between gap-8">
     <div>
-      <h2 class="text-headline-lg font-headline-lg text-white uppercase tracking-tighter mb-2"><?php bloginfo('name'); ?></h2>
+      <h2 class="text-headline-lg font-headline-lg text-white uppercase tracking-tighter mb-2">
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="hover:text-gray-300 transition-colors"><?php bloginfo('name'); ?></a>
+      </h2>
       <p class="text-on-primary-container text-sm max-w-xs"><?php bloginfo('description'); ?></p>
     </div>
     <div class="flex gap-12">

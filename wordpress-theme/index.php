@@ -29,6 +29,7 @@
     $cats = get_the_category();
     $cat_name = $cats ? $cats[0]->name : 'News';
     $byline = get_post_meta(get_the_ID(), 'tpb_byline', true) ?: 'By ' . get_the_author();
+    $clean_name = trim(str_replace('By ', '', $byline));
     $read_time = get_post_meta(get_the_ID(), 'tpb_read_time', true) ?: '5 min read';
   ?>
   <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 pb-16 border-b border-separator">
@@ -52,12 +53,12 @@
       <p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed mb-6"><?php echo esc_html(get_the_excerpt()); ?></p>
       <div class="flex items-center gap-3 text-sm text-meta-text">
         <?php if (get_the_author_meta('ID')) : ?>
-          <a href="<?php echo esc_url(home_url('/author-profile/?name=' . urlencode(get_the_author()))); ?>">
+          <a href="<?php echo esc_url(home_url('/author-profile/?writer=' . urlencode($clean_name))); ?>">
             <?php echo get_avatar(get_the_author_meta('ID'), 44, '', '', ['class' => 'rounded-full']); ?>
           </a>
         <?php endif; ?>
         <div>
-          <a href="<?php echo esc_url(home_url('/author-profile/?name=' . urlencode(get_the_author()))); ?>"
+          <a href="<?php echo esc_url(home_url('/author-profile/?writer=' . urlencode($clean_name))); ?>"
              class="font-semibold text-primary hover:text-breaking-red transition-colors block">
             <?php echo esc_html($byline); ?>
           </a>
@@ -90,6 +91,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <?php while ($section_query->have_posts()) : $section_query->the_post();
         $byline = get_post_meta(get_the_ID(), 'tpb_byline', true) ?: 'By ' . get_the_author();
+        $clean_name = trim(str_replace('By ', '', $byline));
       ?>
       <article class="group flex flex-col gap-0 clickable-article">
         <?php if (has_post_thumbnail()) : ?>
@@ -105,7 +107,7 @@
             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
           </h3>
           <p class="text-meta-text text-sm">
-            <a href="<?php echo esc_url(home_url('/author-profile/?name=' . urlencode(get_the_author()))); ?>"
+            <a href="<?php echo esc_url(home_url('/author-profile/?writer=' . urlencode($clean_name))); ?>"
                class="hover:text-breaking-red transition-colors font-semibold"><?php echo esc_html($byline); ?></a>
             &bull; <?php echo get_the_date(); ?>
           </p>

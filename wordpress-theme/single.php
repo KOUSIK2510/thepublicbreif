@@ -5,6 +5,7 @@
     $cats      = get_the_category();
     $cat_name  = $cats ? $cats[0]->name : 'News';
     $byline    = get_post_meta(get_the_ID(), 'tpb_byline', true) ?: 'By ' . get_the_author();
+    $clean_name = trim(str_replace('By ', '', $byline));
     $read_time = get_post_meta(get_the_ID(), 'tpb_read_time', true) ?: '5 min read';
   ?>
 
@@ -19,7 +20,7 @@
     <div class="flex items-center gap-4 mb-8 pb-8 border-b border-separator">
       <?php echo get_avatar(get_the_author_meta('ID'), 52, '', '', ['class' => 'rounded-full border-2 border-separator']); ?>
       <div>
-        <a href="<?php echo esc_url(home_url('/author-profile/?name=' . urlencode(get_the_author()))); ?>"
+        <a href="<?php echo esc_url(home_url('/author-profile/?writer=' . urlencode($clean_name))); ?>"
            class="font-label-lg text-label-lg font-bold text-primary hover:text-breaking-red transition-colors block">
           <?php echo esc_html($byline); ?>
         </a>
@@ -55,12 +56,12 @@
     <div class="mt-12 p-6 border border-separator bg-surface-gray flex gap-4 items-start">
       <?php echo get_avatar(get_the_author_meta('ID'), 72, '', '', ['class' => 'rounded-full shrink-0']); ?>
       <div>
-        <a href="<?php echo esc_url(home_url('/author-profile/?name=' . urlencode(get_the_author()))); ?>"
+        <a href="<?php echo esc_url(home_url('/author-profile/?writer=' . urlencode($clean_name))); ?>"
            class="font-headline-md text-headline-md text-primary font-bold hover:text-breaking-red transition-colors block mb-1">
           <?php the_author(); ?>
         </a>
         <p class="text-meta-text text-sm"><?php the_author_meta('description'); ?></p>
-        <a href="<?php echo esc_url(home_url('/author-profile/?name=' . urlencode(get_the_author()))); ?>"
+        <a href="<?php echo esc_url(home_url('/author-profile/?writer=' . urlencode($clean_name))); ?>"
            class="mt-3 inline-block text-breaking-red font-label-sm text-label-sm uppercase tracking-wider hover:underline">
           View all articles →
         </a>

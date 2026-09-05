@@ -62,13 +62,19 @@
     <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap pb-0">
       <?php
       $sections = [
+        'Home'          => home_url('/'),
         'National'      => home_url('/category/national'),
         'World'         => home_url('/category/world'),
         'Sports'        => home_url('/category/sports'),
         'Entertainment' => home_url('/category/entertainment'),
       ];
       foreach ( $sections as $label => $url ) :
-        $active = is_category( strtolower($label) ) ? 'text-secondary border-secondary' : 'border-transparent hover:text-secondary hover:border-secondary';
+        if ($label === 'Home') {
+          $is_active = is_home() || is_front_page();
+        } else {
+          $is_active = is_category( strtolower($label) );
+        }
+        $active = $is_active ? 'text-secondary border-secondary' : 'border-transparent hover:text-secondary hover:border-secondary';
       ?>
       <li>
         <a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 <?php echo $active; ?> transition-colors duration-200"

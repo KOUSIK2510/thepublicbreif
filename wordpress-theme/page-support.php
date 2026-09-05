@@ -1,159 +1,354 @@
 <?php
 /**
- * Support / Contact Page Template — The Public Brief
+ * Support Page Template
  *
- * Template Name: Support
+ * Template Name: Support Page
  */
 get_header();
 ?>
 
-<!-- Hero Banner -->
-<div class="bg-primary text-white py-20 px-4 md:px-12 text-center">
-  <p class="text-breaking-red font-label-sm text-label-sm uppercase tracking-widest mb-4">Get In Touch</p>
-  <h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-white mb-6">Support & Contact</h1>
-  <p class="text-on-primary-container text-body-lg font-body-lg max-w-2xl mx-auto">
-    Questions, tips, corrections, or partnership enquiries — we want to hear from you.
-  </p>
+<style>
+/* ── Support Page Styles ─────────────────────── */
+.sp-wrap {
+  font-family: 'Inter', sans-serif;
+  color: #0d0d0d;
+  background: #fff;
+  padding-bottom: 80px;
+}
+.sp-playfair { font-family: 'Playfair Display', serif !important; }
+
+/* Global Section Styles */
+.sp-section {
+  padding: 64px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.sp-section-wide {
+  max-width: 1000px;
+}
+.sp-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: #b90c25;
+  padding-bottom: 8px;
+  margin-bottom: 32px;
+  border-bottom: 2px solid #b90c25;
+}
+.sp-center { text-align: center; }
+
+/* ── Our Story Section ──────────────────────── */
+.sp-story-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 24px;
+}
+.sp-story-content strong {
+  color: #111827;
+  font-weight: 700;
+}
+.sp-signature {
+  margin-top: 40px;
+  padding-left: 16px;
+  border-left: 3px solid #b90c25;
+}
+.sp-signature-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.sp-signature-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #b90c25;
+}
+
+/* ── Your Impact Section ────────────────────── */
+.sp-impact-section {
+  padding: 80px 24px;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+  background: #fafafa;
+}
+.sp-impact-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0d0d0d;
+  margin-bottom: 48px;
+}
+.sp-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.sp-impact-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-top: 3px solid #b90c25;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+.sp-impact-icon {
+  color: #b90c25;
+  margin-bottom: 16px;
+  display: inline-flex;
+}
+.sp-impact-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0d0d0d;
+  margin-bottom: 12px;
+}
+.sp-impact-card p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+/* ── Contribute Section ─────────────────────── */
+.sp-contribute-section {
+  padding: 80px 24px;
+}
+.sp-contribute-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0d0d0d;
+  margin-bottom: 16px;
+}
+.sp-contribute-subtitle {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 48px;
+}
+
+.sp-amounts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+.sp-amount-btn {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.sp-amount-btn:hover {
+  border-color: #b90c25;
+  color: #b90c25;
+}
+.sp-amount-btn.active {
+  background: #b90c25;
+  border-color: #b90c25;
+  color: #fff;
+}
+
+.sp-frequency-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 300px;
+  margin: 0 auto 40px;
+}
+.sp-freq-btn {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sp-freq-btn:first-child { border-right: none; }
+.sp-freq-btn.active {
+  background: #0d0d0d;
+  border-color: #0d0d0d;
+  color: #fff;
+}
+
+.sp-submit-btn {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #b90c25;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sp-submit-btn:hover {
+  background: #9a0a1f;
+}
+
+.sp-secure-text {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sp-impact-grid { grid-template-columns: repeat(2, 1fr); }
+  .sp-amounts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .sp-impact-grid { grid-template-columns: 1fr; }
+  .sp-amounts-grid { grid-template-columns: 1fr; }
+  .sp-story-content p { font-size: 15px; }
+}
+</style>
+
+<div class="sp-wrap">
+
+  <!-- OUR STORY -->
+  <section class="sp-section">
+    <div class="sp-eyebrow">Our Story</div>
+    
+    <div class="sp-story-content">
+      <p>
+        The Public Brief was established with one goal: to ensure that journalism is <strong>accessible, credible and meaningful</strong>. As a remote-first digital newsroom, The Public Brief has been created through the combined efforts of journalists, researchers, editors, and contributors who are united by a shared commitment to transparent, credible, impactful and factual journalism.
+      </p>
+      <p>
+        We believe that all serious stories should be supported by background information, different angles, and ethical reporting, rather than sensationalism. Alongside covering news, we are establishing a community where young writers and journalists can hone their skills and express their opinions.
+      </p>
+      <p>
+        <strong>Independent journalism is sustained by readers who support truth, openness, and accountability.</strong> Your contributions can help us enhance our reporting, promote factual journalism, provide opportunities for young writers, and maintain our freedom.
+      </p>
+      <p>
+        With any contribution, regardless of its size, we will be able to stay independent and focus on what is important: <strong>serving the public interest.</strong>
+      </p>
+      <p>
+        Thank you for your support and trust in our mission.
+      </p>
+
+      <div class="sp-signature">
+        <div class="sp-signature-title">Warm Regards,</div>
+        <div class="sp-signature-name">Team The Public Brief</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUR IMPACT -->
+  <section class="sp-impact-section">
+    <div class="sp-section sp-section-wide sp-center" style="padding: 0;">
+      <div class="sp-eyebrow">Your Impact</div>
+      <h2 class="sp-impact-title sp-playfair">What Your Support Enables</h2>
+      
+      <div class="sp-impact-grid">
+        <!-- Card 1 -->
+        <div class="sp-impact-card">
+          <div class="sp-impact-icon">
+            <span class="material-symbols-outlined" style="font-size: 32px;">fact_check</span>
+          </div>
+          <h3>Better Reporting</h3>
+          <p>Enhancing our investigative capacity and editorial depth on every story we publish.</p>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="sp-impact-card">
+          <div class="sp-impact-icon">
+            <span class="material-symbols-outlined" style="font-size: 32px;">school</span>
+          </div>
+          <h3>Young Writers</h3>
+          <p>Providing meaningful opportunities for emerging journalists to grow their craft.</p>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="sp-impact-card">
+          <div class="sp-impact-icon">
+            <span class="material-symbols-outlined" style="font-size: 32px;">shield_person</span>
+          </div>
+          <h3>Independence</h3>
+          <p>Maintaining editorial freedom — no advertisers, no agendas, only public interest.</p>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="sp-impact-card">
+          <div class="sp-impact-icon">
+            <span class="material-symbols-outlined" style="font-size: 32px;">public</span>
+          </div>
+          <h3>Access for All</h3>
+          <p>Keeping credible journalism free and accessible to every Indian reader.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTRIBUTE -->
+  <section class="sp-contribute-section">
+    <div class="sp-section sp-center" style="padding: 0;">
+      <div class="sp-eyebrow">Contribute</div>
+      <h2 class="sp-contribute-title sp-playfair">Choose Your Contribution</h2>
+      <p class="sp-contribute-subtitle">Every rupee helps us stay independent. Pick an amount below or enter your own.</p>
+      
+      <!-- Amount Grid -->
+      <div class="sp-amounts-grid">
+        <div class="sp-amount-btn">₹50</div>
+        <div class="sp-amount-btn active">₹100</div>
+        <div class="sp-amount-btn">₹200</div>
+        <div class="sp-amount-btn">₹500</div>
+        <div class="sp-amount-btn">₹1,000</div>
+        <div class="sp-amount-btn">Custom</div>
+      </div>
+
+      <!-- Frequency Toggle -->
+      <div class="sp-frequency-toggle">
+        <div class="sp-freq-btn active">One-Time</div>
+        <div class="sp-freq-btn">Monthly</div>
+      </div>
+
+      <!-- Submit -->
+      <button class="sp-submit-btn">Support The Public Brief</button>
+      <div class="sp-secure-text">Secure & encrypted. Cancel monthly support anytime.</div>
+
+    </div>
+  </section>
+
 </div>
 
-<main class="flex-grow w-full max-w-[1280px] mx-auto px-4 md:px-12 py-20">
+<script>
+  // Simple interaction script for contribution buttons
+  document.addEventListener('DOMContentLoaded', function() {
+    const amountBtns = document.querySelectorAll('.sp-amount-btn');
+    const freqBtns = document.querySelectorAll('.sp-freq-btn');
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+    amountBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        amountBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
 
-    <!-- Contact Form -->
-    <div class="lg:col-span-7">
-      <span class="text-breaking-red font-label-sm text-label-sm uppercase tracking-widest font-bold block mb-4">Send Us a Message</span>
-      <h2 class="text-headline-xl font-headline-xl text-primary mb-8">Contact the Newsroom</h2>
-
-      <?php if ( isset($_GET['sent']) && $_GET['sent'] === '1' ) : ?>
-        <div class="bg-green-50 border border-green-300 text-green-800 px-6 py-4 mb-8 font-label-lg">
-          ✓ Thank you! Your message has been received. We'll get back to you within 2 business days.
-        </div>
-      <?php endif; ?>
-
-      <?php
-      // Process form submission using wp_mail()
-      if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tpb_contact_nonce']) ) {
-          if ( wp_verify_nonce( sanitize_text_field($_POST['tpb_contact_nonce']), 'tpb_contact_form' ) ) {
-              $name    = sanitize_text_field( $_POST['contact_name'] ?? '' );
-              $email   = sanitize_email( $_POST['contact_email'] ?? '' );
-              $subject = sanitize_text_field( $_POST['contact_subject'] ?? 'Website Contact Form' );
-              $message = sanitize_textarea_field( $_POST['contact_message'] ?? '' );
-              $to      = get_option( 'admin_email' );
-              $headers = [ 'Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . $email ];
-              $body    = "From: {$name} <{$email}>\n\n{$message}";
-              wp_mail( $to, '[The Public Brief] ' . $subject, $body, $headers );
-              wp_redirect( add_query_arg( 'sent', '1', get_permalink() ) );
-              exit;
-          }
-      }
-      ?>
-
-      <form method="post" class="flex flex-col gap-6" id="tpb-contact-form">
-        <?php wp_nonce_field( 'tpb_contact_form', 'tpb_contact_nonce' ); ?>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="flex flex-col gap-2">
-            <label class="font-label-lg text-label-lg text-primary uppercase tracking-wider" for="contact_name">Full Name *</label>
-            <input type="text" id="contact_name" name="contact_name" required
-                   class="border border-separator px-4 py-3 text-primary bg-white outline-none focus:border-primary transition-colors font-body-md"
-                   placeholder="Your full name" />
-          </div>
-          <div class="flex flex-col gap-2">
-            <label class="font-label-lg text-label-lg text-primary uppercase tracking-wider" for="contact_email">Email Address *</label>
-            <input type="email" id="contact_email" name="contact_email" required
-                   class="border border-separator px-4 py-3 text-primary bg-white outline-none focus:border-primary transition-colors font-body-md"
-                   placeholder="you@example.com" />
-          </div>
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <label class="font-label-lg text-label-lg text-primary uppercase tracking-wider" for="contact_subject">Subject *</label>
-          <select id="contact_subject" name="contact_subject" required
-                  class="border border-separator px-4 py-3 text-primary bg-white outline-none focus:border-primary transition-colors font-body-md">
-            <option value="">Select a topic…</option>
-            <option value="News Tip">News Tip or Story Pitch</option>
-            <option value="Correction">Request a Correction</option>
-            <option value="Subscription">Subscription Help</option>
-            <option value="Advertising">Advertising &amp; Partnerships</option>
-            <option value="Press">Press Enquiry</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <label class="font-label-lg text-label-lg text-primary uppercase tracking-wider" for="contact_message">Message *</label>
-          <textarea id="contact_message" name="contact_message" rows="7" required
-                    class="border border-separator px-4 py-3 text-primary bg-white outline-none focus:border-primary transition-colors font-body-md resize-none"
-                    placeholder="Write your message here…"></textarea>
-        </div>
-
-        <button type="submit"
-                class="bg-primary text-white px-10 py-4 font-label-lg text-label-lg uppercase tracking-wider hover:bg-breaking-red transition-colors self-start">
-          Send Message →
-        </button>
-      </form>
-    </div>
-
-    <!-- Sidebar Info -->
-    <div class="lg:col-span-5 flex flex-col gap-8">
-
-      <div class="border border-separator p-8">
-        <h3 class="font-headline-md text-headline-md text-primary mb-6 border-b border-separator pb-4">Contact Information</h3>
-        <div class="flex flex-col gap-5">
-          <?php
-          $contacts = [
-              ['icon' => 'mail',      'label' => 'General Enquiries',  'val' => 'contact@thepublicbrief.in'],
-              ['icon' => 'campaign',  'label' => 'News Tips',          'val' => 'tips@thepublicbrief.in'],
-              ['icon' => 'edit',      'label' => 'Editorial',          'val' => 'editorial@thepublicbrief.in'],
-              ['icon' => 'sell',      'label' => 'Advertising',        'val' => 'ads@thepublicbrief.in'],
-          ];
-          foreach ($contacts as $c) : ?>
-            <div class="flex items-start gap-4">
-              <span class="material-symbols-outlined text-breaking-red mt-1" style="font-size:22px;"><?php echo esc_html($c['icon']); ?></span>
-              <div>
-                <div class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider mb-1"><?php echo esc_html($c['label']); ?></div>
-                <a href="mailto:<?php echo esc_attr($c['val']); ?>" class="text-primary hover:text-breaking-red transition-colors font-body-md">
-                  <?php echo esc_html($c['val']); ?>
-                </a>
-              </div>
-            </div>
-          <?php endforeach; ?>
-        </div>
-      </div>
-
-      <div class="border border-separator p-8">
-        <h3 class="font-headline-md text-headline-md text-primary mb-4">Response Times</h3>
-        <ul class="flex flex-col gap-3 text-body-md font-body-md text-on-surface-variant">
-          <li class="flex items-center gap-3">
-            <span class="w-2 h-2 bg-breaking-red rounded-full shrink-0"></span>
-            <span>General enquiries: <strong class="text-primary">1–2 business days</strong></span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="w-2 h-2 bg-breaking-red rounded-full shrink-0"></span>
-            <span>Corrections: <strong class="text-primary">Within 24 hours</strong></span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="w-2 h-2 bg-breaking-red rounded-full shrink-0"></span>
-            <span>Breaking tips: <strong class="text-primary">Immediately reviewed</strong></span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="bg-primary p-8 text-white">
-        <h3 class="font-headline-md text-headline-md text-white mb-3">Got a Story Tip?</h3>
-        <p class="text-on-primary-container text-body-md font-body-md mb-4">
-          Our journalists protect sources. All tips are handled with strict confidentiality. Use our secure tip line for sensitive information.
-        </p>
-        <a href="mailto:tips@thepublicbrief.in"
-           class="inline-block bg-breaking-red text-white px-6 py-3 font-label-lg text-label-lg uppercase tracking-wider hover:bg-secondary-container transition-colors">
-          Submit a Tip
-        </a>
-      </div>
-
-    </div>
-  </div>
-
-</main>
+    freqBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        freqBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  });
+</script>
 
 <?php get_footer(); ?>

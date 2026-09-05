@@ -47,11 +47,15 @@ get_header();
          itemprop="author" itemscope itemtype="https://schema.org/Person">
       <?php echo get_avatar( get_the_author_meta('ID'), 52, '', '', ['class' => 'rounded-full border-2 border-separator']); ?>
       <div>
-        <a href="<?php echo esc_url( home_url('/author-profile/?name=' . urlencode( get_the_author() )) ); ?>"
-           class="font-label-lg text-label-lg font-bold text-primary hover:text-breaking-red transition-colors block"
-           itemprop="name">
-          <?php echo esc_html($byline); ?>
-        </a>
+      <?php
+        // Extract clean name from byline (strips "By " prefix for the profile link)
+        $profile_name = trim( preg_replace('/^by\s+/i', '', $byline) );
+      ?>
+      <a href="<?php echo esc_url( home_url('/author-profile/?writer=' . urlencode( $profile_name )) ); ?>"
+         class="font-label-lg text-label-lg font-bold text-primary hover:text-breaking-red transition-colors block"
+         itemprop="name">
+        <?php echo esc_html($byline); ?>
+      </a>
         <p class="text-meta-text text-sm">
           <time datetime="<?php echo esc_attr( get_the_date('c') ); ?>"
                 itemprop="datePublished"><?php echo get_the_date(); ?></time>

@@ -429,3 +429,57 @@ function tpb_include_custom_post_types_in_archive($query) {
         }
     }
 }
+
+// ─── Author Profile: Custom User Fields ───────────────────────────────────────
+// Adds "Author Title" and "External Articles" fields to WP Admin → Users → Edit User
+
+function tpb_author_extra_fields( $user ) {
+    $title    = get_user_meta( $user->ID, 'tpb_author_title', true );
+    $ext_json = get_user_meta( $user->ID, 'tpb_external_articles', true );
+    ?>
+    <h2 style="margin-top:2em;">The Public Brief — Author Profile</h2>
+    <table class="form-table">
+      <tr>
+        <th><label for="tpb_author_title">Author Title / Role</label></th>
+        <td>
+          <input type="text" name="tpb_author_title" id="tpb_author_title"
+                 value="<?php echo esc_attr( $title ); ?>" class="regular-text" />
+          <p class="description">e.g. "Senior Reporter", "Columnist", "Contributor", "Founder &amp; Editor-in-Chief"</p>
+        </td>
+      </tr>
+      <tr>
+        <th><label for="tpb_external_articles">External Articles (JSON)</label></th>
+        <td>
+          <textarea name="tpb_external_articles" id="tpb_external_articles"
+                    rows="10" class="large-text code"><?php echo esc_textarea( $ext_json ); ?></textarea>
+          <p class="description">
+            JSON array of articles published on <strong>other sites</strong>. Each item needs:<br>
+            <code>title</code>, <code>url</code>, <code>publication</code>, <code>date</code> (YYYY-MM-DD)<br><br>
+            Example:<br>
+            <code>[{"title":"India's Free Press Under Threat","url":"https://thewire.in/article","publication":"The Wire","date":"2024-06-10"},{"title":"Fact-Checking in the Age of AI","url":"https://scroll.in/article","publication":"Scroll.in","date":"2024-02-20"}]</code>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <?php
+}
+add_action( 'show_user_profile', 'tpb_author_extra_fields' );
+add_action( 'edit_user_profile', 'tpb_author_extra_fields' );
+
+function tpb_save_author_extra_fields( $user_id ) {
+    if ( ! current_user_can( 'edit_user', $user_id ) ) return;
+
+    if ( isset( $_POST['tpb_author_title'] ) ) {
+        update_user_meta( $user_id, 'tpb_author_title', sanitize_text_field( $_POST['tpb_author_title'] ) );
+    }
+    if ( isset( $_POST['tpb_external_articles'] ) ) {
+        $json    = wp_unslash( $_POST['tpb_external_articles'] );
+        $decoded = json_decode( $json );
+        // Only save if valid JSON array
+        if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
+            update_user_meta( $user_id, 'tpb_external_articles', $json );
+        }
+    }
+}
+add_action( 'personal_options_update',  'tpb_save_author_extra_fields' );
+add_action( 'edit_user_profile_update', 'tpb_save_author_extra_fields' );

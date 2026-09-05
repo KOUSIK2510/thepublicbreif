@@ -27,6 +27,7 @@ $desc = $desc_map[$cat_slug] ?? bloginfo('description');
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
     <?php while (have_posts()) : the_post();
       $byline    = get_post_meta(get_the_ID(), 'tpb_byline', true) ?: 'By ' . get_the_author();
+      $clean_name = trim(str_replace('By ', '', $byline));
       $read_time = get_post_meta(get_the_ID(), 'tpb_read_time', true) ?: '5 min read';
     ?>
     <article class="group flex flex-col bg-white border border-separator overflow-hidden hover:shadow-lg transition-shadow duration-300 clickable-article">
@@ -44,7 +45,7 @@ $desc = $desc_map[$cat_slug] ?? bloginfo('description');
         </h2>
         <p class="text-on-surface-variant text-body-md font-body-md leading-relaxed line-clamp-3"><?php echo esc_html(get_the_excerpt()); ?></p>
         <div class="mt-auto pt-4 border-t border-separator flex items-center gap-2 text-sm text-meta-text">
-          <a href="<?php echo esc_url(home_url('/author-profile/?name=' . urlencode(get_the_author()))); ?>"
+          <a href="<?php echo esc_url(home_url('/author-profile/?writer=' . urlencode($clean_name))); ?>"
              class="font-semibold hover:text-breaking-red transition-colors">
             <?php echo esc_html($byline); ?>
           </a>
