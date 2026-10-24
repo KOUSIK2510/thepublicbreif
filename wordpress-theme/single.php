@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="flex-grow w-full max-w-[1280px] mx-auto px-4 md:px-12 py-16">
+<main class="flex-grow w-full max-w-[1280px] mx-auto px-4 md:px-12 py-8 md:py-16">
   <?php while (have_posts()) : the_post();
     $cats      = get_the_category();
     $cat_name  = $cats ? $cats[0]->name : 'News';
@@ -17,7 +17,7 @@
     <h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-primary mb-6 leading-tight"><?php the_title(); ?></h1>
 
     <!-- Author + Meta -->
-    <div class="flex items-center gap-4 mb-8 pb-8 border-b border-separator">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 md:mb-8 pb-6 md:pb-8 border-b border-separator">
       <?php echo get_avatar(get_the_author_meta('ID'), 52, '', '', ['class' => 'rounded-full border-2 border-separator']); ?>
       <div>
         <a href="<?php echo esc_url(home_url('/author-profile/?writer=' . urlencode($clean_name))); ?>"
@@ -36,7 +36,7 @@
     <?php endif; ?>
 
     <!-- Body -->
-    <div class="prose max-w-none text-body-lg font-body-lg text-on-surface-variant leading-relaxed article-body">
+    <div class="prose max-w-none text-[17px] md:text-[19px] leading-relaxed article-body text-black">
       <?php the_content(); ?>
     </div>
 
@@ -53,7 +53,7 @@
     <?php endif; ?>
 
     <!-- Author Bio Card -->
-    <div class="mt-12 p-6 border border-separator bg-surface-gray flex gap-4 items-start">
+    <div class="mt-8 md:mt-12 p-5 md:p-6 border border-separator bg-surface-gray flex flex-col sm:flex-row gap-4 items-center sm:items-start text-center sm:text-left">
       <?php echo get_avatar(get_the_author_meta('ID'), 72, '', '', ['class' => 'rounded-full shrink-0']); ?>
       <div>
         <a href="<?php echo esc_url(home_url('/author-profile/?writer=' . urlencode($clean_name))); ?>"
@@ -73,9 +73,11 @@
 </main>
 
 <style>
-.article-body p { margin-bottom: 1.5rem; }
-.article-body h2 { font-family: 'Playfair Display',serif; font-size: 1.75rem; font-weight: 700; margin: 2rem 0 1rem; }
-.article-body h3 { font-family: 'Playfair Display',serif; font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
+.article-body { font-family: Georgia, 'Times New Roman', serif !important; color: #000000 !important; }
+.article-body p { font-family: Georgia, 'Times New Roman', serif !important; color: #000000 !important; font-size: 1.15rem; line-height: 1.9; margin-bottom: 1.5rem; }
+.article-body li { font-family: Georgia, 'Times New Roman', serif !important; color: #000000 !important; line-height: 1.8; margin-bottom: 0.5rem; }
+.article-body h2 { font-family: 'Playfair Display',serif; font-size: 1.75rem; font-weight: 700; margin: 2rem 0 1rem; color: #000; }
+.article-body h3 { font-family: 'Playfair Display',serif; font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #000; }
 .article-body blockquote { border-left: 4px solid #B00020; padding-left: 1.5rem; font-style: italic; color: #000; font-size: 1.2rem; margin: 2rem 0; }
 .article-body a { color: #B00020; text-decoration: underline; }
 </style>

@@ -161,13 +161,25 @@
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #E5E7EB;
 }
-#article-modal .modal-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.85;
-  color: #1a1c1c;
+#article-modal .modal-body,
+.article-body {
+  font-family: Georgia, 'Times New Roman', serif !important;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #000000 !important;
 }
-#article-modal .modal-body p { margin-bottom: 1.25rem; }
+#article-modal .modal-body p,
+.article-body p {
+  font-family: Georgia, 'Times New Roman', serif !important;
+  color: #000000 !important;
+  margin-bottom: 1.35rem;
+  line-height: 1.9;
+}
+#article-modal .modal-body li,
+.article-body li {
+  font-family: Georgia, 'Times New Roman', serif !important;
+  color: #000000 !important;
+}
 #article-modal .modal-img {
   width: 100%;
   aspect-ratio: 16/9;
@@ -208,6 +220,55 @@ nav a.nav-active {
   color: #b90c25 !important;
   border-bottom-color: #b90c25 !important;
 }
+
+/* ---- Trending horizontal layout ---- */
+.trending-list { list-style: none; padding: 0; margin: 0; }
+.trending-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #E5E7EB;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.trending-item:last-child { border-bottom: none; }
+.trending-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #E5E7EB;
+  line-height: 1;
+  min-width: 30px;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+.trending-item:hover .trending-num { color: #B00020; }
+
+/* ---- Section label accent ---- */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #B00020;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 14px;
+  background: #B00020;
+  border-radius: 1px;
+}
+
+/* ---- Hero image zoom on hover ---- */
+.hero-img-wrap { overflow: hidden; }
+.hero-img-wrap img { transition: transform 0.7s cubic-bezier(.4,0,.2,1); }
+.hero-img-wrap:hover img { transform: scale(1.04); }
 
 /* ---- Article card hover ---- */
 article.clickable-article { cursor: pointer; }

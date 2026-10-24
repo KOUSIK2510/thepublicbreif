@@ -39,9 +39,22 @@
 <body class="sans-text">
 
 <!-- Header -->
-<header class="flex items-center justify-between border-b border-separator px-4 md:px-16 py-4 bg-white sticky top-0 z-50">
-  <div class="flex items-center gap-8">
-    <a href="index.html" class="text-primary text-xl font-bold leading-tight tracking-tight serif-text">The Public Brief</a>
+<header class="bg-white flex flex-col w-full sticky top-0 z-50 border-b border-separator">
+  <div class="flex items-center justify-between py-4 px-4 md:px-12 max-w-container-max mx-auto w-full">
+    <div class="w-1/3 hidden md:flex items-center text-meta-text font-label-sm text-label-sm uppercase tracking-wider">
+      <script>document.write(new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));</script>
+    </div>
+    <div class="w-1/3 flex justify-center">
+      <a href="index.html" class="text-headline-xl font-headline-xl text-primary uppercase tracking-tighter">The Public Brief</a>
+    </div>
+    <div class="w-1/3 flex flex-col items-end gap-1">
+      <div class="flex items-center gap-4">
+        <a href="login.html" class="hidden md:block text-primary hover:text-breaking-red transition-colors font-label-sm text-label-sm uppercase tracking-wider">Login</a>
+        <a href="signup.html" class="bg-breaking-red text-white px-6 py-2 font-label-lg text-label-lg uppercase tracking-wider hover:bg-secondary-container transition-colors">Subscribe</a>
+      </div>
+      <a href="support.html" class="hidden md:flex items-center gap-1 text-breaking-red hover:text-secondary-container transition-colors" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;"><span class="material-symbols-outlined" style="font-size:13px;">favorite</span>Support Our Journalism</a>
+    </div>
+  </div>
       <nav class="flex justify-center w-full max-w-container-max mx-auto px-4 md:px-12 mb-0 relative">
     <!-- Hamburger Menu -->
     <div class="absolute left-4 md:left-12 top-0 z-50">
@@ -56,7 +69,7 @@
     </div>
 
     <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap pb-0">
-      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="national.html">National</a></li>
+      <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="india.html">India</a></li>
       <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="world.html">World</a></li>
       <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="sports.html">Sports</a></li>
       <li><a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 border-transparent hover:text-secondary hover:border-secondary transition-colors duration-200" href="entertainment.html">Entertainment</a></li>
@@ -64,10 +77,21 @@
   </nav>
 </header>
 
-<!-- Sub-Navigation -->
-<div class="bg-white border-b border-separator px-4 md:px-16">
-  <div class="flex gap-8 overflow-x-auto py-1">
-    <a class="flex flex-col items-center border-b-[3px] border-secondary text-primary pb-3 pt-4 whitespace-nowrap" href="#global"><p class="text-sm font-bold tracking-[0.015em]">Global</p></a>
+<!-- Global Dispatch Ticker -->
+<div class="bg-primary text-white py-2 px-4 md:px-16 flex items-center gap-4 overflow-hidden border-b border-gray-800">
+  <span class="bg-breaking-red text-white px-3 py-0.5 text-xs font-bold uppercase tracking-wider whitespace-nowrap rounded-sm flex items-center gap-1">
+    <span class="material-symbols-outlined text-xs">public</span> Global Dispatch
+  </span>
+  <div class="ticker-wrap w-full flex items-center">
+    <div class="ticker text-xs text-gray-200">
+      <span class="ticker-item font-semibold">🌐 Geneva Accords: Diplomatic talks establish safe maritime corridor</span>
+      <span class="ticker-item text-breaking-red">&nbsp;◆&nbsp;</span>
+      <span class="ticker-item font-semibold">🕊️ UN Security Council convenes session on international peace pacts</span>
+      <span class="ticker-item text-breaking-red">&nbsp;◆&nbsp;</span>
+      <span class="ticker-item font-semibold">📈 Asian &amp; European markets rally on tariff relief agreements</span>
+      <span class="ticker-item text-breaking-red">&nbsp;◆&nbsp;</span>
+      <span class="ticker-item font-semibold">⚡ Clean energy investments cross record trillion-dollar milestone</span>
+    </div>
   </div>
 </div>
 
@@ -132,7 +156,7 @@
         <h4 class="font-bold text-sm uppercase tracking-widest text-primary">Sections</h4>
         <nav class="flex flex-col gap-2 text-sm text-meta-text">
           <a class="hover:text-secondary" href="index.html">Home</a>
-          <a class="hover:text-secondary" href="national.html">National</a>
+          <a class="hover:text-secondary" href="india.html">India</a>
           <a class="hover:text-secondary font-bold text-primary" href="world.html">World</a>
           <a class="hover:text-secondary" href="sports.html">Sports</a>
           <a class="hover:text-secondary" href="entertainment.html">Entertainment</a>

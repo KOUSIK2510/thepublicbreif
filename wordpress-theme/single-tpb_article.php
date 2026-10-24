@@ -6,7 +6,7 @@
 get_header();
 ?>
 
-<main class="flex-grow w-full max-w-[1280px] mx-auto px-4 md:px-12 py-16">
+<main class="flex-grow w-full max-w-[1280px] mx-auto px-4 md:px-12 py-8 md:py-16">
 
   <?php while ( have_posts() ) : the_post();
     $cats      = get_the_category();
@@ -17,7 +17,7 @@ get_header();
   ?>
 
   <!-- Breadcrumb (visible + SEO) -->
-  <nav class="flex items-center gap-2 text-meta-text text-sm mb-8 font-label-sm" aria-label="Breadcrumb">
+  <nav class="flex items-center gap-2 text-meta-text text-xs md:text-sm mb-6 md:mb-8 font-label-sm flex-wrap" aria-label="Breadcrumb">
     <a href="<?php echo esc_url( home_url('/') ); ?>" class="hover:text-breaking-red transition-colors">Home</a>
     <span class="material-symbols-outlined text-[16px]">chevron_right</span>
     <a href="<?php echo esc_url( $cat_link ); ?>" class="hover:text-breaking-red transition-colors"><?php echo esc_html($cat_name); ?></a>
@@ -43,7 +43,7 @@ get_header();
     <?php endif; ?>
 
     <!-- Author + Meta -->
-    <div class="flex items-center gap-4 mb-8 pb-8 border-b border-separator"
+    <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 md:mb-8 pb-6 md:pb-8 border-b border-separator"
          itemprop="author" itemscope itemtype="https://schema.org/Person">
       <?php echo get_avatar( get_the_author_meta('ID'), 52, '', '', ['class' => 'rounded-full border-2 border-separator']); ?>
       <div>
@@ -64,7 +64,7 @@ get_header();
         </p>
       </div>
       <!-- Share Buttons -->
-      <div class="ml-auto flex items-center gap-3">
+      <div class="flex items-center gap-3 sm:ml-auto">
         <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
            target="_blank" rel="noopener"
            class="w-9 h-9 border border-separator flex items-center justify-center text-on-surface-variant hover:text-breaking-red hover:border-breaking-red transition-colors"
@@ -96,7 +96,7 @@ get_header();
     <?php endif; ?>
 
     <!-- Body -->
-    <div class="prose max-w-none text-body-lg font-body-lg text-on-surface-variant leading-relaxed article-body"
+    <div class="prose max-w-none text-[17px] md:text-[19px] leading-relaxed article-body text-black"
          itemprop="articleBody">
       <?php the_content(); ?>
     </div>
@@ -115,8 +115,8 @@ get_header();
     <?php endif; ?>
 
     <!-- Author Bio Card -->
-    <div class="mt-12 p-8 border border-separator bg-surface-gray flex gap-6 items-start">
-      <?php echo get_avatar( get_the_author_meta('ID'), 80, '', '', ['class' => 'rounded-full shrink-0 border-2 border-separator']); ?>
+    <div class="mt-8 md:mt-12 p-5 md:p-8 border border-separator bg-surface-gray flex flex-col sm:flex-row gap-4 md:gap-6 items-center sm:items-start text-center sm:text-left">
+      <?php echo get_avatar( get_the_author_meta('ID'), 80, '', '', ['class' => 'rounded-full shrink-0 border-2 border-separator w-16 h-16 md:w-20 md:h-20']); ?>
       <div>
         <a href="<?php echo esc_url( home_url('/author-profile/?name=' . urlencode( get_the_author() )) ); ?>"
            class="font-headline-md text-headline-md text-primary font-bold hover:text-breaking-red transition-colors block mb-1">
@@ -150,11 +150,11 @@ get_header();
     $related = new WP_Query($related_args);
     if ( $related->have_posts() ) :
   ?>
-  <section class="max-w-5xl mx-auto mt-20 pt-16 border-t border-separator">
+  <section class="max-w-5xl mx-auto mt-12 md:mt-20 pt-10 md:pt-16 border-t border-separator">
     <h2 class="text-headline-lg font-headline-lg text-primary mb-8 border-b-2 border-breaking-red pb-3 inline-block">
       More from <?php echo esc_html($cats[0]->name); ?>
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
       <?php while ($related->have_posts()) : $related->the_post();
         $r_cats = get_the_category();
         $r_cat  = $r_cats ? $r_cats[0]->name : 'News';
@@ -181,7 +181,8 @@ get_header();
 </main>
 
 <style>
-.article-body p            { margin-bottom: 1.5rem; }
+.article-body              { font-family: Georgia, 'Times New Roman', serif !important; color: #000000 !important; }
+.article-body p            { font-family: Georgia, 'Times New Roman', serif !important; color: #000000 !important; font-size: 1.15rem; line-height: 1.9; margin-bottom: 1.5rem; }
 .article-body h2           { font-family:'Playfair Display',serif; font-size:1.75rem; font-weight:700; margin:2.5rem 0 1rem; color:#000; }
 .article-body h3           { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:600; margin:2rem 0 0.75rem; color:#000; }
 .article-body blockquote   { border-left:4px solid #B00020; padding:1rem 1.5rem; font-style:italic; color:#000; font-size:1.2rem; margin:2.5rem 0; background:#f9f9f9; }
@@ -191,7 +192,7 @@ get_header();
 .article-body figcaption   { font-size:0.875rem; color:#6B7280; font-style:italic; margin-top:0.5rem; }
 .article-body ul           { list-style:disc; padding-left:2rem; margin-bottom:1.5rem; }
 .article-body ol           { list-style:decimal; padding-left:2rem; margin-bottom:1.5rem; }
-.article-body li           { margin-bottom:0.5rem; }
+.article-body li           { font-family: Georgia, 'Times New Roman', serif !important; color: #000000 !important; line-height: 1.8; margin-bottom:0.5rem; }
 .article-body strong       { color:#000; font-weight:700; }
 </style>
 

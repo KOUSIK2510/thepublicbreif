@@ -292,6 +292,68 @@ function tpb_enqueue_assets() {
     wp_enqueue_script( 'tpb-theme',
         get_template_directory_uri() . '/assets/js/theme.js',
         [], '1.0.0', true );
+
+    // ─── Inline: Trending horizontal layout + Breaking News + Support strip ───
+    $extra_css = '
+        /* ── Trending numbers: horizontal layout ── */
+        .trending-list { list-style:none; padding:0; margin:0; }
+        .trending-item {
+            display:flex; align-items:flex-start; gap:12px;
+            padding:12px 0; border-bottom:1px solid #E5E7EB; cursor:pointer;
+        }
+        .trending-item:last-child { border-bottom:none; }
+        .trending-num {
+            font-family:"Playfair Display",serif; font-size:1.5rem;
+            font-weight:800; color:#E5E7EB; line-height:1;
+            min-width:30px; flex-shrink:0; transition:color 0.2s;
+        }
+        .trending-item:hover .trending-num { color:#B00020; }
+
+        /* ── Breaking news ticker ── */
+        .ticker-wrap { overflow:hidden; white-space:nowrap; box-sizing:border-box; }
+        .ticker { display:inline-block; padding-left:100%; animation:ticker 35s linear infinite; }
+        .ticker:hover { animation-play-state:paused; }
+        .ticker-item { display:inline-block; padding:0 2rem; }
+        @keyframes ticker {
+            0%   { transform:translate3d(0,0,0); }
+            100% { transform:translate3d(-100%,0,0); }
+        }
+
+        /* ── Section label accent ── */
+        .section-label {
+            display:inline-flex; align-items:center; gap:8px;
+            font-size:11px; font-weight:700; letter-spacing:0.12em;
+            text-transform:uppercase; color:#B00020;
+        }
+        .section-label::before {
+            content:""; display:block; width:3px; height:14px;
+            background:#B00020; border-radius:1px;
+        }
+
+        /* ── Pagination: horizontal row ── */
+        .tpb-pagination { display:flex; flex-wrap:wrap; gap:8px;
+            justify-content:center; margin:2rem 0; }
+        .tpb-pagination a, .tpb-pagination span {
+            display:inline-flex; align-items:center; justify-content:center;
+            min-width:36px; height:36px; padding:0 10px;
+            border:1px solid #E5E7EB; font-size:13px; font-weight:600;
+            color:#1a1c1c; text-decoration:none; transition:all 0.15s;
+        }
+        .tpb-pagination a:hover { background:#B00020; color:#fff; border-color:#B00020; }
+        .tpb-pagination .current {
+            background:#000; color:#fff; border-color:#000; }
+
+        /* ── Article card hover ── */
+        .clickable-article { cursor:pointer; }
+        .clickable-article:hover h2,
+        .clickable-article:hover h3 { color:#b90c25; }
+        nav a.nav-active {
+            color:#b90c25 !important; border-bottom-color:#b90c25 !important;
+        }
+        html { scroll-behavior:smooth; }
+        img { max-width:100%; height:auto; }
+    ';
+    wp_add_inline_style( 'tpb-main-styles', $extra_css );
 }
 add_action( 'wp_enqueue_scripts', 'tpb_enqueue_assets' );
 

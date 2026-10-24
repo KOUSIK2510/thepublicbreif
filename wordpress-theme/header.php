@@ -9,61 +9,98 @@
 
 <!-- Header -->
 <header class="bg-surface flex flex-col w-full sticky top-0 z-50 border-b border-separator">
-  <div class="flex items-center justify-between py-5 px-4 md:px-12 max-w-[1280px] mx-auto w-full">
-    <!-- Date -->
+
+  <!-- Top Bar: Logo + Auth/Subscribe -->
+  <div class="flex items-center justify-between py-3 md:py-5 px-4 md:px-12 max-w-[1280px] mx-auto w-full">
+    <!-- Date (desktop only) -->
     <div class="w-1/3 hidden md:flex items-center text-meta-text font-label-sm text-label-sm uppercase tracking-wider">
       <script>document.write(new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}));</script>
     </div>
 
     <!-- Logo + Title -->
-    <div class="w-1/3 flex justify-center">
-      <a href="<?php echo esc_url( home_url('/') ); ?>" class="flex items-center gap-3 no-underline">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain" />
-        <span class="text-primary uppercase tracking-tighter leading-none" style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;">The Public Brief</span>
+    <div class="flex-1 md:w-1/3 flex justify-start md:justify-center">
+      <a href="<?php echo esc_url( home_url('/') ); ?>" class="flex items-center gap-2 md:gap-3 no-underline">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt="<?php bloginfo('name'); ?>" class="h-8 md:h-10 w-auto object-contain" />
+        <span class="text-primary uppercase tracking-tighter leading-none" style="font-family:'Playfair Display',serif;font-size:clamp(1rem,3.5vw,1.5rem);font-weight:700;">The Public Brief</span>
       </a>
     </div>
 
     <!-- Auth / Subscribe -->
-    <div class="w-1/3 flex justify-end items-center gap-4">
-      <?php if ( is_user_logged_in() ) : ?>
-        <a href="<?php echo wp_logout_url( home_url() ); ?>" class="hidden md:block text-primary hover:text-breaking-red transition-colors font-label-sm text-label-sm uppercase tracking-wider">Logout</a>
-      <?php else : ?>
-        <a href="<?php echo wp_login_url(); ?>" class="hidden md:block text-primary hover:text-breaking-red transition-colors font-label-sm text-label-sm uppercase tracking-wider">Login</a>
-      <?php endif; ?>
-      <a href="<?php echo esc_url( home_url('/subscribe') ); ?>" class="bg-breaking-red text-white px-6 py-2 font-label-lg text-label-lg uppercase tracking-wider hover:bg-secondary-container transition-colors">Subscribe</a>
+    <div class="flex-shrink-0 md:w-1/3 flex flex-col items-end gap-1">
+      <div class="flex items-center gap-2 md:gap-4">
+        <?php if ( is_user_logged_in() ) : ?>
+          <a href="<?php echo wp_logout_url( home_url() ); ?>" class="hidden md:block text-primary hover:text-breaking-red transition-colors font-label-sm text-label-sm uppercase tracking-wider">Logout</a>
+        <?php else : ?>
+          <a href="<?php echo wp_login_url(); ?>" class="hidden md:block text-primary hover:text-breaking-red transition-colors font-label-sm text-label-sm uppercase tracking-wider">Login</a>
+        <?php endif; ?>
+        <a href="<?php echo esc_url( home_url('/subscribe') ); ?>" class="bg-breaking-red text-white px-4 md:px-6 py-1.5 md:py-2 font-label-lg text-[11px] md:text-label-lg uppercase tracking-wider hover:bg-secondary-container transition-colors">Subscribe</a>
+      </div>
+      <a href="<?php echo esc_url( home_url('/support') ); ?>" class="hidden md:flex items-center gap-1 text-breaking-red hover:text-secondary-container transition-colors" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">
+        <span class="material-symbols-outlined" style="font-size:13px;">favorite</span>Support Our Journalism
+      </a>
     </div>
   </div>
 
   <!-- Navigation -->
-  <nav class="flex justify-center w-full max-w-[1280px] mx-auto px-4 md:px-12 mb-0 relative">
-    <!-- Hamburger + Social Icons -->
-    <div class="absolute left-4 md:left-12 top-0 z-50 flex items-center gap-3">
+  <nav class="flex items-center w-full max-w-[1280px] mx-auto px-4 md:px-12 mb-0 relative">
+    <!-- Hamburger button -->
+    <div class="flex-shrink-0 mr-2 md:mr-4 relative">
       <button id="hamburger-btn" class="p-1 -ml-1 hover:bg-surface-gray transition-colors flex items-center justify-center" aria-label="Menu">
-        <span class="material-symbols-outlined text-[28px] text-primary">menu</span>
+        <span class="material-symbols-outlined text-[24px] md:text-[28px] text-primary">menu</span>
       </button>
-      <!-- Social Icons -->
-      <a href="https://www.facebook.com/share/1UpHD9WnrN/" target="_blank" rel="noopener" aria-label="Facebook" class="text-meta-text hover:text-[#1877F2] transition-colors">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/thepublicbrief.news?igsi=Nzg1dzMxOGdyY3kw" target="_blank" rel="noopener" aria-label="Instagram" class="text-meta-text hover:text-[#E4405F] transition-colors">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      </a>
-      <a href="https://whatsapp.com/channel/0029Vb8gQJO5q08hRqjj4n2d" target="_blank" rel="noopener" aria-label="WhatsApp" class="text-meta-text hover:text-[#25D366] transition-colors">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      </a>
-      <div id="hamburger-menu" class="hidden absolute left-0 top-full mt-3 bg-white border border-separator shadow-xl w-56 py-2">
+      <!-- Dropdown menu -->
+      <div id="hamburger-menu" class="hidden absolute left-0 top-full mt-3 bg-white border border-separator shadow-xl w-56 py-2 z-50">
+        <!-- Mobile-only links -->
+        <a class="block md:hidden px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="<?php echo esc_url( home_url('/') ); ?>">Home</a>
+        <a class="block md:hidden px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="<?php echo esc_url( home_url('/category/national') ); ?>">India</a>
+        <a class="block md:hidden px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="<?php echo esc_url( home_url('/category/world') ); ?>">World</a>
+        <a class="block md:hidden px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="<?php echo esc_url( home_url('/category/sports') ); ?>">Sports</a>
+        <a class="block md:hidden px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="<?php echo esc_url( home_url('/category/entertainment') ); ?>">Entertainment</a>
+        <div class="md:hidden border-t border-separator my-1"></div>
         <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="<?php echo esc_url( home_url('/category/opinion') ); ?>">Opinion</a>
         <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="<?php echo esc_url( home_url('/about') ); ?>">About</a>
         <a class="block px-6 py-3 text-label-lg font-label-lg uppercase tracking-wider text-primary hover:bg-surface-gray hover:text-breaking-red transition-colors" href="<?php echo esc_url( home_url('/support') ); ?>">Support</a>
+        <!-- Social Icons inside hamburger on mobile -->
+        <div class="md:hidden border-t border-separator my-1"></div>
+        <div class="md:hidden flex items-center gap-4 px-6 py-3">
+          <a href="https://www.facebook.com/share/1UpHD9WnrN/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook" class="text-meta-text hover:text-[#1877F2] transition-colors">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/thepublicbrief.news?igsi=Nzg1dzMxOGdyY3kw" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram" class="text-meta-text hover:text-[#E4405F] transition-colors">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://whatsapp.com/channel/0029Vb8gQJO5q08hRqjj4n2d" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp" class="text-meta-text hover:text-[#25D366] transition-colors">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/thepublicbrief/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" class="text-meta-text hover:text-[#0A66C2] transition-colors">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- Main nav links -->
-    <ul class="flex space-x-8 md:space-x-12 overflow-x-auto whitespace-nowrap pb-0">
+    <!-- Social Icons (desktop only, with LinkedIn and no overlap) -->
+    <div class="hidden md:flex items-center gap-3.5 mr-6 flex-shrink-0">
+      <a href="https://www.facebook.com/share/1UpHD9WnrN/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook" class="text-meta-text hover:text-[#1877F2] transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/thepublicbrief.news?igsi=Nzg1dzMxOGdyY3kw" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram" class="text-meta-text hover:text-[#E4405F] transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://whatsapp.com/channel/0029Vb8gQJO5q08hRqjj4n2d" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp" class="text-meta-text hover:text-[#25D366] transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/thepublicbrief/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" class="text-meta-text hover:text-[#0A66C2] transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+    </div>
+
+    <!-- Main nav links (horizontal scroll on mobile, perfectly centered on desktop) -->
+    <ul class="flex items-center gap-4 md:gap-8 lg:gap-10 overflow-x-auto whitespace-nowrap pb-0 no-scrollbar flex-1 justify-start md:justify-center">
       <?php
       $sections = [
         'Home'          => home_url('/'),
-        'National'      => home_url('/category/national'),
+        'India'         => home_url('/category/national'),
         'World'         => home_url('/category/world'),
         'Sports'        => home_url('/category/sports'),
         'Entertainment' => home_url('/category/entertainment'),
@@ -71,13 +108,15 @@
       foreach ( $sections as $label => $url ) :
         if ($label === 'Home') {
           $is_active = is_home() || is_front_page();
+        } elseif ($label === 'India') {
+          $is_active = is_category('national');
         } else {
           $is_active = is_category( strtolower($label) );
         }
         $active = $is_active ? 'text-secondary border-secondary' : 'border-transparent hover:text-secondary hover:border-secondary';
       ?>
-      <li>
-        <a class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider block pb-4 border-b-2 <?php echo $active; ?> transition-colors duration-200"
+      <li class="flex-shrink-0">
+        <a class="text-on-surface font-label-lg text-[12px] md:text-label-lg uppercase tracking-wider block pb-3 md:pb-4 border-b-2 <?php echo $active; ?> transition-colors duration-200"
            href="<?php echo esc_url($url); ?>">
           <?php echo esc_html($label); ?>
         </a>

@@ -378,8 +378,10 @@
 
     var url = '/api/articles';
     if (category) {
-      category = category.charAt(0).toUpperCase() + category.slice(1);
-      url += '?category=' + category;
+      // Map 'india' page to 'National' category in the backend
+      var apiCategory = category === 'india' ? 'national' : category;
+      apiCategory = apiCategory.charAt(0).toUpperCase() + apiCategory.slice(1);
+      url += '?category=' + apiCategory;
     }
 
     grid.innerHTML = '<div class="col-span-full text-center text-meta-text py-12">Loading articles...</div>';
@@ -488,18 +490,16 @@
           });
         }
 
-        // Trending (Right column)
+        // Trending (Right column) - horizontal number + text layout
         trendingContainer.innerHTML = '';
         articles.slice(7, 11).forEach(function(art, idx) {
           var number = (idx + 1).toString().padStart(2, '0');
-          var classes = idx === 0 ? "relative pl-10 group cursor-pointer" : "relative pl-10 group cursor-pointer pt-6 border-t border-separator";
-          var positionClass = idx === 0 ? "top-0" : "top-6";
           var html = `
-            <li class="${classes}" onclick="openArticleModal('${art.title}')">
-              <span class="absolute left-0 ${positionClass} text-headline-xl font-headline-xl text-outline-variant font-bold opacity-50 group-hover:text-breaking-red group-hover:opacity-100 transition-all leading-none">${number}</span>
-              <div class="flex flex-col">
-                <span class="text-breaking-red font-label-sm text-label-sm uppercase tracking-widest font-bold mb-1">${art.category}</span>
-                <h4 class="text-body-md font-body-md font-semibold text-primary leading-snug group-hover:text-secondary-container transition-colors">${art.title}</h4>
+            <li class="trending-item group cursor-pointer" onclick="openArticleModal('${art.title}')">
+              <span class="trending-num">${number}</span>
+              <div class="flex flex-col min-w-0">
+                <span class="text-breaking-red font-label-sm text-label-sm uppercase tracking-widest font-bold mb-1" style="font-size:10px;">${art.category}</span>
+                <h4 class="text-body-md font-body-md font-semibold text-primary leading-snug group-hover:text-breaking-red transition-colors" style="font-size:13px;line-height:1.4;">${art.title}</h4>
               </div>
             </li>
           `;
